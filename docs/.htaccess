@@ -1,0 +1,6 @@
+# Carnet de voyage privé : accessible par lien, exclu des moteurs de recherche.
+# Pris en compte par l'hébergement Apache OVHcloud mutualisé ; ignoré par GitHub Pages.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet, noimageindex"
+</IfModule>
+DirectoryIndex index.html

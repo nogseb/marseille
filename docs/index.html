@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1A21" media="(prefers-color-scheme: dark)">
+<title>Marseille et Calanques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Carnet de voyage, mobile d'abord. Palette : calcaire, bleu calanque, pin d'Alep, terre cuite. */
+:root{
+  --paper:#F4F1EA; --surface:#FFFFFF; --ink:#16252C; --ink-2:#55656C; --rule:#DCD6C9; --tint:#ECE7DC;
+  --accent:#0F5E86; --accent-ink:#FFFFFF; --accent-soft:#DCEBF2;
+  --pine:#3E6B45; --clay:#B4532F; --sun:#9A6A12;
+  --l1:#3E7D57; --l2:#2D6E92; --l3:#A0561C; --l4:#9B2F3B; --lc:#6B5E8C;
+  --ok:#2E7A4B; --todo:#A85A12; --opt:#5D6B7C; --tbd:#7044AC;
+  --f-display:"Spectral", Georgia, "Times New Roman", serif;
+  --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --nav-h:52px; --gutter:16px; --radius:8px; --maxw:1120px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0E1A21; --surface:#14252E; --ink:#E6ECEC; --ink-2:#9DB0B6; --rule:#26404B; --tint:#18303A;
+  --accent:#7CC3E6; --accent-ink:#07202C; --accent-soft:#16384A;
+  --pine:#8FC097; --clay:#E8936F; --sun:#E3B85C;
+  --l1:#7FC79A; --l2:#7CC3E6; --l3:#EBA35E; --l4:#EE8A95; --lc:#B6A6E6;
+  --ok:#6CC08E; --todo:#EBA45D; --opt:#9DAEC1; --tbd:#B99BE8; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --paper:#0E1A21; --surface:#14252E; --ink:#E6ECEC; --ink-2:#9DB0B6; --rule:#26404B; --tint:#18303A;
+  --accent:#7CC3E6; --accent-ink:#07202C; --accent-soft:#16384A;
+  --pine:#8FC097; --clay:#E8936F; --sun:#E3B85C;
+  --l1:#7FC79A; --l2:#7CC3E6; --l3:#EBA35E; --l4:#EE8A95; --lc:#B6A6E6;
+  --ok:#6CC08E; --todo:#EBA45D; --opt:#9DAEC1; --tbd:#B99BE8; color-scheme:dark; }
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-padding-top:calc(var(--nav-h) + 12px); scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:1.0625rem; line-height:1.55; overflow-x:hidden}
+a{color:var(--accent); text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+h1,h2,h3{font-family:var(--f-display); font-weight:600; line-height:1.2; margin:0}
+p{margin:0 0 .75em}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter)}
+.mono{font-family:var(--f-mono); font-size:.86em; letter-spacing:.01em}
+.muted{color:var(--ink-2)}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* Navigation */
+.nav{position:sticky; top:0; z-index:1000; height:var(--nav-h); background:color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter:saturate(1.2) blur(8px); -webkit-backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex; align-items:center; gap:12px; height:100%}
+.brand{font-family:var(--f-display); font-weight:600; font-size:1.05rem; white-space:nowrap; text-decoration:none; color:var(--ink)}
+.tabs{display:flex; gap:2px; min-width:0; overflow-x:auto; scrollbar-width:none; flex:1; -webkit-mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none; padding:7px 11px; border-radius:999px; font-size:.92rem; text-decoration:none; color:var(--ink-2); white-space:nowrap}
+.tabs a[aria-current="true"]{background:var(--accent); color:var(--accent-ink)}
+.theme{flex:none; border:1px solid var(--rule); background:var(--surface); color:var(--ink); width:34px; height:34px; border-radius:50%; cursor:pointer; display:grid; place-items:center}
+@media (max-width:520px){ .brand{display:none} }
+
+/* En-tête */
+header.hero{padding:28px 0 8px}
+.kicker{font-family:var(--f-mono); font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--clay)}
+.hero h1{font-size:clamp(2rem, 7vw, 3.2rem); margin:.15em 0 .2em}
+.hero .lede{font-size:1.1rem; color:var(--ink-2); max-width:62ch}
+.facts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:18px 0 6px}
+@media (min-width:760px){ .facts{grid-template-columns:repeat(4,minmax(0,1fr))} }
+.fact{background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:12px 14px}
+.fact .k{font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-2)}
+.fact .v{font-family:var(--f-display); font-size:1.25rem; font-weight:600; margin-top:2px}
+.fact .s{font-size:.86rem; color:var(--ink-2)}
+
+section{padding:30px 0 6px}
+section > .wrap > h2{font-size:1.65rem; margin-bottom:6px}
+section > .wrap > .intro{color:var(--ink-2); max-width:70ch; margin-bottom:16px}
+
+/* Tableau programme */
+.tbl{width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); overflow:hidden; font-size:.95rem}
+.tbl th,.tbl td{padding:10px 12px; text-align:left; vertical-align:top; border-bottom:1px solid var(--rule)}
+.tbl th{font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-2); background:var(--tint); font-weight:700}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr{cursor:pointer}
+.tbl tbody tr:hover{background:var(--accent-soft)}
+.tbl .d{white-space:nowrap; font-family:var(--f-mono); font-size:.85rem}
+.tscroll{overflow-x:auto; border-radius:var(--radius)}
+@media (max-width:640px){
+  .tbl.stack thead{display:none}
+  .tbl.stack, .tbl.stack tbody, .tbl.stack tr, .tbl.stack td{display:block; width:100%}
+  .tbl.stack tr{border-bottom:1px solid var(--rule); padding:8px 0}
+  .tbl.stack td{border:0; padding:3px 12px}
+  .tbl.stack td[data-l]::before{content:attr(data-l) " · "; color:var(--ink-2); font-size:.8rem; text-transform:uppercase; letter-spacing:.04em}
+}
+
+.badge{display:inline-flex; align-items:center; gap:6px; font-size:.78rem; font-weight:700; padding:2px 9px; border-radius:999px; border:1px solid currentColor; white-space:nowrap}
+.badge::before{content:""; width:7px; height:7px; border-radius:50%; background:currentColor}
+.lv-0{color:var(--lc)} .lv-1{color:var(--l1)} .lv-2{color:var(--l2)} .lv-3{color:var(--l3)} .lv-4{color:var(--l4)}
+
+/* Jour par jour : liste + carte */
+.days-layout{display:grid; gap:16px}
+.days-layout > *{min-width:0}
+@media (min-width:980px){ .days-layout{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); align-items:start} .mapcol{position:sticky; top:calc(var(--nav-h) + 12px)} }
+.daypick{display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin}
+@media (min-width:980px){ .daypick{flex-wrap:wrap} }
+.daypick button{flex:none; border:1px solid var(--rule); background:var(--surface); color:var(--ink); border-radius:var(--radius); padding:7px 10px; cursor:pointer; text-align:left; font:inherit; min-width:70px}
+.daypick button .n{display:block; font-family:var(--f-mono); font-size:.72rem; color:var(--ink-2); text-transform:uppercase}
+.daypick button .t{font-family:var(--f-display); font-weight:600; font-size:1.05rem}
+.daypick button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink)}
+.daypick button[aria-pressed="true"] .n{color:inherit; opacity:.85}
+.daypick button.today{outline:2px solid var(--clay); outline-offset:1px}
+
+#map{height:clamp(260px, 44vh, 520px); border-radius:var(--radius); border:1px solid var(--rule); background:var(--tint); z-index:1}
+.maptools{display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; margin-top:8px; font-size:.86rem; color:var(--ink-2)}
+.seg{display:inline-flex; border:1px solid var(--rule); border-radius:999px; overflow:hidden; background:var(--surface)}
+.seg button{border:0; background:transparent; color:var(--ink-2); padding:5px 12px; font:inherit; font-size:.85rem; cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink)}
+
+.day{background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:16px; margin-top:12px}
+.day-h{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; justify-content:space-between}
+.day-h h3{font-size:1.4rem}
+.day-h .date{font-family:var(--f-mono); font-size:.85rem; color:var(--ink-2)}
+.day .sum{color:var(--ink-2); margin:6px 0 10px}
+.sunrow{display:flex; flex-wrap:wrap; gap:14px; font-size:.86rem; color:var(--ink-2); margin-bottom:10px}
+.sunrow b{color:var(--ink); font-weight:700}
+.tl{list-style:none; margin:0; padding:0; border-left:2px solid var(--rule); margin-left:6px}
+.tl li{position:relative; padding:0 0 12px 18px}
+.tl li::before{content:""; position:absolute; left:-7px; top:7px; width:12px; height:12px; border-radius:50%; background:var(--surface); border:2px solid var(--accent)}
+.tl li.walk::before{border-color:var(--pine); background:var(--pine)}
+.tl .h{font-family:var(--f-mono); font-size:.82rem; color:var(--ink-2); display:block}
+.tl .w{font-weight:700}
+.tl .x{display:block; color:var(--ink-2); font-size:.95rem}
+.hike{margin:6px 0 12px; border:1px solid var(--rule); border-left:4px solid var(--pine); border-radius:var(--radius); padding:10px 12px; background:color-mix(in srgb, var(--pine) 6%, var(--surface))}
+.hike .ttl{font-weight:700}
+.stats{display:flex; flex-wrap:wrap; gap:6px 14px; font-family:var(--f-mono); font-size:.82rem; margin:6px 0}
+.note{border-radius:var(--radius); padding:10px 12px; margin-top:10px; font-size:.95rem}
+.note.warn{background:color-mix(in srgb, var(--clay) 11%, var(--surface)); border:1px solid color-mix(in srgb, var(--clay) 35%, var(--rule))}
+.note.planb{background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 30%, var(--rule))}
+.note b.lbl{display:block; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px}
+.links{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.btn{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--rule); border-radius:999px; padding:5px 12px; font-size:.86rem; text-decoration:none; color:var(--ink); background:var(--paper)}
+.btn:hover{border-color:var(--accent); color:var(--accent)}
+
+/* Cartes génériques */
+.grid{display:grid; gap:12px}
+.grid > *{min-width:0}
+@media (min-width:720px){ .grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))} .grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:14px 16px}
+.card h3{font-size:1.15rem; margin-bottom:4px}
+.card .meta{font-size:.85rem; color:var(--ink-2); margin-bottom:6px}
+.tag{display:inline-block; font-size:.74rem; text-transform:uppercase; letter-spacing:.05em; padding:1px 8px; border-radius:4px; background:var(--tint); color:var(--ink-2); margin-right:4px}
+.tag.must{background:color-mix(in srgb, var(--clay) 16%, var(--surface)); color:var(--clay)}
+
+/* Statuts et listes à cocher */
+.st{font:inherit; font-size:.85rem; border:1px solid var(--rule); border-radius:6px; padding:3px 6px; background:var(--paper); color:var(--ink)}
+.st[data-v="confirme"]{color:var(--ok); border-color:var(--ok)}
+.st[data-v="areserver"]{color:var(--todo); border-color:var(--todo)}
+.st[data-v="demande"]{color:var(--tbd); border-color:var(--tbd)}
+.st[data-v="optionnel"]{color:var(--opt)}
+.check{list-style:none; padding:0; margin:0}
+.check li{display:flex; gap:10px; align-items:flex-start; padding:7px 0; border-bottom:1px dashed var(--rule)}
+.check li:last-child{border-bottom:0}
+.check input{width:18px; height:18px; margin-top:3px; accent-color:var(--accent); flex:none}
+.check input:checked + span{color:var(--ink-2); text-decoration:line-through}
+.progress{height:6px; background:var(--tint); border-radius:999px; overflow:hidden; margin:6px 0 10px}
+.progress i{display:block; height:100%; background:var(--pine); width:0; transition:width .3s}
+
+/* Météo */
+.wx{display:grid; grid-template-columns:repeat(auto-fill,minmax(118px,1fr)); gap:8px}
+.wxd{background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:10px; font-size:.88rem}
+.wxd .dd{font-family:var(--f-mono); font-size:.78rem; color:var(--ink-2); text-transform:uppercase}
+.wxd .tt{font-family:var(--f-display); font-size:1.2rem; font-weight:600}
+.wxd.windy{border-color:var(--clay)}
+.wxd .alert{color:var(--clay); font-weight:700; font-size:.8rem}
+
+blockquote{margin:12px 0; padding:8px 14px; border-left:3px solid var(--accent); background:var(--surface); border-radius:0 var(--radius) var(--radius) 0; color:var(--ink)}
+footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
+.sources{font-size:.82rem; color:var(--ink-2)}
+.sources li{margin-bottom:4px}
+
+/* Carte Leaflet */
+.leaflet-container{font-family:var(--f-body); background:var(--tint)}
+.pin{width:28px; height:28px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); display:grid; place-items:center; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.pin span{transform:rotate(45deg); color:#fff; font:700 12px/1 var(--f-mono)}
+.pin.dim{opacity:.35}
+.leaflet-popup-content{font-size:.92rem; margin:10px 12px}
+.leaflet-popup-content b{font-family:var(--f-display); font-size:1.02rem}
+:root[data-theme="dark"] .leaflet-popup-content-wrapper, :root[data-theme="dark"] .leaflet-popup-tip{background:#14252E; color:#E6ECEC}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .leaflet-popup-content-wrapper, :root:not([data-theme="light"]) .leaflet-popup-tip{background:#14252E; color:#E6ECEC} }
+@media print{ .nav,#map,.maptools,.theme{display:none} .day{break-inside:avoid} }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Marseille 2026</a>
+    <div class="tabs" id="tabs">
+      <a href="#programme">Programme</a>
+      <a href="#jours">Jour par jour</a>
+      <a href="#randos">Randos</a>
+      <a href="#visites">Visites</a>
+      <a href="#meteo">Météo</a>
+      <a href="#pratique">Pratique</a>
+      <a href="#preparer">À préparer</a>
+    </div>
+    <button class="theme" id="themeBtn" type="button" aria-label="Changer de thème" title="Thème clair ou sombre">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker">Carnet de voyage · novembre 2026</div>
+    <h1>Marseille et les Calanques</h1>
+    <p class="lede">Une semaine à deux, Sébastien et Pauline : des randonnées de niveau varié dans le Parc national des Calanques, de Callelongue au Cap Canaille, et des journées en ville entre le Vieux-Port, le Panier et la Cité radieuse.</p>
+    <div class="facts">
+      <div class="fact"><div class="k">Dates</div><div class="v">7 – 14 nov.</div><div class="s">du samedi au samedi, 7 nuits</div></div>
+      <div class="fact"><div class="k">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
+      <div class="fact"><div class="k">Base</div><div class="v">Marseille 4e</div><div class="s">parc Longchamp, HomeExchange</div></div>
+      <div class="fact"><div class="k">Randonnées</div><div class="v">5 sorties</div><div class="s">de 2h30 à 5h de marche</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="programme">
+  <div class="wrap">
+    <h2>Le programme en un coup d'œil</h2>
+    <p class="intro">Les randonnées sont placées en semaine, quand les routes d'accès sont ouvertes et les sentiers calmes. Le dimanche reste urbain, la Route des Crêtes étant fermée aux voitures ce jour-là. Toucher une ligne ouvre le détail du jour.</p>
+    <div class="tscroll">
+      <table class="tbl stack" id="progTable">
+        <thead><tr><th>Jour</th><th>Programme</th><th>Marche</th><th>Niveau</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="jours">
+  <div class="wrap">
+    <h2>Jour par jour</h2>
+    <p class="intro">Horaires indicatifs, calés sur la lumière du jour : le soleil se couche entre 17h22 et 17h14 au fil de la semaine, les randonnées démarrent donc avant 9h. Chaque journée a son plan B en cas de pluie ou de mistral.</p>
+    <div class="days-layout">
+      <div>
+        <div class="daypick" id="daypick" role="group" aria-label="Choisir un jour"></div>
+        <div id="dayView"></div>
+      </div>
+      <div class="mapcol">
+        <div id="map" role="region" aria-label="Carte des lieux du jour"></div>
+        <div class="maptools">
+          <div class="seg" role="group" aria-label="Fond de carte">
+            <button type="button" data-layer="plan" aria-pressed="true">Plan</button>
+            <button type="button" data-layer="topo" aria-pressed="false">Relief et sentiers</button>
+          </div>
+          <div class="seg" role="group" aria-label="Lieux affichés">
+            <button type="button" data-scope="day" aria-pressed="true">Ce jour</button>
+            <button type="button" data-scope="all" aria-pressed="false">Tout le séjour</button>
+          </div>
+        </div>
+        <p class="muted" style="font-size:.82rem;margin-top:6px">Positions indicatives. Pour suivre un sentier, préférer le fond « Relief et sentiers » ou une application de randonnée hors ligne.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="randos">
+  <div class="wrap">
+    <h2>Les randonnées</h2>
+    <p class="intro">Distances, dénivelés et durées sont des ordres de grandeur, pauses non comprises. Le calcaire des Calanques est très glissant par temps humide : une descente qui se fait en dix minutes au sec peut en demander trente après la pluie.</p>
+    <div class="tscroll">
+      <table class="tbl stack" id="hikeTable">
+        <thead><tr><th>Randonnée</th><th>Jour</th><th>Distance</th><th>Dénivelé</th><th>Durée</th><th>Niveau</th><th>Départ</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="grid c3" style="margin-top:14px">
+      <div class="card"><h3>Facile</h3><p class="meta">Sentier large ou peu technique, dénivelé modéré.</p><span class="badge lv-1">Facile</span></div>
+      <div class="card"><h3>Moyen à soutenu</h3><p class="meta">Passages rocheux, montées raides, mains parfois utiles.</p><span class="badge lv-2">Moyen</span> <span class="badge lv-3">Soutenu</span></div>
+      <div class="card"><h3>Grosse journée</h3><p class="meta">Crêtes exposées, pas de point d'eau, à éviter par vent fort.</p><span class="badge lv-4">Exigeant</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="visites">
+  <div class="wrap">
+    <h2>Les visites</h2>
+    <p class="intro">Les quatre incontournables, puis des compléments à piocher selon l'énergie et la météo. Cocher une visite la marque comme faite sur cet appareil.</p>
+    <div class="grid c2" id="visitGrid"></div>
+  </div>
+</section>
+
+<section id="meteo">
+  <div class="wrap">
+    <h2>Météo du séjour</h2>
+    <p class="intro" id="wxIntro">Prévisions automatiques pour Marseille, actualisées à chaque ouverture de la page.</p>
+    <div class="wx" id="wx"></div>
+    <blockquote>
+      <b>Mistral.</b> Vent de nord-ouest froid et sec, fréquent en novembre. Au-delà de 60 km/h en rafales, éviter les crêtes (Marseilleveyre, Cap Canaille) et vérifier l'ouverture de la Route des Crêtes, fermée par vent très fort. Les journées de mistral sont souvent les plus lumineuses : idéales pour les belvédères abrités et la ville.
+    </blockquote>
+  </div>
+</section>
+
+<section id="pratique">
+  <div class="wrap">
+    <h2>Infos pratiques</h2>
+    <p class="intro">Vérifié le 14 octobre 2026. Les règles d'accès évoluent : un dernier contrôle sur le site du Parc national la veille de chaque sortie reste prudent.</p>
+    <div class="grid c2">
+      <div class="card">
+        <h3>Trajet</h3>
+        <p>Toulouse – Marseille : environ 405 km et 4h15 sans pause, par l'A61, l'A9 puis l'A54 (Narbonne, Nîmes, Arles, Salon). Péages autour de 40 € par trajet, indicatif.</p>
+        <p class="muted">À l'aller comme au retour, Arles fait une bonne halte déjeuner, aux trois quarts du parcours.</p>
+      </div>
+      <div class="card">
+        <h3>Se déplacer à Marseille</h3>
+        <p>La voiture reste au parking pour les journées en ville : la station <b>Cinq-Avenues – Longchamp</b> (métro M1, tram T2) mène au Vieux-Port en quelques minutes. La voiture sert pour les départs de randonnée.</p>
+        <p class="muted">Bus utiles : B1 vers Luminy (Sugiton), 19 et 20 vers les Goudes et Callelongue, 22 et 23 vers les Baumettes (Morgiou, Sormiou).</p>
+      </div>
+      <div class="card">
+        <h3>Accès aux Calanques en novembre</h3>
+        <p>La réservation obligatoire de <b>Sugiton</b> ne concerne que l'été et quelques week-ends de septembre : accès libre en novembre<sup><a href="#s1">1</a></sup>. La réglementation préfectorale de fermeture des massifs pour risque incendie s'applique du 1er juin au 30 septembre<sup><a href="#s3">3</a></sup>.</p>
+        <p>Routes de <b>Sormiou et Morgiou</b> : une source signale une fermeture aux voitures les week-ends et ponts jusqu'au 15 novembre, de 7h à 19h<sup><a href="#s4">4</a></sup>, le calendrier officiel publié ne couvrant que juin à septembre<sup><a href="#s2">2</a></sup>. Le programme place donc cette sortie un lundi.</p>
+      </div>
+      <div class="card">
+        <h3>Route des Crêtes</h3>
+        <p>Entre Cassis et La Ciotat, elle est fermée aux véhicules motorisés <b>tous les dimanches de l'année</b><sup><a href="#s5">5</a></sup>, et ponctuellement par mistral très fort. D'où son placement un vendredi, avec repli possible le jeudi.</p>
+      </div>
+      <div class="card">
+        <h3>Horaires à retenir</h3>
+        <p><b>MuCEM</b> : fermé le mardi<sup><a href="#s6">6</a></sup>. <b>Musées municipaux</b> (Vieille Charité, Beaux-Arts, Histoire) : fermés le lundi. <b>Toit-terrasse de la Cité radieuse</b> (MAMO) : du mercredi au dimanche, 11h–18h, accès libre<sup><a href="#s7">7</a></sup>. <b>Marché aux poissons</b> du quai des Belges : le matin.</p>
+      </div>
+      <div class="card">
+        <h3>Urgences</h3>
+        <p><b>112</b> numéro d'urgence européen · <b>15</b> SAMU · <b>18</b> pompiers · <b>196</b> secours en mer (CROSS).</p>
+        <p class="muted">Le réseau mobile est faible au fond des calanques (Sugiton, En-Vau) : prévenir quelqu'un de l'itinéraire et télécharger la carte hors ligne avant de partir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="preparer">
+  <div class="wrap">
+    <h2>À préparer</h2>
+    <p class="intro">Statuts et cases cochées sont enregistrés dans ce navigateur uniquement : ils ne se partagent pas entre téléphones.</p>
+    <div class="grid c2">
+      <div class="card">
+        <h3>Réservations</h3>
+        <div class="tscroll"><table class="tbl" id="resaTable" style="border:0"><thead><tr><th>Objet</th><th>Quand</th><th>Statut</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      <div class="card">
+        <h3>Sac de randonnée</h3>
+        <div class="progress"><i id="packBar"></i></div>
+        <ul class="check" id="packList"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2 style="font-size:1.1rem;margin-bottom:8px">Sources</h2>
+    <ol class="sources">
+      <li id="s1"><a href="https://calanques-parcnational.fr/fr/des-decouvertes/preparer-sa-visite/reservation-sugiton">Parc national des Calanques, Réservation Sugiton</a>, dates du dispositif 2026.</li>
+      <li id="s2"><a href="https://calanques-parcnational.fr/fr/actualites/fermeture-des-routes-de-sormiou-morgiou-et-callelongue-calendrier-juin-septembre-2026">Parc national des Calanques, Fermeture des routes de Sormiou, Morgiou et Callelongue, juin à septembre 2026</a>.</li>
+      <li id="s3"><a href="https://www.frequence-sud.fr/art-757-comment_acceder_aux_calanques_de_marseille_et_de_cassis___tout_ce_qu_il_faut_savoir_en_2026_marseille">Fréquence Sud, Comment accéder aux calanques de Marseille et de Cassis en 2026</a>, mis à jour le 15 mai 2026.</li>
+      <li id="s4"><a href="https://www.bonnegrimpe.com/reglementation.html">Bonne Grimpe, Réglementation d'accès au massif des Calanques</a>, à recouper avec le Parc national.</li>
+      <li id="s5"><a href="https://www.destinationlaciotat.com/nos-actualites/acces-aux-massifs/">Office de tourisme de La Ciotat, Accès aux massifs</a>.</li>
+      <li id="s6"><a href="https://www.mucem.org/en/hours-and-prices">MuCEM, horaires et tarifs</a> : ouvert tous les jours sauf le mardi.</li>
+      <li id="s7"><a href="https://www.marseille-tourisme.com/offres/mamo-centre-dart-de-la-cite-radieuse-de-marseille-marseille-8eme-fr-3383094/">Office de tourisme de Marseille, MAMO, centre d'art de la Cité radieuse</a>, fiche mise à jour le 1er septembre 2026.</li>
+      <li id="s8"><a href="https://www.marseille-tourisme.com/offres/partez-a-la-decouverte-de-la-cite-radieuse-le-corbusier-marseille-8eme-fr-4225029/">Office de tourisme de Marseille, Visites de la Cité radieuse</a>.</li>
+    </ol>
+    <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://carto.com/attributions">CARTO</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+"use strict";
+/* ---------- Données du séjour ---------- */
+const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
+
+const PLACES = {
+  base:      {n:"Base : parc Longchamp", c:[43.3049,5.3947], d:"Appartement HomeExchange, Marseille 4e. Métro et tram à Cinq-Avenues."},
+  arles:     {n:"Arles", c:[43.6766,4.6278], d:"Halte déjeuner sur la route, centre historique."},
+  palais:    {n:"Palais Longchamp", c:[43.3046,5.3943], d:"Château d'eau monumental, jardins, musée des Beaux-Arts."},
+  coursj:    {n:"Cours Julien", c:[43.2939,5.3836], d:"Quartier vivant, street art, bars et restaurants."},
+  belges:    {n:"Marché aux poissons, quai des Belges", c:[43.2953,5.3744], d:"Le matin, au fond du Vieux-Port."},
+  panier:    {n:"Le Panier", c:[43.2989,5.3690], d:"Plus vieux quartier de la ville."},
+  charite:   {n:"Vieille Charité", c:[43.2996,5.3675], d:"Chapelle et cour de Pierre Puget, musées. Fermé le lundi."},
+  major:     {n:"Cathédrale de la Major", c:[43.2994,5.3649], d:"Néo-byzantine, sur le front de mer."},
+  fort:      {n:"Fort Saint-Jean", c:[43.2955,5.3628], d:"Accès libre, passerelles vers le MuCEM."},
+  mucem:     {n:"MuCEM", c:[43.2967,5.3611], d:"Musée des civilisations de l'Europe et de la Méditerranée. Fermé le mardi."},
+  ndg:       {n:"Notre-Dame de la Garde", c:[43.2840,5.3712], d:"La Bonne Mère, vue sur toute la ville."},
+  victor:    {n:"Abbaye Saint-Victor", c:[43.2905,5.3657], d:"Cryptes du Ve siècle."},
+  auffes:    {n:"Vallon des Auffes", c:[43.2853,5.3497], d:"Port de pêcheurs, coucher de soleil, dîner."},
+  baumettes: {n:"Départ Morgiou et Sormiou", c:[43.2229,5.4199], d:"Secteur des Baumettes, chemin de Morgiou."},
+  morgiou:   {n:"Calanque de Morgiou", c:[43.2116,5.4462], d:"Port et cabanons."},
+  sormiou:   {n:"Calanque de Sormiou", c:[43.2098,5.4189], d:"La plus grande calanque de Marseille."},
+  borely:    {n:"Parc Borély et plages du Prado", c:[43.2600,5.3787], d:"Fin d'après-midi au bord de l'eau."},
+  callelongue:{n:"Callelongue", c:[43.2124,5.3537], d:"Départ du GR51-98, parking très limité."},
+  marseilleveyre:{n:"Sommet de Marseilleveyre (432 m)", c:[43.2165,5.3702], d:"Panorama sur l'archipel de Riou et Marseille."},
+  goudes:    {n:"Les Goudes", c:[43.2160,5.3467], d:"Village de pêcheurs, déjeuner ou apéritif sur le port."},
+  luminy:    {n:"Luminy", c:[43.2318,5.4370], d:"Départ vers Sugiton et le Mont Puget, parking toute l'année."},
+  belvsugiton:{n:"Belvédère de Sugiton", c:[43.2186,5.4517], d:"Vue plongeante sur la calanque et le Torpilleur."},
+  sugiton:   {n:"Calanque de Sugiton", c:[43.2125,5.4555], d:"Accès libre en novembre."},
+  puget:     {n:"Mont Puget (563 m)", c:[43.2221,5.4640], d:"Point culminant du massif des Calanques."},
+  radieuse:  {n:"Cité radieuse Le Corbusier", c:[43.2613,5.3963], d:"Toit-terrasse (MAMO) du mercredi au dimanche, 11h–18h."},
+  portmiou:  {n:"Port-Miou", c:[43.2093,5.5160], d:"Départ des calanques de Cassis."},
+  portpin:   {n:"Port-Pin", c:[43.2046,5.5044], d:"Petite plage sous les pins."},
+  envau:     {n:"Calanque d'En-Vau", c:[43.2025,5.4996], d:"Aiguilles et eau turquoise, descente rocheuse."},
+  cassis:    {n:"Port de Cassis", c:[43.2140,5.5383], d:"Déjeuner, flânerie, vins AOC Cassis."},
+  pascolle:  {n:"Pas de la Colle", c:[43.2073,5.5573], d:"Parking sur la Route des Crêtes."},
+  canaille:  {n:"Cap Canaille et Grande Tête", c:[43.1976,5.5653], d:"Plus hautes falaises maritimes de France."},
+  ciotat:    {n:"La Ciotat, Vieux-Port", c:[43.1748,5.6086], d:"Chantiers navals, Eden Théâtre."},
+  mugel:     {n:"Parc du Mugel", c:[43.1655,5.6050], d:"Jardin sous le Bec de l'Aigle."},
+  capucins:  {n:"Marché des Capucins (Noailles)", c:[43.2963,5.3802], d:"Épices, primeurs, ambiance du Maghreb et de l'Orient."},
+  aix:       {n:"Aix-en-Provence", c:[43.5297,5.4474], d:"Halte possible au retour, cours Mirabeau."}
+};
+
+const DAYS = [
+ { id:"d1", date:"2026-11-07", short:"Sam 7", title:"Arrivée et premier soir", level:0, walk:"1h", sun:["07h21","17h22"],
+   sum:"Route depuis Toulouse, installation près du parc Longchamp et premiers pas dans le quartier.",
+   tl:[["09h00","Départ de Toulouse","Environ 4h15 de route hors pauses."],
+       ["12h30","Déjeuner à Arles","Halte aux trois quarts du trajet, arènes et place du Forum."],
+       ["15h30","Arrivée et installation","Remise des clés, place de parking à confirmer avec les hôtes."],
+       ["16h30","Palais et parc Longchamp","Balade de mise en jambes au pied de l'appartement, vue sur le château d'eau.",1],
+       ["19h30","Dîner au Cours Julien","Ou dans le quartier des Cinq-Avenues, à pied."]],
+   places:["arles","base","palais","coursj"],
+   planb:"Peu d'enjeu : si la route a été longue, dîner dans le quartier des Cinq-Avenues."},
+ { id:"d2", date:"2026-11-08", short:"Dim 8", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h en ville", sun:["07h22","17h21"],
+   sum:"Journée urbaine sans voiture : le dimanche, les calanques sont fréquentées et la Route des Crêtes fermée aux véhicules.",
+   tl:[["08h30","Métro jusqu'au Vieux-Port","Depuis Cinq-Avenues – Longchamp, la voiture reste au parking."],
+       ["09h00","Marché aux poissons","Quai des Belges, l'ambiance du port le matin."],
+       ["09h45","Le Panier et la Vieille Charité","Ruelles, puis la chapelle et la cour de Pierre Puget.",1],
+       ["11h15","La Major et le Fort Saint-Jean","Passerelles et jardins, vue sur la passe du Vieux-Port.",1],
+       ["12h00","MuCEM","Déjeuner sur place ou à proximité, puis visite des collections."],
+       ["15h00","Montée à Notre-Dame de la Garde","À pied depuis le cours Pierre Puget, ou bus 60.",1],
+       ["16h30","Abbaye Saint-Victor puis la Corniche","Descente vers la mer."],
+       ["17h00","Coucher de soleil au Vallon des Auffes","Apéritif puis dîner sur place, réservation conseillée."]],
+   places:["belges","panier","charite","major","fort","mucem","ndg","victor","auffes"],
+   planb:"Par pluie : le MuCEM et la Vieille Charité suffisent à remplir la journée ; ajouter le musée d'Histoire de Marseille (port antique)."},
+ { id:"d3", date:"2026-11-09", short:"Lun 9", title:"Morgiou et Sormiou", level:2, walk:"4h30", sun:["07h23","17h20"],
+   sum:"Première vraie randonnée, en boucle entre deux grandes calanques marseillaises, routes d'accès ouvertes en semaine.",
+   tl:[["08h15","Route vers les Baumettes","Environ 25 min depuis Longchamp."],
+       ["08h45","Boucle Morgiou – Sormiou","Descente sur Morgiou, crête, col de Sormiou puis la calanque de Sormiou.",1],
+       ["13h30","Pique-nique et retour","Pause au bord de l'eau à Sormiou."],
+       ["15h30","Parc Borély et plages du Prado","Fin d'après-midi tranquille au bord de la mer."],
+       ["19h30","Dîner","Quartier libre, soirée calme avant la grosse journée."]],
+   hike:"h1",
+   places:["baumettes","morgiou","sormiou","borely"],
+   warn:"Musées municipaux fermés le lundi : la Vieille Charité et les Beaux-Arts ne sont pas une option de repli ce jour-là.",
+   planb:"Par pluie : MuCEM (ouvert le lundi, contrairement aux musées municipaux) et Fort Saint-Jean ; la boucle Morgiou – Sormiou prend alors la place du Cap Canaille vendredi."},
+ { id:"d4", date:"2026-11-10", short:"Mar 10", title:"Callelongue et Marseilleveyre", level:4, walk:"5h", sun:["07h25","17h19"],
+   sum:"La grosse journée du séjour, par le GR51-98 jusqu'au sommet de Marseilleveyre, avec retour par le littoral jusqu'aux Goudes.",
+   tl:[["07h45","Route vers Callelongue","Environ 35 min ; le parking du bout de la route se remplit vite."],
+       ["08h30","Callelongue – sommet de Marseilleveyre","Montée par le col de la Selle, passages rocheux.",1],
+       ["11h00","Sommet (432 m)","Panorama sur Riou, Maïre et toute la rade."],
+       ["11h30","Descente et retour","Par le vallon de la Mounine, puis le littoral jusqu'aux Goudes.",1],
+       ["14h00","Déjeuner aux Goudes","Port de pêcheurs, poisson ou panisses."],
+       ["16h00","Retour, soirée libre","Récupération."]],
+   hike:"h2",
+   places:["callelongue","marseilleveyre","goudes"],
+   warn:"À ne pas faire par mistral fort ni par temps humide : crêtes exposées et dalles glissantes. Aucun point d'eau sur le parcours.",
+   planb:"Par mistral : intervertir avec le mercredi (Sugiton, plus abrité). Par pluie : journée ville, MuCEM fermé le mardi, mais Vieille Charité et Palais Longchamp ouverts."},
+ { id:"d5", date:"2026-11-11", short:"Mer 11", title:"Sugiton, Mont Puget et Cité radieuse", level:3, walk:"2h30 à 5h", sun:["07h26","17h17"],
+   sum:"Jour férié : départ de Luminy, parking ouvert toute l'année, puis l'après-midi chez Le Corbusier, à un quart d'heure de route.",
+   tl:[["08h00","Route vers Luminy","Environ 25 min ; jour férié, arriver tôt."],
+       ["08h30","Luminy – belvédère de Sugiton","Version courte : belvédère et calanque, retour vers 11h.",1],
+       ["08h30","Variante longue par le Mont Puget","Montée au point culminant des Calanques, descente sur le col de Sugiton.",1],
+       ["13h00","Déjeuner","Pique-nique ou retour vers le 8e."],
+       ["15h00","Cité radieuse","Rue intérieure, toit-terrasse du MAMO, librairie et hôtel-restaurant Le Corbusier."],
+       ["16h45","Coucher de soleil depuis le toit","Vue sur la mer et les collines de Marseilleveyre."]],
+   hike:"h3",
+   places:["luminy","belvsugiton","sugiton","puget","radieuse"],
+   warn:"Le toit-terrasse de la Cité radieuse n'ouvre que du mercredi au dimanche : ce mercredi est le meilleur créneau du séjour. Visite guidée de l'appartement témoin sur réservation auprès de l'Office de tourisme.",
+   planb:"Par pluie : Cité radieuse le matin, puis Palais Longchamp (musée des Beaux-Arts) l'après-midi."},
+ { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"Cassis : Port-Pin et En-Vau", level:3, walk:"4h", sun:["07h27","17h16"],
+   sum:"La séquence la plus spectaculaire du massif, au départ de Cassis, puis l'après-midi sur le port et dans les vignes.",
+   tl:[["07h45","Route vers Cassis","Environ 40 min par l'A50 ou la Gineste."],
+       ["08h30","Port-Miou – Port-Pin – En-Vau","Belvédère d'En-Vau puis descente dans la calanque.",1],
+       ["12h30","Retour à Port-Miou","Même chemin ou variante par le plateau."],
+       ["13h30","Déjeuner sur le port de Cassis","Terrasses au soleil, en novembre sans la foule."],
+       ["15h30","Dégustation AOC Cassis","Un domaine sur réservation, au pied du Cap Canaille."],
+       ["18h00","Retour à Marseille","Soirée libre."]],
+   hike:"h4",
+   places:["portmiou","portpin","envau","cassis"],
+   warn:"La descente finale vers En-Vau se fait sur des dalles où les mains servent. Par temps humide, s'arrêter au belvédère.",
+   planb:"Par mistral : la calanque reste relativement abritée, mais le belvédère est très exposé. Par pluie : Cassis et la dégustation, la randonnée glissant au vendredi."},
+ { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Cap Canaille et La Ciotat", level:1, walk:"2h30", sun:["07h29","17h15"],
+   sum:"Route des Crêtes, plus hautes falaises maritimes de France, puis La Ciotat et son port. Dernière soirée au Vallon des Auffes.",
+   tl:[["09h00","Route des Crêtes","Vérifier l'ouverture en cas de mistral."],
+       ["09h45","Pas de la Colle – Grande Tête","Aller-retour sur le haut des falaises, vue sur Cassis et la baie.",1],
+       ["12h30","Déjeuner à La Ciotat","Vieux-Port et chantiers navals."],
+       ["14h30","Eden Théâtre et parc du Mugel","La plus ancienne salle de cinéma en activité, puis le jardin sous le Bec de l'Aigle."],
+       ["16h30","Retour à Marseille",""],
+       ["19h30","Dîner d'adieu au Vallon des Auffes","À réserver une dizaine de jours avant."]],
+   hike:"h5",
+   places:["pascolle","canaille","ciotat","mugel","auffes"],
+   warn:"Bords de falaise sans garde-corps : rester sur les sentiers, surtout par vent.",
+   planb:"Route fermée par mistral : La Ciotat par l'autoroute et le littoral, ou journée à L'Estaque et à la Friche la Belle de Mai."},
+ { id:"d8", date:"2026-11-14", short:"Sam 14", title:"Noailles et retour", level:0, walk:"1h", sun:["07h30","17h14"],
+   sum:"Dernière matinée au marché, ménage courant de l'appartement et route du retour.",
+   tl:[["09h00","Marché des Capucins","Épices et produits à rapporter, à Noailles."],
+       ["10h30","Ménage courant et remise des clés","Participation de 50 € aux finitions, prévue par les hôtes."],
+       ["11h30","Départ","Halte possible à Aix-en-Provence ou à Arles."],
+       ["17h00","Arrivée à Toulouse",""]],
+   places:["capucins","base","aix"],
+   planb:"Par mauvais temps, départ direct après le petit-déjeuner."}
+];
+
+const HIKES = {
+ h1:{n:"Boucle Morgiou – Sormiou", day:"d3", km:"10 km", dp:"450 m", t:"4h30", lv:2, start:"Les Baumettes", maps:"Les Baumettes, Marseille",
+     txt:"Deux calanques habitées par leurs cabanons, reliées par la crête de Morgiou et le col de Sormiou. Parcours varié, peu technique hormis quelques passages caillouteux."},
+ h2:{n:"Callelongue – Marseilleveyre – Les Goudes", day:"d4", km:"9 km", dp:"550 m", t:"5h", lv:4, start:"Callelongue", maps:"Callelongue, Marseille",
+     txt:"Le GR51-98 jusqu'au col de la Selle, puis le sommet de Marseilleveyre. Montée raide, passages rocheux où les mains servent, panorama sur l'archipel de Riou."},
+ h3:{n:"Luminy – Sugiton, variante Mont Puget", day:"d5", km:"5 à 11 km", dp:"250 à 650 m", t:"2h30 à 5h", lv:3, start:"Luminy", maps:"Parking Luminy, Marseille",
+     txt:"Version courte par la route forestière jusqu'au belvédère puis la calanque. Version longue par le Mont Puget, point culminant du massif à 563 m, avec retour par le col de Sugiton."},
+ h4:{n:"Port-Miou – Port-Pin – En-Vau", day:"d6", km:"9 km", dp:"400 m", t:"4h", lv:3, start:"Port-Miou, Cassis", maps:"Port-Miou, Cassis",
+     txt:"Le classique de Cassis : la calanque-port de Port-Miou, la plage de Port-Pin sous les pins, puis le belvédère et la descente rocheuse vers les aiguilles d'En-Vau."},
+ h5:{n:"Pas de la Colle – Cap Canaille", day:"d7", km:"6 km", dp:"250 m", t:"2h30", lv:1, start:"Route des Crêtes", maps:"Pas de la Colle, Route des Crêtes, Cassis",
+     txt:"Balade sur le plateau sommital des falaises Soubeyranes, vue plongeante sur Cassis, la baie et La Ciotat. Peu de difficulté technique, mais très exposé au vent."}
+};
+
+const VISITS = [
+ {k:"radieuse", n:"Cité radieuse Le Corbusier", must:true, day:"Mer 11", where:"8e, boulevard Michelet",
+  txt:"Unité d'habitation classée à l'UNESCO. Toit-terrasse accessible du mercredi au dimanche ; appartement témoin uniquement en visite guidée réservée."},
+ {k:"mucem", n:"MuCEM", must:true, day:"Dim 8", where:"2e, esplanade du J4",
+  txt:"Le bâtiment de Rudy Ricciotti et sa résille, les collections méditerranéennes, la passerelle vers le Fort Saint-Jean. Fermé le mardi."},
+ {k:"ndg", n:"Notre-Dame de la Garde", must:true, day:"Dim 8", where:"6e, colline de la Garde",
+  txt:"La montée à pied fait partie de la visite. Le stationnement au sommet est très limité."},
+ {k:"vieuxport", n:"Vieux-Port", must:true, day:"Dim 8", where:"1er et 7e",
+  txt:"Marché aux poissons le matin, ombrière de Norman Foster, ferry-boat pour traverser le port."},
+ {k:"charite", n:"Vieille Charité", day:"Dim 8", where:"2e, le Panier",
+  txt:"Chef-d'œuvre de Pierre Puget, musée d'archéologie méditerranéenne et arts africains. Fermé le lundi."},
+ {k:"victor", n:"Abbaye Saint-Victor", day:"Dim 8", where:"7e",
+  txt:"Cryptes du Ve siècle, parmi les plus anciens lieux de culte de France."},
+ {k:"palais", n:"Palais Longchamp", day:"Sam 7 ou plan B", where:"4e, au pied de la base",
+  txt:"Château d'eau monumental et musée des Beaux-Arts, à deux pas de l'appartement."},
+ {k:"histoire", n:"Musée d'Histoire de Marseille", day:"Plan B pluie", where:"1er, Centre Bourse",
+  txt:"Le port antique in situ et 2 600 ans d'histoire de la ville."},
+ {k:"friche", n:"Friche la Belle de Mai", day:"Plan B mistral", where:"3e",
+  txt:"Ancienne manufacture de tabac devenue lieu culturel, toit-terrasse avec vue à 360°."},
+ {k:"estaque", n:"L'Estaque", day:"Plan B", where:"16e",
+  txt:"Le village des peintres, de Cézanne à Braque. Panisses et chichis sur le port."},
+ {k:"auffes", n:"Vallon des Auffes", day:"Dim 8 et ven 13", where:"7e, Corniche",
+  txt:"Port de pêcheurs encaissé sous la Corniche, coucher de soleil et poisson."},
+ {k:"frioul", n:"Îles du Frioul et Château d'If", day:"Si temps calme", where:"Navette depuis le Vieux-Port",
+  txt:"Navettes souvent annulées par mistral en novembre : à décider la veille, pas à programmer."}
+];
+
+const RESA = [
+ {k:"logement", n:"Appartement parc Longchamp (HomeExchange)", when:"Dès que possible", def:"demande"},
+ {k:"parking", n:"Place de parking en sous-sol", when:"Avec les hôtes", def:"areserver"},
+ {k:"auffes13", n:"Dîner Vallon des Auffes, vendredi 13", when:"Vers le 3 novembre", def:"areserver"},
+ {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"optionnel"},
+ {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
+ {k:"cassis", n:"Dégustation AOC Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
+ {k:"mucemb", n:"Billets MuCEM, dimanche 8", when:"En ligne, la veille", def:"optionnel"},
+ {k:"offline", n:"Cartes hors ligne des itinéraires", when:"Avant le départ", def:"areserver"}
+];
+const STATUS = {areserver:"À réserver", demande:"Demandé", confirme:"Confirmé", optionnel:"Optionnel", fait:"Fait"};
+
+const PACK = ["Chaussures à semelle adhérente","Deux litres d'eau par personne","Coupe-vent et polaire","Frontale (nuit vers 17h30)","Casquette et crème solaire","Pique-nique et en-cas","Trousse de premiers secours","Batterie externe","Carte hors ligne téléchargée","Bâtons pour les descentes","Maillot et serviette, au cas où","Sac à déchets"];
+
+/* ---------- Stockage local (facultatif) ---------- */
+const KEY = "marseille26:";
+function sget(k, d){ try{ const v = localStorage.getItem(KEY+k); return v === null ? d : JSON.parse(v); }catch(e){ return d; } }
+function sset(k, v){ try{ localStorage.setItem(KEY+k, JSON.stringify(v)); }catch(e){} }
+
+/* ---------- Utilitaires ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const lvBadge = l => `<span class="badge lv-${l}">${LEVELS[l]}</span>`;
+const gmaps = q => "https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=" + encodeURIComponent(q);
+const DOW = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const MON = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+function longDate(iso){ const d = new Date(iso+"T12:00:00"); return `${DOW[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`; }
+function todayISO(){ const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; }
+
+/* ---------- Thème ---------- */
+(function(){
+  const saved = sget("theme", null);
+  if (saved) document.documentElement.setAttribute("data-theme", saved);
+  $("#themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next); sset("theme", next);
+  });
+})();
+
+/* ---------- Compte à rebours ---------- */
+(function(){
+  const start = new Date("2026-11-07T09:00:00"), end = new Date("2026-11-14T20:00:00"), now = new Date();
+  const el = $("#countdown"), sub = $("#countdownSub");
+  if (now < start){
+    const days = Math.ceil((start - now) / 86400000);
+    el.textContent = days + (days > 1 ? " jours" : " jour");
+  } else if (now <= end){
+    const i = DAYS.findIndex(d => d.date === todayISO());
+    el.textContent = i >= 0 ? `Jour ${i+1} sur 8` : "En cours";
+    sub.textContent = "bon séjour";
+  } else { el.textContent = "Terminé"; sub.textContent = "séjour du 7 au 14 novembre"; }
+})();
+
+/* ---------- Tableau programme ---------- */
+(function(){
+  const tb = $("#progTable tbody");
+  tb.innerHTML = DAYS.map(d => `<tr data-day="${d.id}" tabindex="0">
+    <td class="d" data-l="Jour">${esc(d.short)}</td>
+    <td data-l="Programme"><b>${esc(d.title)}</b><br><span class="muted">${esc(d.sum)}</span></td>
+    <td class="d" data-l="Marche">${esc(d.walk)}</td>
+    <td data-l="Niveau">${lvBadge(d.level)}</td></tr>`).join("");
+  tb.addEventListener("click", e => { const tr = e.target.closest("tr"); if (tr){ showDay(tr.dataset.day); location.hash = "#jours"; } });
+  tb.addEventListener("keydown", e => { if (e.key === "Enter"){ const tr = e.target.closest("tr"); if (tr){ showDay(tr.dataset.day); location.hash = "#jours"; } } });
+})();
+
+/* ---------- Tableau randonnées ---------- */
+(function(){
+  const dayOf = id => DAYS.find(d => d.id === id).short;
+  $("#hikeTable tbody").innerHTML = Object.values(HIKES).map(h => `<tr data-day="${h.day}" tabindex="0">
+    <td data-l="Randonnée"><b>${esc(h.n)}</b><br><span class="muted">${esc(h.txt)}</span></td>
+    <td class="d" data-l="Jour">${esc(dayOf(h.day))}</td>
+    <td class="d" data-l="Distance">${esc(h.km)}</td>
+    <td class="d" data-l="Dénivelé">${esc(h.dp)}</td>
+    <td class="d" data-l="Durée">${esc(h.t)}</td>
+    <td data-l="Niveau">${lvBadge(h.lv)}</td>
+    <td data-l="Départ"><a href="${gmaps(h.maps)}" target="_blank" rel="noopener">${esc(h.start)}</a></td></tr>`).join("");
+  $("#hikeTable tbody").addEventListener("click", e => {
+    if (e.target.closest("a")) return;
+    const tr = e.target.closest("tr"); if (tr){ showDay(tr.dataset.day); location.hash = "#jours"; }
+  });
+})();
+
+/* ---------- Carte ---------- */
+let map = null, markers = [], scope = "day", currentDay = null;
+const COLORS = ["#0F5E86","#3E6B45","#B4532F","#9A6A12","#6B5E8C","#2D6E92","#9B2F3B","#55656C"];
+function initMap(){
+  if (!window.L){ $("#map").innerHTML = '<p style="padding:16px">Carte indisponible hors connexion.</p>'; return; }
+  map = L.map("map", {scrollWheelZoom:false, zoomControl:true}).setView([43.25, 5.43], 11);
+  const plan = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {maxZoom:19, subdomains:"abcd", attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>'});
+  const topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {maxZoom:17, subdomains:"abc", attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM | © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'});
+  plan.addTo(map);
+  document.querySelectorAll("[data-layer]").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("[data-layer]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    if (b.dataset.layer === "topo"){ map.removeLayer(plan); topo.addTo(map); } else { map.removeLayer(topo); plan.addTo(map); }
+  }));
+  document.querySelectorAll("[data-scope]").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("[data-scope]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    scope = b.dataset.scope; drawMarkers();
+  }));
+}
+function pinIcon(label, color, dim){
+  return L.divIcon({className:"", iconSize:[28,28], iconAnchor:[14,28], popupAnchor:[0,-26],
+    html:`<div class="pin${dim ? " dim" : ""}" style="background:${color}"><span>${label}</span></div>`});
+}
+function drawMarkers(){
+  if (!map) return;
+  markers.forEach(m => map.removeLayer(m)); markers = [];
+  const pts = [];
+  DAYS.forEach((d, di) => {
+    const isCur = d.id === currentDay;
+    if (scope === "day" && !isCur) return;
+    d.places.forEach((k, i) => {
+      const p = PLACES[k]; if (!p) return;
+      const label = scope === "day" ? (i+1) : (di+1);
+      const m = L.marker(p.c, {icon:pinIcon(label, COLORS[di % COLORS.length], scope === "all" && !isCur), title:p.n, zIndexOffset: isCur ? 500 : 0})
+        .bindPopup(`<b>${esc(p.n)}</b><br>${esc(p.d)}<br><span style="font-size:.8rem">${esc(d.short)}</span><br><a href="${gmaps(p.c.join(","))}" target="_blank" rel="noopener">Itinéraire</a>`);
+      m.addTo(map); markers.push(m);
+      if (scope === "all" || isCur) pts.push(p.c);
+    });
+  });
+  if (pts.length){
+    // Le trajet depuis Toulouse étire la carte : on cadre sur Marseille sauf vue d'ensemble demandée.
+    const local = pts.filter(c => c[0] < 43.45);
+    const target = scope === "all" ? local : (local.length >= 2 ? local : pts);
+    map.fitBounds(L.latLngBounds(target).pad(0.18), {maxZoom:14, animate:true});
+  }
+}
+
+/* ---------- Vue jour ---------- */
+function renderDay(d){
+  const h = d.hike ? HIKES[d.hike] : null;
+  const items = d.tl.map(t => `<li class="${t[3] ? "walk" : ""}"><span class="h">${esc(t[0])}</span><span class="w">${esc(t[1])}</span>${t[2] ? `<span class="x">${esc(t[2])}</span>` : ""}</li>`).join("");
+  return `<article class="day" aria-labelledby="t-${d.id}">
+    <div class="day-h"><h3 id="t-${d.id}">${esc(d.title)}</h3>${lvBadge(d.level)}</div>
+    <div class="date">${esc(longDate(d.date))} · marche ${esc(d.walk)}</div>
+    <p class="sum">${esc(d.sum)}</p>
+    <div class="sunrow"><span>Lever <b>${d.sun[0]}</b></span><span>Coucher <b>${d.sun[1]}</b></span></div>
+    ${h ? `<div class="hike"><div class="ttl">${esc(h.n)}</div><div class="stats"><span>${esc(h.km)}</span><span>D+ ${esc(h.dp)}</span><span>${esc(h.t)}</span><span>départ ${esc(h.start)}</span></div><div class="muted" style="font-size:.95rem">${esc(h.txt)}</div></div>` : ""}
+    <ol class="tl">${items}</ol>
+    ${d.warn ? `<div class="note warn"><b class="lbl">Vigilance</b>${esc(d.warn)}</div>` : ""}
+    ${d.planb ? `<div class="note planb"><b class="lbl">Plan B</b>${esc(d.planb)}</div>` : ""}
+    <div class="links">${h ? `<a class="btn" href="${gmaps(h.maps)}" target="_blank" rel="noopener">Itinéraire vers le départ</a>` : ""}
+      <a class="btn" href="#programme">Retour au programme</a></div>
+  </article>`;
+}
+function showDay(id){
+  const d = DAYS.find(x => x.id === id) || DAYS[0];
+  currentDay = d.id;
+  document.querySelectorAll("#daypick button").forEach(b => b.setAttribute("aria-pressed", b.dataset.day === d.id));
+  $("#dayView").innerHTML = renderDay(d);
+  drawMarkers();
+  sset("day", d.id);
+}
+(function(){
+  const t = todayISO();
+  $("#daypick").innerHTML = DAYS.map((d, i) => `<button type="button" data-day="${d.id}" aria-pressed="false" class="${d.date === t ? "today" : ""}"><span class="n">Jour ${i+1}</span><span class="t">${esc(d.short)}</span></button>`).join("");
+  $("#daypick").addEventListener("click", e => { const b = e.target.closest("button"); if (b) showDay(b.dataset.day); });
+  initMap();
+  const todayDay = DAYS.find(d => d.date === t);
+  showDay(todayDay ? todayDay.id : sget("day", DAYS[0].id));
+})();
+
+/* ---------- Visites ---------- */
+(function(){
+  const done = sget("visits", {});
+  $("#visitGrid").innerHTML = VISITS.map(v => `<div class="card">
+    <h3>${esc(v.n)}</h3>
+    <div class="meta">${v.must ? '<span class="tag must">Incontournable</span>' : '<span class="tag">Complément</span>'} ${esc(v.day)} · ${esc(v.where)}</div>
+    <p>${esc(v.txt)}</p>
+    <label class="check" style="display:flex;gap:8px;align-items:center;font-size:.9rem"><input type="checkbox" data-v="${v.k}" ${done[v.k] ? "checked" : ""}><span>Fait</span></label>
+  </div>`).join("");
+  $("#visitGrid").addEventListener("change", e => { const c = e.target.closest("input[data-v]"); if (!c) return; done[c.dataset.v] = c.checked; sset("visits", done); });
+})();
+
+/* ---------- Réservations ---------- */
+(function(){
+  const st = sget("resa", {});
+  $("#resaTable tbody").innerHTML = RESA.map(r => {
+    const v = st[r.k] || r.def;
+    const opts = Object.entries(STATUS).map(([k, l]) => `<option value="${k}" ${k === v ? "selected" : ""}>${l}</option>`).join("");
+    return `<tr><td>${esc(r.n)}</td><td class="muted" style="font-size:.88rem">${esc(r.when)}</td><td><select class="st" data-k="${r.k}" data-v="${v}" aria-label="Statut : ${esc(r.n)}">${opts}</select></td></tr>`;
+  }).join("");
+  $("#resaTable").addEventListener("change", e => { const s = e.target.closest("select"); if (!s) return; st[s.dataset.k] = s.value; s.dataset.v = s.value; sset("resa", st); });
+})();
+
+/* ---------- Sac de randonnée ---------- */
+(function(){
+  const st = sget("pack", {});
+  const ul = $("#packList"), bar = $("#packBar");
+  ul.innerHTML = PACK.map((p, i) => `<li><input type="checkbox" id="pk${i}" ${st[i] ? "checked" : ""}><span><label for="pk${i}">${esc(p)}</label></span></li>`).join("");
+  const upd = () => { const n = ul.querySelectorAll("input:checked").length; bar.style.width = (100 * n / PACK.length) + "%"; };
+  ul.addEventListener("change", e => { const i = e.target.id.slice(2); st[i] = e.target.checked; sset("pack", st); upd(); });
+  upd();
+})();
+
+/* ---------- Météo (Open-Meteo, sans clé) ---------- */
+(function(){
+  const box = $("#wx"), intro = $("#wxIntro");
+  const now = new Date(), start = new Date("2026-11-07T00:00:00"), end = new Date("2026-11-14T23:59:00");
+  const horizon = new Date(now.getTime() + 15 * 86400000);
+  const NORMALS = '<div class="wxd"><div class="dd">Normales de novembre</div><div class="tt">8° / 16°</div><div>Repère indicatif : quelques jours de pluie dans le mois, mistral fréquent.</div></div>';
+  const CODE = c => c === 0 ? "Ensoleillé" : c <= 2 ? "Éclaircies" : c === 3 ? "Couvert" : c <= 48 ? "Brouillard" : c <= 57 ? "Bruine" : c <= 67 ? "Pluie" : c <= 77 ? "Neige" : c <= 82 ? "Averses" : "Orages";
+  const DIR = deg => ["N","NE","E","SE","S","SO","O","NO"][Math.round(deg / 45) % 8];
+  let from, to;
+  if (now > end){ intro.textContent = "Le séjour est terminé."; box.innerHTML = NORMALS; return; }
+  if (horizon < start){
+    const avail = new Date(start.getTime() - 15 * 86400000);
+    intro.textContent = `Les prévisions du séjour s'afficheront ici à partir du ${avail.getDate()} ${MON[avail.getMonth()]}. En attendant, les prochains jours à Marseille :`;
+    from = todayISO(); const t = new Date(now.getTime() + 6 * 86400000); to = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}-${String(t.getDate()).padStart(2,"0")}`;
+  } else { from = "2026-11-07"; to = horizon < end ? `${horizon.getFullYear()}-${String(horizon.getMonth()+1).padStart(2,"0")}-${String(horizon.getDate()).padStart(2,"0")}` : "2026-11-14"; }
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=43.2965&longitude=5.3698&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_gusts_10m_max,wind_direction_10m_dominant&timezone=Europe%2FParis&start_date=${from}&end_date=${to}`;
+  box.innerHTML = '<div class="wxd">Chargement des prévisions…</div>';
+  fetch(url).then(r => r.ok ? r.json() : Promise.reject()).then(j => {
+    const d = j.daily;
+    box.innerHTML = d.time.map((t, i) => {
+      const g = Math.round(d.wind_gusts_10m_max[i]), dir = DIR(d.wind_direction_10m_dominant[i]);
+      const mistral = g >= 60 && ["N","NO","O"].includes(dir);
+      const dd = new Date(t + "T12:00:00");
+      return `<div class="wxd${g >= 60 ? " windy" : ""}"><div class="dd">${DOW[dd.getDay()].slice(0,3)} ${dd.getDate()}</div>
+        <div class="tt">${Math.round(d.temperature_2m_min[i])}° / ${Math.round(d.temperature_2m_max[i])}°</div>
+        <div>${CODE(d.weather_code[i])}${d.precipitation_sum[i] >= 1 ? ` · ${Math.round(d.precipitation_sum[i])} mm` : ""}</div>
+        <div class="muted">Rafales ${g} km/h ${dir}</div>
+        ${mistral ? '<div class="alert">Mistral : éviter les crêtes</div>' : (g >= 60 ? '<div class="alert">Vent fort</div>' : "")}</div>`;
+    }).join("");
+  }).catch(() => { box.innerHTML = NORMALS; intro.textContent = "Prévisions indisponibles pour le moment ; repères climatiques ci-dessous."; });
+})();
+
+/* ---------- Onglet actif selon la section visible ---------- */
+(function(){
+  const links = [...document.querySelectorAll("#tabs a")];
+  const secs = links.map(a => document.querySelector(a.getAttribute("href")));
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting){ links.forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#" + e.target.id)); const a = links.find(x => x.getAttribute("href") === "#" + e.target.id); const bar = document.getElementById("tabs"); if (a && bar) bar.scrollLeft = a.offsetLeft - (bar.clientWidth - a.offsetWidth) / 2; } });
+  }, {rootMargin:"-45% 0px -50% 0px"});
+  secs.forEach(s => s && io.observe(s));
+})();
+</script>
+</body>
+</html>
