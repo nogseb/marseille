@@ -1,24 +1,23 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0E1A21" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#1C1410">
 <title>Marseille et Calanques</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
-/* Carnet de voyage, mobile d'abord. Palette : calcaire, bleu calanque, pin d'Alep, terre cuite. */
+/* Carnet de voyage, mobile d'abord. Palette « terre cuite et calcaire » : tuile, ocre, turquoise des calanques, pin d'Alep. */
 :root{
-  --paper:#F4F1EA; --surface:#FFFFFF; --ink:#16252C; --ink-2:#55656C; --rule:#DCD6C9; --tint:#ECE7DC;
-  --accent:#0F5E86; --accent-ink:#FFFFFF; --accent-soft:#DCEBF2;
-  --pine:#3E6B45; --clay:#B4532F; --sun:#9A6A12;
-  --l1:#3E7D57; --l2:#2D6E92; --l3:#A0561C; --l4:#9B2F3B; --lc:#6B5E8C;
+  --paper:#F6F0E4; --surface:#FFFDF8; --ink:#2B1D16; --ink-2:#6B5A4E; --rule:#E2D6C3; --tint:#EEE4D3;
+  --accent:#A8402A; --accent-ink:#FFFFFF; --accent-soft:#F4DED5;
+  --pine:#4E6B35; --clay:#9A640F; --sun:#9A640F;
+  --l1:#4E6B35; --l2:#0E7480; --l3:#B0661A; --l4:#A8402A; --lc:#7A5C8C;
   --ok:#2E7A4B; --todo:#A85A12; --opt:#5D6B7C; --tbd:#7044AC;
   --f-display:"Spectral", Georgia, "Times New Roman", serif;
   --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -27,16 +26,16 @@
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --paper:#0E1A21; --surface:#14252E; --ink:#E6ECEC; --ink-2:#9DB0B6; --rule:#26404B; --tint:#18303A;
-  --accent:#7CC3E6; --accent-ink:#07202C; --accent-soft:#16384A;
-  --pine:#8FC097; --clay:#E8936F; --sun:#E3B85C;
-  --l1:#7FC79A; --l2:#7CC3E6; --l3:#EBA35E; --l4:#EE8A95; --lc:#B6A6E6;
+  --paper:#1C1410; --surface:#261B15; --ink:#F1E8DD; --ink-2:#BFAE9E; --rule:#3E2E24; --tint:#2F231C;
+  --accent:#E8836A; --accent-ink:#2A120A; --accent-soft:#4A2A20;
+  --pine:#9DBB7E; --clay:#E3AF56; --sun:#E3AF56;
+  --l1:#9DBB7E; --l2:#5CC3CC; --l3:#E8A35E; --l4:#EE8A7A; --lc:#C2A6DA;
   --ok:#6CC08E; --todo:#EBA45D; --opt:#9DAEC1; --tbd:#B99BE8; color-scheme:dark; } }
 :root[data-theme="dark"]{
-  --paper:#0E1A21; --surface:#14252E; --ink:#E6ECEC; --ink-2:#9DB0B6; --rule:#26404B; --tint:#18303A;
-  --accent:#7CC3E6; --accent-ink:#07202C; --accent-soft:#16384A;
-  --pine:#8FC097; --clay:#E8936F; --sun:#E3B85C;
-  --l1:#7FC79A; --l2:#7CC3E6; --l3:#EBA35E; --l4:#EE8A95; --lc:#B6A6E6;
+  --paper:#1C1410; --surface:#261B15; --ink:#F1E8DD; --ink-2:#BFAE9E; --rule:#3E2E24; --tint:#2F231C;
+  --accent:#E8836A; --accent-ink:#2A120A; --accent-soft:#4A2A20;
+  --pine:#9DBB7E; --clay:#E3AF56; --sun:#E3AF56;
+  --l1:#9DBB7E; --l2:#5CC3CC; --l3:#E8A35E; --l4:#EE8A7A; --lc:#C2A6DA;
   --ok:#6CC08E; --todo:#EBA45D; --opt:#9DAEC1; --tbd:#B99BE8; color-scheme:dark; }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -188,8 +187,8 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 .pin.dim{opacity:.35}
 .leaflet-popup-content{font-size:.92rem; margin:10px 12px}
 .leaflet-popup-content b{font-family:var(--f-display); font-size:1.02rem}
-:root[data-theme="dark"] .leaflet-popup-content-wrapper, :root[data-theme="dark"] .leaflet-popup-tip{background:#14252E; color:#E6ECEC}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .leaflet-popup-content-wrapper, :root:not([data-theme="light"]) .leaflet-popup-tip{background:#14252E; color:#E6ECEC} }
+:root[data-theme="dark"] .leaflet-popup-content-wrapper, :root[data-theme="dark"] .leaflet-popup-tip{background:#261B15; color:#F1E8DD}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .leaflet-popup-content-wrapper, :root:not([data-theme="light"]) .leaflet-popup-tip{background:#261B15; color:#F1E8DD} }
 
 /* Plus loin : dossiers, frise, le saviez-vous */
 .chips{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 14px}
@@ -232,10 +231,15 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 @media (min-width:900px){ .loin-cols{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); align-items:start} }
 .loin-cols h3.sub{font-size:1.2rem; margin-bottom:8px}
 @media print{ .doss details{display:block} .doss details > .body{display:block} }
+
+/* Fond animé : lignes de niveau */
+#topo{position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; pointer-events:none; display:block}
+@media print{ #topo{display:none} }
 @media print{ .nav,#map,.maptools,.theme{display:none} .day{break-inside:avoid} }
 </style>
 </head>
 <body>
+<canvas id="topo" aria-hidden="true"></canvas>
 
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
@@ -681,10 +685,11 @@ function todayISO(){ const d = new Date(); return `${d.getFullYear()}-${String(d
 
 /* ---------- Thème ---------- */
 (function(){
+  // Sombre par défaut ; le choix clair ou sombre de chaque appareil est mémorisé.
   const saved = sget("theme", null);
-  if (saved) document.documentElement.setAttribute("data-theme", saved);
+  document.documentElement.setAttribute("data-theme", saved || "dark");
   $("#themeBtn").addEventListener("click", () => {
-    const cur = document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const cur = document.documentElement.getAttribute("data-theme") || "dark";
     const next = cur === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next); sset("theme", next);
   });
@@ -735,7 +740,7 @@ function todayISO(){ const d = new Date(); return `${d.getFullYear()}-${String(d
 
 /* ---------- Carte ---------- */
 let map = null, markers = [], scope = "day", currentDay = null;
-const COLORS = ["#0F5E86","#3E6B45","#B4532F","#9A6A12","#6B5E8C","#2D6E92","#9B2F3B","#55656C"];
+const COLORS = ["#A8402A","#0E7480","#9A640F","#4E6B35","#7A5C8C","#B0661A","#2B5C8A","#6B5A4E"];
 function initMap(){
   if (!window.L){ $("#map").innerHTML = '<p style="padding:16px">Carte indisponible hors connexion.</p>'; return; }
   map = L.map("map", {scrollWheelZoom:false, zoomControl:true}).setView([43.25, 5.43], 11);
@@ -1079,6 +1084,83 @@ const FACTS = [
         ${mistral ? '<div class="alert">Mistral : éviter les crêtes</div>' : (g >= 60 ? '<div class="alert">Vent fort</div>' : "")}</div>`;
     }).join("");
   }).catch(() => { box.innerHTML = NORMALS; intro.textContent = "Prévisions indisponibles pour le moment ; repères climatiques ci-dessous."; });
+})();
+
+
+/* ---------- Fond animé : lignes de niveau (bruit de Perlin + marching squares) ---------- */
+(function(){
+  const cv = document.getElementById("topo"); if (!cv || !cv.getContext) return;
+  const ctx = cv.getContext("2d");
+  const P = new Uint8Array(512); { const p = [...Array(256).keys()]; let seed = 1720;
+    for (let i = 255; i > 0; i--){ seed = (seed * 16807) % 2147483647; const j = seed % (i + 1); [p[i], p[j]] = [p[j], p[i]]; }
+    for (let i = 0; i < 512; i++) P[i] = p[i & 255]; }
+  const fade = t => t*t*t*(t*(t*6-15)+10), lerp = (a,b,t) => a + t*(b-a);
+  const grad = (h,x,y,z) => { const u = (h&15) < 8 ? x : y, v = (h&15) < 4 ? y : ((h&15) === 12 || (h&15) === 14 ? x : z); return ((h&1) ? -u : u) + ((h&2) ? -v : v); };
+  function noise(x,y,z){
+    const X = Math.floor(x)&255, Y = Math.floor(y)&255, Z = Math.floor(z)&255;
+    x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+    const u = fade(x), v = fade(y), w = fade(z);
+    const A = P[X]+Y, AA = P[A]+Z, AB = P[A+1]+Z, B = P[X+1]+Y, BA = P[B]+Z, BB = P[B+1]+Z;
+    return lerp(lerp(lerp(grad(P[AA],x,y,z), grad(P[BA],x-1,y,z), u), lerp(grad(P[AB],x,y-1,z), grad(P[BB],x-1,y-1,z), u), v),
+                lerp(lerp(grad(P[AA+1],x,y,z-1), grad(P[BA+1],x-1,y,z-1), u), lerp(grad(P[AB+1],x,y-1,z-1), grad(P[BB+1],x-1,y-1,z-1), u), v), w);
+  }
+  const STEP = 12, LEVELS = []; for (let l = -0.66; l <= 0.661; l += 0.06) LEVELS.push(+l.toFixed(2));
+  let W = 0, H = 0, cols = 0, rows = 0, field = null, colMinor = "", colMajor = "", t = Math.random() * 50;
+  function colors(){
+    const cs = getComputedStyle(document.documentElement);
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+    const c = (cs.getPropertyValue("--clay") || "#9A640F").trim();
+    colMinor = hexA(c, dark ? .13 : .16); colMajor = hexA(c, dark ? .26 : .3);
+  }
+  function hexA(h, a){ h = h.replace("#",""); if (h.length === 3) h = h.split("").map(x => x+x).join("");
+    const n = parseInt(h, 16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; }
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    cols = Math.ceil(W/STEP) + 1; rows = Math.ceil(H/STEP) + 1; field = new Float32Array(cols*rows);
+  }
+  function compute(){
+    const sc = 1/260;
+    for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++){
+      const x = i*STEP*sc, y = j*STEP*sc;
+      field[j*cols+i] = noise(x, y, t) * .85 + noise(x*2.1+7, y*2.1+3, t*1.3) * .3;
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H); ctx.lineJoin = "round";
+    LEVELS.forEach((lv, k) => {
+      const major = k % 5 === 0;
+      ctx.beginPath(); ctx.strokeStyle = major ? colMajor : colMinor; ctx.lineWidth = major ? 1.4 : .9;
+      for (let j = 0; j < rows-1; j++) for (let i = 0; i < cols-1; i++){
+        const a = field[j*cols+i], b = field[j*cols+i+1], c = field[(j+1)*cols+i+1], d = field[(j+1)*cols+i];
+        const idx = (a>lv?8:0)|(b>lv?4:0)|(c>lv?2:0)|(d>lv?1:0);
+        if (idx === 0 || idx === 15) continue;
+        const x = i*STEP, y = j*STEP;
+        const T = [x + STEP*(lv-a)/(b-a), y], R = [x+STEP, y + STEP*(lv-b)/(c-b)], Bm = [x + STEP*(lv-d)/(c-d), y+STEP], L = [x, y + STEP*(lv-a)/(d-a)];
+        const seg = (p,q) => { ctx.moveTo(p[0],p[1]); ctx.lineTo(q[0],q[1]); };
+        switch(idx){
+          case 1: case 14: seg(L,Bm); break; case 2: case 13: seg(Bm,R); break; case 3: case 12: seg(L,R); break;
+          case 4: case 11: seg(T,R); break; case 6: case 9: seg(T,Bm); break; case 7: case 8: seg(L,T); break;
+          case 5: seg(L,T); seg(Bm,R); break; case 10: seg(T,R); seg(L,Bm); break;
+        }
+      }
+      ctx.stroke();
+    });
+  }
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
+  let last = 0, raf = 0;
+  function frame(ts){
+    raf = requestAnimationFrame(frame);
+    if (ts - last < 50) return; last = ts;     // environ 20 images par seconde, largement suffisant
+    t += 0.006; compute(); draw();
+  }
+  function start(){ cancelAnimationFrame(raf); compute(); draw(); if (!still.matches && !document.hidden) raf = requestAnimationFrame(frame); }
+  colors(); resize(); start();
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { resize(); start(); }, 150); });
+  document.addEventListener("visibilitychange", start);
+  if (still.addEventListener) still.addEventListener("change", start);
+  new MutationObserver(() => { colors(); draw(); }).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
 })();
 
 /* ---------- Onglet actif selon la section visible ---------- */
