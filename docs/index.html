@@ -372,7 +372,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
       <li id="s7"><a href="https://www.marseille-tourisme.com/offres/mamo-centre-dart-de-la-cite-radieuse-de-marseille-marseille-8eme-fr-3383094/">Office de tourisme de Marseille, MAMO, centre d'art de la Cité radieuse</a>, fiche mise à jour le 1er septembre 2026.</li>
       <li id="s8"><a href="https://www.marseille-tourisme.com/offres/partez-a-la-decouverte-de-la-cite-radieuse-le-corbusier-marseille-8eme-fr-4225029/">Office de tourisme de Marseille, Visites de la Cité radieuse</a>.</li>
     </ol>
-    <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://carto.com/attributions">CARTO</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
+    <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
   </div>
 </footer>
 
@@ -640,7 +640,7 @@ const COLORS = ["#0F5E86","#3E6B45","#B4532F","#9A6A12","#6B5E8C","#2D6E92","#9B
 function initMap(){
   if (!window.L){ $("#map").innerHTML = '<p style="padding:16px">Carte indisponible hors connexion.</p>'; return; }
   map = L.map("map", {scrollWheelZoom:false, zoomControl:true}).setView([43.25, 5.43], 11);
-  const plan = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {maxZoom:19, subdomains:"abcd", attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>'});
+  const plan = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>'});
   const topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {maxZoom:17, subdomains:"abc", attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM | © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'});
   plan.addTo(map);
   document.querySelectorAll("[data-layer]").forEach(b => b.addEventListener("click", () => {

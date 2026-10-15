@@ -22,4 +22,4 @@ Sans ces secrets, le workflow se termine sans erreur mais ne publie rien. Une pu
 
 ## Services externes
 
-Carte : Leaflet, fonds OpenStreetMap / CARTO et OpenTopoMap. Météo : Open-Meteo, sans clé. Les statuts de réservation et cases cochées sont enregistrés dans le navigateur de chaque appareil.
+Carte : Leaflet, fonds OpenStreetMap et OpenTopoMap. Météo : Open-Meteo, sans clé. Les statuts de réservation et cases cochées sont enregistrés dans le navigateur de chaque appareil.
