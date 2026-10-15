@@ -190,6 +190,48 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 .leaflet-popup-content b{font-family:var(--f-display); font-size:1.02rem}
 :root[data-theme="dark"] .leaflet-popup-content-wrapper, :root[data-theme="dark"] .leaflet-popup-tip{background:#14252E; color:#E6ECEC}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .leaflet-popup-content-wrapper, :root:not([data-theme="light"]) .leaflet-popup-tip{background:#14252E; color:#E6ECEC} }
+
+/* Plus loin : dossiers, frise, le saviez-vous */
+.chips{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 14px}
+.chips button{border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); border-radius:999px; padding:5px 13px; font:inherit; font-size:.88rem; cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+.doss{background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:0; overflow:hidden; display:flex; flex-direction:column}
+.doss.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 3px var(--clay)} 100%{box-shadow:0 0 0 0 transparent}}
+.doss .top{padding:14px 16px 10px; border-top:4px solid var(--th, var(--accent))}
+.doss .th{font-family:var(--f-mono); font-size:.74rem; letter-spacing:.07em; text-transform:uppercase; color:var(--th, var(--accent))}
+.doss h3{font-size:1.22rem; margin:4px 0 6px}
+.doss .hook{color:var(--ink-2); margin:0}
+.doss details{border-top:1px solid var(--rule)}
+.doss summary{cursor:pointer; padding:10px 16px; font-weight:700; font-size:.92rem; color:var(--accent); list-style:none; display:flex; justify-content:space-between; align-items:center}
+.doss summary::-webkit-details-marker{display:none}
+.doss summary::after{content:"+"; font-family:var(--f-mono); font-size:1.1rem}
+.doss details[open] summary::after{content:"–"}
+.doss .body{padding:0 16px 14px}
+.doss .body p{font-size:.98rem}
+.doss .zoom{border-left:3px solid var(--th, var(--accent)); background:var(--tint); padding:8px 12px; border-radius:0 6px 6px 0; font-size:.93rem; margin:10px 0}
+.doss .zoom b.lbl{display:block; font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; color:var(--th, var(--accent)); margin-bottom:2px}
+.doss .foot{display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; font-size:.84rem; color:var(--ink-2); margin-top:8px}
+.doss .foot sup{font-size:.8rem}
+.t-hist{--th:var(--clay)} .t-calq{--th:var(--l2)} .t-cult{--th:var(--lc)} .t-vivre{--th:var(--pine)}
+.frise{list-style:none; margin:0; padding:0; position:relative}
+.frise::before{content:""; position:absolute; left:96px; top:6px; bottom:6px; width:2px; background:var(--rule)}
+.frise li{display:grid; grid-template-columns:84px 1fr; gap:24px; padding:5px 0; position:relative}
+.frise li::after{content:""; position:absolute; left:91px; top:12px; width:12px; height:12px; border-radius:50%; background:var(--surface); border:2px solid var(--th, var(--accent))}
+.frise .y{font-family:var(--f-mono); font-size:.84rem; white-space:nowrap; text-align:right; color:var(--ink-2); padding-top:3px}
+.frise button{all:unset; cursor:pointer; color:var(--ink); line-height:1.4}
+.frise button:hover, .frise button:focus-visible{color:var(--accent); text-decoration:underline}
+.fx{background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:16px 18px; min-height:150px; display:flex; flex-direction:column; justify-content:space-between}
+.fx .n{font-family:var(--f-mono); font-size:.78rem; color:var(--ink-2)}
+.fx .txt{font-family:var(--f-display); font-size:1.18rem; line-height:1.4; margin:8px 0 12px}
+.fx .ctl{display:flex; gap:8px; align-items:center; justify-content:space-between}
+.fx .ctl button{border:1px solid var(--rule); background:var(--paper); color:var(--ink); border-radius:999px; padding:5px 14px; font:inherit; font-size:.88rem; cursor:pointer}
+.fx .ctl button:hover{border-color:var(--accent); color:var(--accent)}
+.loin-cols{display:grid; gap:16px; margin-top:22px}
+.loin-cols > *{min-width:0}
+@media (min-width:900px){ .loin-cols{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); align-items:start} }
+.loin-cols h3.sub{font-size:1.2rem; margin-bottom:8px}
+@media print{ .doss details{display:block} .doss details > .body{display:block} }
 @media print{ .nav,#map,.maptools,.theme{display:none} .day{break-inside:avoid} }
 </style>
 </head>
@@ -203,6 +245,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
       <a href="#jours">Jour par jour</a>
       <a href="#randos">Randos</a>
       <a href="#visites">Visites</a>
+      <a href="#loin">Plus loin</a>
       <a href="#meteo">Météo</a>
       <a href="#pratique">Pratique</a>
       <a href="#preparer">À préparer</a>
@@ -293,6 +336,37 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
   </div>
 </section>
 
+<section id="loin">
+  <div class="wrap">
+    <h2>Plus loin</h2>
+    <p class="intro">Quatorze dossiers pour regarder autrement ce que vous allez traverser : vingt-six siècles d'histoire marseillaise, la géologie des Calanques, quelques légendes et beaucoup de faits vérifiés. Chaque dossier indique le jour du séjour où il prend vie sur le terrain.</p>
+    <div class="chips" id="lnChips" role="group" aria-label="Filtrer les dossiers">
+      <button type="button" data-th="all" aria-pressed="true">Tous</button>
+      <button type="button" data-th="hist" aria-pressed="false">Histoire</button>
+      <button type="button" data-th="calq" aria-pressed="false">Calanques</button>
+      <button type="button" data-th="cult" aria-pressed="false">Arts et architecture</button>
+      <button type="button" data-th="vivre" aria-pressed="false">Art de vivre</button>
+    </div>
+    <div class="grid c2" id="lnGrid" style="align-items:start"></div>
+    <div class="loin-cols">
+      <div>
+        <h3 class="sub">Frise : 2 600 ans en 25 dates</h3>
+        <p class="muted" style="font-size:.9rem">Toucher une date ouvre le dossier correspondant.</p>
+        <ol class="frise" id="lnFrise"></ol>
+      </div>
+      <div>
+        <h3 class="sub">Le saviez-vous ?</h3>
+        <div class="fx" aria-live="polite">
+          <div class="n" id="fxN"></div>
+          <div class="txt" id="fxT"></div>
+          <div class="ctl"><button type="button" id="fxPrev">Précédent</button><button type="button" id="fxNext">Suivant</button></div>
+        </div>
+        <p class="muted" style="font-size:.86rem;margin-top:8px">De quoi animer un apéritif au Vallon des Auffes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="meteo">
   <div class="wrap">
     <h2>Météo du séjour</h2>
@@ -371,6 +445,29 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
       <li id="s6"><a href="https://www.mucem.org/en/hours-and-prices">MuCEM, horaires et tarifs</a> : ouvert tous les jours sauf le mardi.</li>
       <li id="s7"><a href="https://www.marseille-tourisme.com/offres/mamo-centre-dart-de-la-cite-radieuse-de-marseille-marseille-8eme-fr-3383094/">Office de tourisme de Marseille, MAMO, centre d'art de la Cité radieuse</a>, fiche mise à jour le 1er septembre 2026.</li>
       <li id="s8"><a href="https://www.marseille-tourisme.com/offres/partez-a-la-decouverte-de-la-cite-radieuse-le-corbusier-marseille-8eme-fr-4225029/">Office de tourisme de Marseille, Visites de la Cité radieuse</a>.</li>
+      <li id="s9"><a href="https://grotte-cosquer.com/wp-content/uploads/2024/10/DP-Cosquer-2024-VF-WEB.pdf">Cosquer Méditerranée, dossier de presse 2024</a>.</li>
+      <li id="s10"><a href="https://www.marseille-tourisme.com/decouvrez-marseille/culture-et-patrimoine/cosquer-mediterranee-marseille-2eme-fr-3520089/">Office de tourisme de Marseille, Cosquer Méditerranée</a>, horaires et tarifs 2026.</li>
+      <li id="s11"><a href="https://calanques-parcnational.fr/fr/lepave-de-lavion-de-saint-exupery">Parc national des Calanques, L'épave de l'avion de Saint-Exupéry</a>.</li>
+      <li id="s12"><a href="https://www.techno-science.net/fr/definitions/rhinoceros-de-duerer">Techno-Science, Rhinocéros de Dürer</a>.</li>
+      <li id="s13"><a href="https://fresques.ina.fr/sudorama/fiche-media/00000000463/l-operation-sultan-la-rafle-de-marseille-de-janvier-1943.html">INA, L'opération Sultan : la rafle de Marseille de janvier 1943</a>.</li>
+      <li id="s14"><a href="https://tourisme-marseille.com/wp-content/uploads/2023/01/livret_commemorations_rafles_1943-marseille.pdf">Ville de Marseille, livret des commémorations des rafles de 1943</a>.</li>
+      <li id="s15"><a href="https://en.wikipedia.org/wiki/Great_Plague_of_Marseille">Wikipedia, Great Plague of Marseille</a>.</li>
+      <li id="s16"><a href="https://en.wikipedia.org/wiki/P%C3%A9tanque">Wikipedia, Pétanque</a>.</li>
+      <li id="s17"><a href="https://madeinmarseille.net/actualite/7972-guide-provence-ciotat/">Made in Marseille, Guide de La Ciotat</a>.</li>
+      <li id="s18"><a href="https://en.wikipedia.org/wiki/Cassis">Wikipedia, Cassis</a>.</li>
+      <li id="s19"><a href="https://www.historyhit.com/locations/fort-saint-nicholas/">History Hit, Fort Saint-Nicolas</a>.</li>
+      <li id="s20"><a href="https://fr.aleteia.org/2015/10/09/notre-patrimoine-dexception-36-notre-dame-de-la-garde-a-marseille/">Aleteia, Notre-Dame de la Garde à Marseille</a>.</li>
+      <li id="s21"><a href="https://www.geocaching.com/geocache/GC7B88P">Fiche patrimoniale Notre-Dame de la Garde (Geocaching)</a>, statue et traces de la Libération.</li>
+      <li id="s22"><a href="https://www.marseille-tourisme.com/decouvrez-marseille/culture-et-patrimoine/unite-dhabitation-le-corbusier-cite-radieuse-marseille-8eme-fr-2799586/">Office de tourisme de Marseille, Unité d'habitation Le Corbusier</a>.</li>
+      <li id="s23"><a href="https://www.citedelarchitecture.fr/sites/default/files/documents/2017-09/fo_citeradieuse_def_0.pdf">Cité de l'architecture et du patrimoine, fiche Cité radieuse</a>.</li>
+      <li id="s24"><a href="https://calanques-parcnational.fr/sites/calanques-parcnational.fr/files/documents/downloads/parc-national-calanques-plaquette-grand-public-2019-xs.pdf">Parc national des Calanques, plaquette grand public</a>.</li>
+      <li id="s25"><a href="https://calanques-parcnational.fr/fr/calanque-de-port-miou">Parc national des Calanques, Calanque de Port-Miou</a>.</li>
+      <li id="s26"><a href="https://www.worldhistory.org/trans/fr/1-10139/massilia/">World History Encyclopedia, Massilia</a>.</li>
+      <li id="s27"><a href="https://fr.vikidia.org/wiki/Pyth%C3%A9as">Vikidia, Pythéas</a>.</li>
+      <li id="s28"><a href="https://en.wikipedia.org/wiki/La_Marseillaise">Wikipedia, La Marseillaise</a>.</li>
+      <li id="s29"><a href="https://world-architects.com/en/architecture-news/headlines/mucem-inaugurated">World-Architects, MuCEM Inaugurated</a>, juin 2013.</li>
+      <li id="s30"><a href="https://www.marseille-tourisme.com/decouvrez-marseille/traditions/ferry-boat/">Office de tourisme de Marseille, Le Ferry Boat</a>.</li>
+      <li id="s31"><a href="https://www.justiceinfo.net/fr?p=166216">Justice Info, Rafles dans le sud de la France en 1943 : la justice reconnaît un « crime contre l'humanité »</a>.</li>
     </ol>
     <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
   </div>
@@ -441,7 +538,7 @@ const DAYS = [
        ["16h30","Abbaye Saint-Victor puis la Corniche","Descente vers la mer."],
        ["17h00","Coucher de soleil au Vallon des Auffes","Apéritif puis dîner sur place, réservation conseillée."]],
    places:["belges","panier","charite","major","fort","mucem","ndg","victor","auffes"],
-   planb:"Par pluie : le MuCEM et la Vieille Charité suffisent à remplir la journée ; ajouter le musée d'Histoire de Marseille (port antique)."},
+   planb:"Par pluie : le MuCEM et la Vieille Charité suffisent à remplir la journée ; ajouter le musée d'Histoire de Marseille (port antique) ou Cosquer Méditerranée, sur réservation."},
  { id:"d3", date:"2026-11-09", short:"Lun 9", title:"Morgiou et Sormiou", level:2, walk:"4h30", sun:["07h23","17h20"],
    sum:"Première vraie randonnée, en boucle entre deux grandes calanques marseillaises, routes d'accès ouvertes en semaine.",
    tl:[["08h15","Route vers les Baumettes","Environ 25 min depuis Longchamp."],
@@ -547,6 +644,8 @@ const VISITS = [
   txt:"Le village des peintres, de Cézanne à Braque. Panisses et chichis sur le port."},
  {k:"auffes", n:"Vallon des Auffes", day:"Dim 8 et ven 13", where:"7e, Corniche",
   txt:"Port de pêcheurs encaissé sous la Corniche, coucher de soleil et poisson."},
+ {k:"cosquer", n:"Cosquer Méditerranée", day:"Plan B pluie", where:"2e, Villa Méditerranée, à côté du MuCEM",
+  txt:"Réplique de la grotte ornée sous-marine du cap Morgiou, parcourue en modules de six places. Sur réservation, 18 €."},
  {k:"frioul", n:"Îles du Frioul et Château d'If", day:"Si temps calme", where:"Navette depuis le Vieux-Port",
   txt:"Navettes souvent annulées par mistral en novembre : à décider la veille, pas à programmer."}
 ];
@@ -745,6 +844,209 @@ function showDay(id){
   const upd = () => { const n = ul.querySelectorAll("input:checked").length; bar.style.width = (100 * n / PACK.length) + "%"; };
   ul.addEventListener("change", e => { const i = e.target.id.slice(2); st[i] = e.target.checked; sset("pack", st); upd(); });
   upd();
+})();
+
+/* ---------- Plus loin : dossiers, frise, le saviez-vous ---------- */
+const THEMES = {hist:"Histoire", calq:"Calanques", cult:"Arts et architecture", vivre:"Art de vivre"};
+const DOSSIERS = [
+ {id:"massalia", th:"hist", day:"d2", where:"Vieux-Port, dimanche 8",
+  t:"Massalia, une ville née d'un mariage",
+  hook:"Vers 600 avant notre ère, une princesse gauloise choisit un marin grec. Marseille est la plus ancienne ville de France, et son acte de naissance est une histoire d'amour.",
+  body:`<p>Le Grec <b>Protis</b>, venu de Phocée (sur la côte de l'actuelle Turquie) chercher de nouveaux comptoirs, accoste dans une crique abritée, le Lacydon : c'est l'actuel <b>Vieux-Port</b>. Le roi des Ségobriges, <b>Nannus</b>, l'invite au banquet où sa fille <b>Gyptis</b> doit choisir un époux. Elle délaisse les prétendants gaulois et tend la coupe au voyageur. En cadeau de noces, le roi offre la colline où naît Massalia, vers 600 av. J.-C.[26]</p>
+  <p>La cité devient l'un des premiers ports d'Europe occidentale. Au IVe siècle av. J.-C., l'un de ses enfants, <b>Pythéas</b>, remonte les côtes jusqu'aux mers du Nord et peut-être jusqu'à <b>Thulé</b> (Islande ou Shetland). Il calcule la latitude de Marseille et fait le lien entre la Lune et les marées, un phénomène presque inconnu en Méditerranée. Son récit, <i>Description de l'Océan</i>, est perdu : on ne le connaît que par les citations de Polybe et de Strabon[27].</p>`,
+  zoom:"Les sources antiques ne s'accordent pas sur le contenu de la coupe tendue par Gyptis : de l'eau selon les uns, du vin selon les autres[26].",
+  src:[26,27]},
+ {id:"rhino", th:"hist", day:"d2", where:"Vue depuis la Corniche",
+  t:"Le rhinocéros du château d'If",
+  hook:"Le 24 janvier 1516, François Ier débarque sur l'île d'If pour voir un animal que l'Europe n'avait plus observé vivant depuis l'Antiquité.",
+  body:`<p>En 1514, le sultan Muzaffar II de Cambay offre un rhinocéros indien aux Portugais. L'animal arrive à Lisbonne le 20 mai 1515, puis le roi <b>Manuel Ier</b> l'envoie en cadeau au pape <b>Léon X</b>. Le navire fait escale au large de Marseille, et le jeune <b>François Ier</b> vient l'admirer sur l'île d'If le 24 janvier 1516[12].</p>
+  <p>La suite est moins glorieuse : une tempête coule le navire au large de la Ligurie, et le rhinocéros, enchaîné à bord, se noie. Il entre pourtant dans l'histoire de l'art grâce à <b>Albrecht Dürer</b>, dont la gravure, réalisée sans avoir jamais vu l'animal, d'après une description et un croquis, a servi de modèle pendant des siècles[12].</p>
+  <p>La forteresse d'If, construite sous François Ier, devient ensuite une prison d'État, que le roman d'Alexandre Dumas, <i>Le Comte de Monte-Cristo</i>, a rendue célèbre.</p>`,
+  zoom:"La carapace en plaques et la petite corne dorsale de la gravure de Dürer sont des erreurs anatomiques. Elle a pourtant longtemps été tenue pour un portrait fidèle[12].",
+  src:[12]},
+ {id:"forts", th:"hist", day:"d2", where:"Fort Saint-Jean, dimanche 8",
+  t:"Marseille la rebelle : des canons et un hymne",
+  hook:"Louis XIV a fait bâtir un fort dont les canons visaient la ville. Un siècle plus tard, Marseille donnait son nom à l'hymne national.",
+  body:`<p>En 1660, après des révoltes contre le gouverneur royal, <b>Louis XIV</b> entre dans Marseille et lance la construction du <b>fort Saint-Nicolas</b>, achevé en 1664 sur la rive sud de l'entrée du port. Officiellement, il protège le port. En réalité, ses canons, comme ceux du fort Saint-Jean en face, sont tournés vers la ville[19].</p>
+  <p>La Révolution renverse les rôles. Le chant composé à <b>Strasbourg</b> le 25 avril 1792 par <b>Rouget de Lisle</b> s'intitule <i>Chant de guerre pour l'Armée du Rhin</i>. Chanté à Marseille par un volontaire, François Mireur, il est repris par les fédérés marseillais qui l'entonnent dans les rues de Paris, où ils entrent le 30 juillet 1792. Les Parisiens l'appellent aussitôt « la Marseillaise ». Elle devient hymne national le 14 juillet 1795, puis de nouveau en 1879[28].</p>`,
+  zoom:"La Marseillaise n'a donc pas été écrite à Marseille, ni par un Marseillais : la ville ne lui a donné que son nom, et sa diffusion[28].",
+  src:[19,28]},
+ {id:"peste", th:"hist", day:"d2", where:"Esplanade de la Tourette, dimanche 8",
+  t:"1720 : la dernière grande peste d'Europe occidentale",
+  hook:"Un navire venu du Levant, une quarantaine levée trop tôt pour sauver une cargaison, et la moitié de la ville emportée en deux ans.",
+  body:`<p>En mai 1720, le <b>Grand-Saint-Antoine</b> rentre de Sidon avec des cas suspects à bord. Placé en quarantaine, il est libéré sous la pression de négociants pressés de vendre leurs étoffes à la foire de Beaucaire. L'épidémie éclate quelques jours plus tard[15].</p>
+  <p>Sur environ 90 000 habitants, Marseille perd entre 30 000 et 50 000 personnes selon les estimations, et la Provence plus de 100 000. Le Parlement d'Aix punit de mort toute communication avec la ville : c'est l'origine du <b>mur de la peste</b>, dont des fragments subsistent dans les monts de Vaucluse[15].</p>
+  <p>Le 16 septembre 1720, le <b>chevalier Roze</b> mène 150 volontaires et forçats pour dégager 1 200 corps de l'<b>esplanade de la Tourette</b>, au pied de la cathédrale de la Major. Trois seulement survivent ; Roze lui-même contracte la maladie et en réchappe[15].</p>`,
+  zoom:"L'esplanade de la Tourette est aujourd'hui l'un des plus beaux balcons sur la mer, entre la Major et le Fort Saint-Jean, sur votre itinéraire de dimanche.",
+  src:[15]},
+ {id:"1943", th:"hist", day:"d2", where:"Quai du Port, dimanche 8",
+  t:"1943 : la rive nord rayée de la carte",
+  hook:"En février 1943, l'occupant allemand dynamite les vieux quartiers du Vieux-Port. Les immeubles en pierre du quai que vous longerez sont ceux de la reconstruction.",
+  body:`<p>Le 22 janvier 1943 commence l'<b>opération Sultan</b>, menée par les autorités allemandes avec le concours de la police française. Plus de 6 000 personnes sont arrêtées, et 1 642 sont déportées, dont plusieurs centaines de Juifs vers le camp d'extermination de Sobibor[13]. Le 24 janvier, 15 000 habitants du quartier Saint-Jean, en contrebas du Panier, sont évacués en une journée[14].</p>
+  <p>À partir du 1er février, les quartiers sont dynamités pendant plus de deux semaines : <b>1 500 immeubles</b> et 50 rues disparaissent, laissant 14 hectares de ruines. Seuls quelques édifices sont épargnés, dont l'Hôtel de Ville, la Maison diamantée, l'hôtel de Cabre et l'église Saint-Laurent[14].</p>
+  <p>Les vestiges des rues détruites reposent sous la <b>place du 23 janvier 1943</b>. La justice française a depuis reconnu ces rafles comme crime contre l'humanité[31].</p>`,
+  zoom:"La Maison diamantée, avec sa façade en pointes de diamant du XVIe siècle, est l'un des rares témoins du quartier d'avant 1943, à deux pas de l'Hôtel de Ville[14].",
+  src:[13,14,31]},
+ {id:"ndg", th:"cult", day:"d2", where:"Colline de la Garde, dimanche 8",
+  t:"La Bonne Mère, vigie des marins",
+  hook:"Une Vierge dorée de plus de 11 mètres, des milliers d'ex-voto, et un architecte de 23 ans, protestant, pour la basilique la plus aimée des Marseillais.",
+  body:`<p>Le chantier de la basilique commence au début des années 1850, sur une colline d'environ 150 mètres qui porte depuis le Moyen Âge une chapelle de pèlerinage. Son architecte, <b>Jacques-Henri Espérandieu</b>, a 23 ans au lancement du projet, et il est protestant. L'édifice est consacré en <b>1864</b>[20].</p>
+  <p>Au sommet du clocher, la <b>Vierge à l'Enfant</b> mesure 11,2 mètres. Elle est en cuivre doré à la feuille et pèse près de 10 tonnes[20][21]. À l'intérieur, environ <b>2 500 ex-voto</b> remercient la Vierge : maquettes de navires et tableaux de naufrages évités, offerts surtout par des marins. La tradition remonte au XIVe siècle[20].</p>`,
+  zoom:"Regardez la façade et les mosaïques : elles portent encore des impacts de balles des combats de la Libération[21].",
+  src:[20,21]},
+ {id:"mucem", th:"cult", day:"d2", where:"Esplanade du J4, dimanche 8",
+  t:"Le MuCEM, une dentelle de béton",
+  hook:"Inauguré en 2013, il a transformé un ancien môle portuaire en l'une des promenades les plus photographiées de France.",
+  body:`<p>Le MuCEM ouvre le <b>7 juin 2013</b>, dans le cadre de Marseille-Provence 2013, Capitale européenne de la culture. C'est l'un des rares musées nationaux installés hors de Paris[29].</p>
+  <p>L'architecte <b>Rudy Ricciotti</b> a mis une dizaine d'années à concevoir ce cube de verre enveloppé d'une <b>résille de béton fibré</b>, qui filtre la lumière comme un moucharabieh. Une passerelle fine le relie au fort Saint-Jean par-dessus le bassin[29].</p>`,
+  zoom:"Juste à côté, la Villa Méditerranée abrite depuis 2022 la réplique de la grotte Cosquer : une idée de repli idéale en cas de pluie (voir le dossier Calanques).",
+  src:[29]},
+ {id:"cosquer", th:"calq", day:"d3", where:"Cap Morgiou, lundi 9",
+  t:"La grotte Cosquer, Lascaux sous la mer",
+  hook:"Sous le cap Morgiou, à 36 mètres de fond, une grotte ornée d'il y a 33 000 ans, avec des pingouins dessinés au charbon.",
+  body:`<p>En 1985, le plongeur <b>Henri Cosquer</b> découvre une entrée sous-marine à <b>36 mètres de profondeur</b>, dans les calanques. Un tunnel montant de 116 mètres débouche sur des salles à l'air libre, couvertes de peintures et de gravures. Il ne révèle sa découverte aux autorités qu'en 1991[9].</p>
+  <p>La grotte a été fréquentée entre <b>33 000 et 19 000 ans</b> avant notre ère, quand la mer était bien plus basse et l'entrée à l'air libre. On y a inventorié plus de 500 entités graphiques et plus de 170 animaux de 11 espèces, dont 63 chevaux, mais aussi des animaux marins, très rares dans l'art pariétal, comme trois <b>grands pingouins</b>[9]. La remontée des eaux a englouti une partie des œuvres.</p>
+  <p>La grotte est fermée au public. Sa réplique, <b>Cosquer Méditerranée</b>, a ouvert le 4 juin 2022 dans la Villa Méditerranée, à côté du MuCEM : on la parcourt assis dans des modules pour six personnes[9]. Entrée 18 €, sur réservation, de 9h30 à 18h en semaine hors vacances[10].</p>`,
+  zoom:"Lundi, depuis la crête de Morgiou, vous marcherez quelques dizaines de mètres au-dessus de l'entrée immergée, près de la calanque de la Triperie.",
+  src:[9,10]},
+ {id:"geol", th:"calq", day:"d4", where:"Marseilleveyre, mardi 10",
+  t:"Comment naît une calanque",
+  hook:"Une calanque est une vallée de rivière que la mer a envahie. Pendant les glaciations, le rivage était 130 mètres plus bas.",
+  body:`<p>Pendant les glaciations du Quaternaire, le niveau de la mer baisse d'environ <b>130 mètres</b>. L'érosion creuse alors dans le calcaire des vallées étroites et profondes. Quand la mer remonte, à la fin de la dernière glaciation, elle envahit la partie basse de ces ravins : ce sont les calanques actuelles[24].</p>
+  <p>Le <b>Parc national des Calanques</b>, créé par décret le 18 avril 2012, est le premier d'Europe à être à la fois terrestre, marin et périurbain. Il couvre 8 500 hectares à terre et 43 500 hectares en mer, et reçoit environ 2 millions de visiteurs par an[24].</p>
+  <p>Il abrite des espèces rares : l'<b>aigle de Bonelli</b>, le lézard ocellé, l'astragale de Marseille, et en mer les herbiers de posidonie, la grande nacre et le mérou brun[24].</p>`,
+  zoom:"Vendredi, les falaises Soubeyranes du Cap Canaille racontent une autre histoire : leurs bandes ocres sont les sédiments d'un ancien delta de fleuve, empilés sur des centaines de mètres[24].",
+  src:[24]},
+ {id:"portmiou", th:"calq", day:"d6", where:"Port-Miou, jeudi 12",
+  t:"Port-Miou, la calanque devenue carrière",
+  hook:"La première calanque de votre randonnée de jeudi a été entaillée pendant 85 ans pour fabriquer de la soude, celle du savon de Marseille.",
+  body:`<p>En 1896, l'industriel belge <b>Ernest Solvay</b> achète un terrain à Port-Miou pour y ouvrir une carrière. Le calcaire, mélangé au sel marin, sert à produire de la <b>soude</b>, notamment pour le savon de Marseille. Entre 6 et 7 millions de tonnes de roche sont extraites, laissant une entaille de 800 mètres sur 200[25].</p>
+  <p>Le 13 mars 1910, environ 2 000 personnes manifestent contre un projet d'extension : une mobilisation pionnière pour la défense des Calanques. La carrière ferme en 1981, et Port-Pin et En-Vau sont classées dès 1936[25].</p>
+  <p>La <b>pierre de Cassis</b>, compacte et imperméable, a pavé le port de Massalia, puis servi pour la Major, le phare du Planier et des quais jusqu'au canal de Suez. Une légende tenace prétend qu'elle forme le socle de la statue de la Liberté : rien ne l'atteste[18][25].</p>`,
+  zoom:"Au fond de la calanque débouche une rivière souterraine venue du massif de la Sainte-Baume, par l'une des plus grandes galeries noyées d'Europe[25].",
+  src:[18,25]},
+ {id:"saintex", th:"hist", day:"d4", where:"Archipel de Riou, mardi 10",
+  t:"Saint-Exupéry, le dernier vol",
+  hook:"Depuis le sommet de Marseilleveyre, vous verrez l'archipel de Riou. C'est là qu'on a résolu, plus d'un demi-siècle après, le mystère de la disparition de l'auteur du Petit Prince.",
+  body:`<p>Le <b>31 juillet 1944</b>, Antoine de Saint-Exupéry décolle de Bastia aux commandes d'un P-38 Lightning pour une mission de reconnaissance. Il ne revient jamais[11].</p>
+  <p>Le 7 septembre 1998, le pêcheur marseillais <b>Jean-Claude Bianco</b> remonte dans ses filets une gourmette gravée au nom de l'aviateur. En 2000, des plongeurs repèrent des débris d'avion par 85 mètres de fond près de Riou, et en 2003 un numéro de série relevé sur une pièce, 2734 L, confirme qu'il s'agit bien de son appareil[11].</p>
+  <p>Les fragments ont été remontés par le DRASSM et sont exposés au <b>musée de l'Air et de l'Espace</b> du Bourget[11].</p>`,
+  zoom:"Les causes exactes de la chute restent débattues : panne, malaise ou tir ennemi, aucune hypothèse n'a été définitivement établie.",
+  src:[11]},
+ {id:"radieuse", th:"cult", day:"d5", where:"Boulevard Michelet, mercredi 11",
+  t:"Le Corbusier et la « maison du fada »",
+  hook:"Une ville verticale de 337 logements, avec sa rue commerçante en étage et ses jeux d'enfants sur le toit. Les Marseillais l'ont d'abord moquée.",
+  body:`<p>Construite de 1947 à 1952 et inaugurée le 14 octobre 1952, l'<b>Unité d'habitation</b> de Le Corbusier mesure 135 mètres de long et 56 mètres de haut. Toutes ses dimensions découlent du <b>Modulor</b>, un système de mesures fondé sur le corps humain[23].</p>
+  <p>Elle compte <b>337 logements</b> de 23 types différents, desservis par des « rues » intérieures, dont une rue marchande aux niveaux 7 et 8 avec commerces et hôtel-restaurant[22][23]. Sur le toit-terrasse : pataugeoire, aires de jeux et une scène abritée du vent. Le gymnase est devenu en 2013 un centre d'art, le MAMO[22][23].</p>
+  <p>Surnommée la « <b>maison du fada</b> » par des Marseillais sceptiques, elle est aujourd'hui inscrite au patrimoine mondial de l'Unesco avec seize autres œuvres de Le Corbusier, depuis 2016. Certains habitants y vivent depuis 1952[22].</p>`,
+  zoom:"Mercredi, prenez l'ascenseur jusqu'au toit pour le coucher du soleil : la vue porte des collines de Marseilleveyre à Notre-Dame de la Garde.",
+  src:[22,23]},
+ {id:"ciotat", th:"vivre", day:"d7", where:"La Ciotat, vendredi 13",
+  t:"La Ciotat, berceau du cinéma et de la pétanque",
+  hook:"Un train qui entre en gare, un joueur perclus de rhumatismes : deux inventions mondiales sont nées dans la petite ville au pied du Bec de l'Aigle.",
+  body:`<p>Les frères <b>Lumière</b> passaient l'été à La Ciotat. Louis y tourne <i>L'Arrivée d'un train en gare de La Ciotat</i>, une cinquantaine de secondes devenues l'une des images fondatrices du cinéma. L'<b>Eden Théâtre</b>, sur le front de mer, compte parmi les plus anciennes salles de cinéma encore en activité au monde[17].</p>
+  <p>La <b>pétanque</b> y est née au début du XXe siècle. <b>Jules Lenoir</b>, ancien joueur de jeu provençal, ne peut plus prendre son élan à cause de ses rhumatismes. Son ami <b>Ernest Pitiot</b>, cafetier, imagine une variante où l'on lance immobile, dans un cercle, les pieds « tanqués », plantés au sol : <i>pè tancat</i> en provençal. Le premier tournoi est organisé à La Ciotat en 1910[16][17].</p>`,
+  zoom:"Les sources hésitent sur l'année de naissance du jeu, 1907 ou 1910. La Ciotat retient 1907[16][17].",
+  src:[16,17]},
+ {id:"cassis", th:"vivre", day:"d6", where:"Cassis, jeudi 12",
+  t:"Cassis, un vin blanc et un proverbe",
+  hook:"« Qui a vu Paris et pas Cassis n'a rien vu. » Le port de pêche tient aussi l'une des trois toutes premières appellations d'origine contrôlée de France.",
+  body:`<p>Quand le système des <b>appellations d'origine contrôlée</b> est créé en 1936, Cassis figure parmi les trois premiers vignobles à en bénéficier. Le blanc, frais et iodé, y domine, sur des terrasses coincées entre le Cap Canaille et la mer[18].</p>
+  <p>Le proverbe provençal attribué à <b>Frédéric Mistral</b> fait la fierté du village : <i>« Qu'a vist Paris, se noun a vist Cassis, n'a rèn vist »</i>.[18].</p>
+  <p>Au-dessus du village, le <b>Cap Canaille</b> culmine à 394 mètres : c'est l'une des plus hautes falaises maritimes d'Europe[18].</p>`,
+  zoom:"Le proverbe se traduit par : « Qui a vu Paris, s'il n'a pas vu Cassis, n'a rien vu »[18].",
+  src:[18]}
+];
+
+const FRISE = [
+ ["v. 600 av.","Fondation de Massalia par des Grecs de Phocée","massalia"],
+ ["IVe s. av.","Pythéas explore les mers du Nord","massalia"],
+ ["1516","Un rhinocéros fait escale à l'île d'If","rhino"],
+ ["1660","Louis XIV lance le fort Saint-Nicolas","forts"],
+ ["1720","Peste du Grand-Saint-Antoine","peste"],
+ ["1792","Les fédérés marseillais chantent à Paris","forts"],
+ ["1864","Consécration de Notre-Dame de la Garde","ndg"],
+ ["1880","Premières traversées du ferry-boat","ferry"],
+ ["1895","Les Lumière filment à La Ciotat","ciotat"],
+ ["1896","Solvay ouvre la carrière de Port-Miou","portmiou"],
+ ["1907","Naissance de la pétanque à La Ciotat","ciotat"],
+ ["1910","2 000 manifestants défendent les Calanques","portmiou"],
+ ["1936","AOC Cassis ; En-Vau et Port-Pin classées","cassis"],
+ ["1943","Rafles et dynamitage du Vieux-Port","1943"],
+ ["1944","Disparition de Saint-Exupéry au large de Riou","saintex"],
+ ["1952","Inauguration de la Cité radieuse","radieuse"],
+ ["1981","Fermeture de la carrière de Port-Miou","portmiou"],
+ ["1985","Henri Cosquer découvre la grotte","cosquer"],
+ ["1998","Un pêcheur remonte la gourmette de Saint-Ex","saintex"],
+ ["2003","L'épave du P-38 est identifiée","saintex"],
+ ["2012","Création du Parc national des Calanques","geol"],
+ ["2013","Ouverture du MuCEM","mucem"],
+ ["2016","La Cité radieuse inscrite à l'Unesco","radieuse"],
+ ["2022","Ouverture de Cosquer Méditerranée","cosquer"],
+ ["2026","Votre semaine à Marseille","top"]
+];
+
+const FACTS = [
+ ["Le ferry-boat du Vieux-Port traverse depuis 1880. 283 mètres, trois à quatre minutes, 50 centimes : sans doute la plus courte ligne maritime de France. Pagnol l'a filmé dans <i>Marius</i> en 1931.", 30],
+ ["Albrecht Dürer n'a jamais vu le rhinocéros qu'il a gravé en 1515. Sa carapace en plaques d'armure est une invention.", 12],
+ ["Pythéas, Marseillais du IVe siècle avant notre ère, a été l'un des premiers à relier les marées aux mouvements de la Lune.", 27],
+ ["La Marseillaise a été composée à Strasbourg, par un officier né dans le Jura.", 28],
+ ["La grotte Cosquer compte 63 chevaux peints ou gravés, mais aussi trois grands pingouins, oiseaux aujourd'hui disparus.", 9],
+ ["Notre-Dame de la Garde conserve environ 2 500 ex-voto, dont des maquettes de bateaux offertes par des marins rescapés.", 20],
+ ["La Cité radieuse propose 23 types d'appartements différents, tous dimensionnés selon le Modulor de Le Corbusier.", 23],
+ ["Le Parc national des Calanques est plus vaste en mer qu'à terre : 43 500 hectares de cœur marin pour 8 500 hectares de cœur terrestre.", 24],
+ ["La calanque de Port-Miou mesure 1 400 mètres de long ; l'entaille de l'ancienne carrière, 800 mètres.", 25],
+ ["Quand la grotte Cosquer était habitée, le niveau de la mer était plus de 100 mètres plus bas : l'entrée se trouvait à l'air libre, loin du rivage.", 24],
+ ["Le chevalier Roze et ses 150 hommes ont dégagé 1 200 corps de l'esplanade de la Tourette en septembre 1720. Trois ont survécu.", 15],
+ ["L'architecte de Notre-Dame de la Garde, Jacques-Henri Espérandieu, était protestant.", 20],
+ ["La pierre de Cassis a servi pour des quais jusqu'au canal de Suez. Le socle de la statue de la Liberté, en revanche, relève de la légende.", 18],
+ ["En 1910, 2 000 personnes manifestaient déjà contre l'extension de la carrière de Port-Miou, un siècle avant la création du Parc national.", 25]
+];
+
+(function(){
+  const cite = s => s.replace(/\[(\d+)\]/g, '<sup><a href="#s$1">$1</a></sup>');
+  const grid = $("#lnGrid");
+  const dayShort = id => (DAYS.find(d => d.id === id) || {}).short || "";
+  grid.innerHTML = DOSSIERS.map(d => `<article class="doss t-${d.th}" id="ln-${d.id}" data-th="${d.th}">
+    <div class="top"><div class="th">${THEMES[d.th]}</div><h3>${esc(d.t)}</h3><p class="hook">${esc(d.hook)}</p></div>
+    <details><summary>Lire le dossier</summary><div class="body">${cite(d.body)}
+      ${d.zoom ? `<div class="zoom"><b class="lbl">Le détail</b>${cite(d.zoom)}</div>` : ""}
+      <div class="foot"><span>Sources ${d.src.map(n => `<sup><a href="#s${n}">${n}</a></sup>`).join(" ")}</span>
+      <button type="button" class="btn" data-goday="${d.day}">Sur le terrain : ${esc(d.where)}</button></div>
+    </div></details></article>`).join("");
+  grid.addEventListener("click", e => {
+    const b = e.target.closest("[data-goday]"); if (!b) return;
+    showDay(b.dataset.goday); document.getElementById("jours").scrollIntoView();
+  });
+  $("#lnChips").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    document.querySelectorAll("#lnChips button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    grid.querySelectorAll(".doss").forEach(a => { a.hidden = !(b.dataset.th === "all" || a.dataset.th === b.dataset.th); });
+  });
+  function openDossier(id){
+    if (id === "top"){ document.getElementById("top").scrollIntoView(); return; }
+    if (id === "ferry"){ showFact(0); document.querySelector(".fx").scrollIntoView({block:"center"}); return; }
+    const a = document.getElementById("ln-" + id); if (!a) return;
+    if (a.hidden){ document.querySelector('#lnChips [data-th="all"]').click(); }
+    a.querySelector("details").open = true;
+    a.scrollIntoView({block:"start"});
+    a.classList.remove("flash"); void a.offsetWidth; a.classList.add("flash");
+  }
+  $("#lnFrise").innerHTML = FRISE.map(f => {
+    const th = (DOSSIERS.find(d => d.id === f[2]) || {}).th || "vivre";
+    return `<li class="t-${th}"><span class="y">${esc(f[0])}</span><button type="button" data-open="${f[2]}">${esc(f[1])}</button></li>`;
+  }).join("");
+  $("#lnFrise").addEventListener("click", e => { const b = e.target.closest("[data-open]"); if (b) openDossier(b.dataset.open); });
+
+  let fi = 0;
+  function showFact(i){
+    fi = (i + FACTS.length) % FACTS.length;
+    $("#fxN").textContent = `${fi + 1} / ${FACTS.length}`;
+    $("#fxT").innerHTML = FACTS[fi][0] + ` <sup><a href="#s${FACTS[fi][1]}">${FACTS[fi][1]}</a></sup>`;
+  }
+  $("#fxPrev").addEventListener("click", () => showFact(fi - 1));
+  $("#fxNext").addEventListener("click", () => showFact(fi + 1));
+  showFact(Math.floor(Math.random() * FACTS.length));
 })();
 
 /* ---------- Météo (Open-Meteo, sans clé) ---------- */
