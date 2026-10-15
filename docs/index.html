@@ -1153,7 +1153,7 @@ const FACTS = [
   function frame(ts){
     raf = requestAnimationFrame(frame);
     if (ts - last < 50) return; last = ts;     // environ 20 images par seconde, largement suffisant
-    t += 0.006; compute(); draw();
+    t += 0.003; compute(); draw();
   }
   function start(){ cancelAnimationFrame(raf); compute(); draw(); if (!still.matches && !document.hidden) raf = requestAnimationFrame(frame); }
   colors(); resize(); start();
