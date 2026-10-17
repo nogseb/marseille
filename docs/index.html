@@ -156,7 +156,7 @@ section > .wrap > .intro{color:var(--ink-2); max-width:70ch; margin-bottom:16px}
 /* Statuts et listes à cocher */
 .st{font:inherit; font-size:.85rem; border:1px solid var(--rule); border-radius:6px; padding:3px 6px; background:var(--paper); color:var(--ink)}
 .st[data-v="confirme"]{color:var(--ok); border-color:var(--ok)}
-.st[data-v="areserver"]{color:var(--todo); border-color:var(--todo)}
+.st[data-v="areserver"], .st[data-v="afaire"]{color:var(--todo); border-color:var(--todo)}
 .st[data-v="demande"]{color:var(--tbd); border-color:var(--tbd)}
 .st[data-v="optionnel"]{color:var(--opt)}
 .check{list-style:none; padding:0; margin:0}
@@ -266,10 +266,10 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
     <h1>Marseille et les Calanques</h1>
     <p class="lede">Une semaine à deux, Sébastien et Pauline : des randonnées de niveau varié dans le Parc national des Calanques, de Callelongue au Cap Canaille, et des journées en ville entre le Vieux-Port, le Panier et la Cité radieuse.</p>
     <div class="facts">
-      <div class="fact"><div class="k">Dates</div><div class="v">7 – 14 nov.</div><div class="s">du samedi au samedi, 7 nuits</div></div>
+      <div class="fact"><div class="k">Dates</div><div class="v">6 – 13 nov.</div><div class="s">du vendredi au vendredi, 1 nuit à Balaruc, 6 à Marseille</div></div>
       <div class="fact"><div class="k">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
-      <div class="fact"><div class="k">Base</div><div class="v">Marseille 4e</div><div class="s">parc Longchamp, HomeExchange</div></div>
-      <div class="fact"><div class="k">Randonnées</div><div class="v">5 sorties</div><div class="s">de 2h30 à 5h de marche</div></div>
+      <div class="fact"><div class="k">Base</div><div class="v">Marseille 4e</div><div class="s">parc Longchamp, HomeExchange, du 7 au 13</div></div>
+      <div class="fact"><div class="k">Randonnées</div><div class="v">5 sorties</div><div class="s">de 1h à 5h de marche</div></div>
     </div>
   </div>
 </header>
@@ -290,7 +290,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 <section id="jours">
   <div class="wrap">
     <h2>Jour par jour</h2>
-    <p class="intro">Horaires indicatifs, calés sur la lumière du jour : le soleil se couche entre 17h22 et 17h14 au fil de la semaine, les randonnées démarrent donc avant 9h. Chaque journée a son plan B en cas de pluie ou de mistral.</p>
+    <p class="intro">Horaires indicatifs, calés sur la lumière du jour : le soleil se couche entre 17h22 et 17h15 au fil de la semaine, les randonnées démarrent donc avant 9h. Chaque journée a son plan B en cas de pluie ou de mistral.</p>
     <div class="days-layout">
       <div>
         <div class="daypick" id="daypick" role="group" aria-label="Choisir un jour"></div>
@@ -389,8 +389,9 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
     <div class="grid c2">
       <div class="card">
         <h3>Trajet</h3>
-        <p>Toulouse – Marseille : environ 405 km et 4h15 sans pause, par l'A61, l'A9 puis l'A54 (Narbonne, Nîmes, Arles, Salon). Péages autour de 40 € par trajet, indicatif.</p>
-        <p class="muted">À l'aller comme au retour, Arles fait une bonne halte déjeuner, aux trois quarts du parcours.</p>
+        <p><b>Aller</b> : Toulouse – Gigean, environ 230 km et 2h30 par l'A61 et l'A9, nuit à Balaruc ; puis Balaruc – Arles (environ 1h15) et Arles – Marseille (environ 1h).</p>
+        <p><b>Retour</b> : Marseille – Sète, environ 190 km et 2h ; Sète – Toulouse, environ 240 km et 2h30. Quitter Sète à 14h30 au plus tard pour être à Toulouse à 17h30.</p>
+        <p class="muted">Distances et durées indicatives, hors pauses et bouchons.</p>
       </div>
       <div class="card">
         <h3>Se déplacer à Marseille</h3>
@@ -404,7 +405,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
       </div>
       <div class="card">
         <h3>Route des Crêtes</h3>
-        <p>Entre Cassis et La Ciotat, elle est fermée aux véhicules motorisés <b>tous les dimanches de l'année</b><sup><a href="#s5">5</a></sup>, et ponctuellement par mistral très fort. D'où son placement un vendredi, avec repli possible le jeudi.</p>
+        <p>Entre Cassis et La Ciotat, elle est fermée aux véhicules motorisés <b>tous les dimanches de l'année</b><sup><a href="#s5">5</a></sup>, et ponctuellement par mistral très fort. Elle est donc prévue jeudi en fin de journée, au retour d'En-Vau, pour le coucher du soleil.</p>
       </div>
       <div class="card">
         <h3>Horaires à retenir</h3>
@@ -485,7 +486,11 @@ const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
 
 const PLACES = {
   base:      {n:"Base : parc Longchamp", c:[43.3049,5.3947], d:"Appartement HomeExchange, Marseille 4e. Métro et tram à Cinq-Avenues."},
-  arles:     {n:"Arles", c:[43.6766,4.6278], d:"Halte déjeuner sur la route, centre historique."},
+  toulouse:  {n:"Toulouse", c:[43.6045,1.4440], d:"Départ et retour."},
+  gigean:    {n:"Gigean", c:[43.4997,3.7114], d:"Dîner en famille, vendredi 6."},
+  balaruc:   {n:"Hôtel Campanile Sète – Balaruc", c:[43.4560,3.6990], d:"Nuit du 6 au 7 novembre. Position indicative."},
+  sete:      {n:"Sète", c:[43.4028,3.6947], d:"Déjeuner avec Giorgio et Joëlle, vendredi 13."},
+  arles:     {n:"Arles", c:[43.6766,4.6278], d:"Halte du samedi matin : arènes, théâtre antique, place du Forum."},
   palais:    {n:"Palais Longchamp", c:[43.3046,5.3943], d:"Château d'eau monumental, jardins, musée des Beaux-Arts."},
   coursj:    {n:"Cours Julien", c:[43.2939,5.3836], d:"Quartier vivant, street art, bars et restaurants."},
   belges:    {n:"Marché aux poissons, quai des Belges", c:[43.2953,5.3744], d:"Le matin, au fond du Vieux-Port."},
@@ -522,15 +527,24 @@ const PLACES = {
 };
 
 const DAYS = [
- { id:"d1", date:"2026-11-07", short:"Sam 7", title:"Arrivée et premier soir", level:0, walk:"1h", sun:["07h21","17h22"],
-   sum:"Route depuis Toulouse, installation près du parc Longchamp et premiers pas dans le quartier.",
-   tl:[["09h00","Départ de Toulouse","Environ 4h15 de route hors pauses."],
-       ["12h30","Déjeuner à Arles","Halte aux trois quarts du trajet, arènes et place du Forum."],
-       ["15h30","Arrivée et installation","Remise des clés, place de parking à confirmer avec les hôtes."],
+ { id:"d0", date:"2026-11-06", short:"Ven 6", title:"En famille à Gigean", level:0, walk:"–", sun:["07h27","17h29"],
+   sum:"Route depuis Toulouse, dîner en famille à Gigean, nuit à l'hôtel Campanile Sète – Balaruc.",
+   tl:[["15h30","Départ de Toulouse","Environ 230 km et 2h30 par l'A61 puis l'A9, horaire à caler sur la fin de journée."],
+       ["18h00","Arrivée à Gigean","Dîner en famille."],
+       ["22h30","Hôtel Campanile Sète – Balaruc","À une dizaine de minutes de Gigean. Penser à signaler une arrivée tardive."]],
+   places:["toulouse","gigean","balaruc"],
+   planb:"Le vendredi soir, l'A61 et l'A9 se chargent autour de Narbonne et de Béziers : partir avant 16h si possible."},
+ { id:"d1", date:"2026-11-07", short:"Sam 7", title:"Arles, puis Marseille", level:0, walk:"1h30", sun:["07h21","17h22"],
+   sum:"Halte à Arles sur la route de Marseille, installation près du parc Longchamp et premiers pas dans le quartier.",
+   tl:[["09h00","Départ de Balaruc","Environ 1h15 jusqu'à Arles par l'A9 et Nîmes."],
+       ["10h15","Arles","Arènes, théâtre antique, place du Forum.",1],
+       ["12h30","Déjeuner à Arles",""],
+       ["14h00","Route vers Marseille","Environ 1h par l'A54 et l'A7."],
+       ["15h15","Arrivée et installation","Remise des clés, place de parking à confirmer avec les hôtes."],
        ["16h30","Palais et parc Longchamp","Balade de mise en jambes au pied de l'appartement, vue sur le château d'eau.",1],
        ["19h30","Dîner au Cours Julien","Ou dans le quartier des Cinq-Avenues, à pied."]],
-   places:["arles","base","palais","coursj"],
-   planb:"Peu d'enjeu : si la route a été longue, dîner dans le quartier des Cinq-Avenues."},
+   places:["balaruc","arles","base","palais","coursj"],
+   planb:"Si la soirée de vendredi s'est prolongée : route directe Balaruc – Marseille (environ 2h), déjeuner en arrivant."},
  { id:"d2", date:"2026-11-08", short:"Dim 8", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h en ville", sun:["07h22","17h21"],
    sum:"Journée urbaine sans voiture : le dimanche, les calanques sont fréquentées et la Route des Crêtes fermée aux véhicules.",
    tl:[["08h30","Métro jusqu'au Vieux-Port","Depuis Cinq-Avenues – Longchamp, la voiture reste au parking."],
@@ -553,7 +567,7 @@ const DAYS = [
    hike:"h1",
    places:["baumettes","morgiou","sormiou","borely"],
    warn:"Musées municipaux fermés le lundi : la Vieille Charité et les Beaux-Arts ne sont pas une option de repli ce jour-là.",
-   planb:"Par pluie : MuCEM (ouvert le lundi, contrairement aux musées municipaux) et Fort Saint-Jean ; la boucle Morgiou – Sormiou prend alors la place du Cap Canaille vendredi."},
+   planb:"Par pluie : MuCEM (ouvert le lundi, contrairement aux musées municipaux) et Fort Saint-Jean ; la boucle Morgiou – Sormiou peut alors remplacer Marseilleveyre mardi, la grosse journée glissant mercredi à la place de Sugiton."},
  { id:"d4", date:"2026-11-10", short:"Mar 10", title:"Callelongue et Marseilleveyre", level:4, walk:"5h", sun:["07h25","17h19"],
    sum:"La grosse journée du séjour, par le GR51-98 jusqu'au sommet de Marseilleveyre, avec retour par le littoral jusqu'aux Goudes.",
    tl:[["07h45","Route vers Callelongue","Environ 35 min ; le parking du bout de la route se remplit vite."],
@@ -578,38 +592,32 @@ const DAYS = [
    places:["luminy","belvsugiton","sugiton","puget","radieuse"],
    warn:"Le toit-terrasse de la Cité radieuse n'ouvre que du mercredi au dimanche : ce mercredi est le meilleur créneau du séjour. Visite guidée de l'appartement témoin sur réservation auprès de l'Office de tourisme.",
    planb:"Par pluie : Cité radieuse le matin, puis Palais Longchamp (musée des Beaux-Arts) l'après-midi."},
- { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"Cassis : Port-Pin et En-Vau", level:3, walk:"4h", sun:["07h27","17h16"],
-   sum:"La séquence la plus spectaculaire du massif, au départ de Cassis, puis l'après-midi sur le port et dans les vignes.",
+ { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"En-Vau, puis le Cap Canaille au couchant", level:3, walk:"5h", sun:["07h26","17h16"],
+   sum:"La séquence la plus spectaculaire du massif au départ de Cassis, puis la Route des Crêtes jusqu'aux falaises du Cap Canaille pour le coucher du soleil. Dernière soirée sur le port de Cassis.",
    tl:[["07h45","Route vers Cassis","Environ 40 min par l'A50 ou la Gineste."],
        ["08h30","Port-Miou – Port-Pin – En-Vau","Belvédère d'En-Vau puis descente dans la calanque.",1],
        ["12h30","Retour à Port-Miou","Même chemin ou variante par le plateau."],
-       ["13h30","Déjeuner sur le port de Cassis","Terrasses au soleil, en novembre sans la foule."],
-       ["15h30","Dégustation AOC Cassis","Un domaine sur réservation, au pied du Cap Canaille."],
-       ["18h00","Retour à Marseille","Soirée libre."]],
+       ["13h15","Déjeuner sur le port de Cassis","Terrasses au soleil, en novembre sans la foule. Une cave pour rapporter du blanc de Cassis."],
+       ["15h30","Route des Crêtes","Montée en voiture au-dessus de Cassis ; vérifier l'ouverture en cas de mistral."],
+       ["16h00","Pas de la Colle – Grande Tête","Courte marche sur le haut des falaises, vue sur Cassis, la baie et La Ciotat.",1],
+       ["17h15","Coucher de soleil sur les falaises","Redescendre avant la nuit, frontale dans le sac."],
+       ["19h00","Dîner d'adieu sur le port de Cassis","Puis retour à Marseille, environ 40 min."]],
    hike:"h4",
-   places:["portmiou","portpin","envau","cassis"],
-   warn:"La descente finale vers En-Vau se fait sur des dalles où les mains servent. Par temps humide, s'arrêter au belvédère.",
-   planb:"Par mistral : la calanque reste relativement abritée, mais le belvédère est très exposé. Par pluie : Cassis et la dégustation, la randonnée glissant au vendredi."},
- { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Cap Canaille et La Ciotat", level:1, walk:"2h30", sun:["07h29","17h15"],
-   sum:"Route des Crêtes, plus hautes falaises maritimes de France, puis La Ciotat et son port. Dernière soirée au Vallon des Auffes.",
-   tl:[["09h00","Route des Crêtes","Vérifier l'ouverture en cas de mistral."],
-       ["09h45","Pas de la Colle – Grande Tête","Aller-retour sur le haut des falaises, vue sur Cassis et la baie.",1],
-       ["12h30","Déjeuner à La Ciotat","Vieux-Port et chantiers navals."],
-       ["14h30","Eden Théâtre et parc du Mugel","La plus ancienne salle de cinéma en activité, puis le jardin sous le Bec de l'Aigle."],
-       ["16h30","Retour à Marseille",""],
-       ["19h30","Dîner d'adieu au Vallon des Auffes","À réserver une dizaine de jours avant."]],
-   hike:"h5",
-   places:["pascolle","canaille","ciotat","mugel","auffes"],
-   warn:"Bords de falaise sans garde-corps : rester sur les sentiers, surtout par vent.",
-   planb:"Route fermée par mistral : La Ciotat par l'autoroute et le littoral, ou journée à L'Estaque et à la Friche la Belle de Mai."},
- { id:"d8", date:"2026-11-14", short:"Sam 14", title:"Noailles et retour", level:0, walk:"1h", sun:["07h30","17h14"],
-   sum:"Dernière matinée au marché, ménage courant de l'appartement et route du retour.",
-   tl:[["09h00","Marché des Capucins","Épices et produits à rapporter, à Noailles."],
-       ["10h30","Ménage courant et remise des clés","Participation de 50 € aux finitions, prévue par les hôtes."],
-       ["11h30","Départ","Halte possible à Aix-en-Provence ou à Arles."],
-       ["17h00","Arrivée à Toulouse",""]],
-   places:["capucins","base","aix"],
-   planb:"Par mauvais temps, départ direct après le petit-déjeuner."}
+   places:["portmiou","portpin","envau","cassis","pascolle","canaille"],
+   warn:"La descente finale vers En-Vau se fait sur des dalles où les mains servent : par temps humide, s'arrêter au belvédère. Au Cap Canaille, bords de falaise sans garde-corps, très exposés au vent.",
+   planb:"Par mistral : Route des Crêtes souvent fermée ; profiter de Cassis et d'une dégustation à la place. Par pluie : Cassis et ses caves ; En-Vau peut alors prendre la place de Sugiton mercredi."},
+ { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Retour par Sète", level:0, walk:"–", sun:["07h29","17h15"],
+   sum:"Départ matinal de Marseille, déjeuner à Sète avec Giorgio et Joëlle, arrivée à Toulouse pour récupérer les enfants à 17h30.",
+   tl:[["07h45","Ménage courant et bagages","Participation de 50 € aux finitions, prévue par les hôtes."],
+       ["09h30","Remise des clés",""],
+       ["09h45","Départ de Marseille","Environ 190 km et 2h par l'A7, l'A54 et l'A9."],
+       ["12h00","Déjeuner à Sète avec Giorgio et Joëlle",""],
+       ["14h30","Départ de Sète, dernier délai","Environ 240 km et 2h30 jusqu'à Toulouse, 30 min de marge comprises."],
+       ["17h00","Arrivée à Toulouse",""],
+       ["17h30","Récupérer les enfants",""]],
+   places:["base","sete","toulouse"],
+   warn:"Heure butoir : quitter Sète à 14h30 au plus tard. Le contournement de Montpellier et l'A9 ralentissent souvent le vendredi.",
+   planb:"En cas de bouchons au départ de Marseille, prévenir Giorgio et Joëlle et décaler le déjeuner plutôt que l'heure de départ de Sète."},
 ];
 
 const HIKES = {
@@ -621,7 +629,7 @@ const HIKES = {
      txt:"Version courte par la route forestière jusqu'au belvédère puis la calanque. Version longue par le Mont Puget, point culminant du massif à 563 m, avec retour par le col de Sugiton."},
  h4:{n:"Port-Miou – Port-Pin – En-Vau", day:"d6", km:"9 km", dp:"400 m", t:"4h", lv:3, start:"Port-Miou, Cassis", maps:"Port-Miou, Cassis",
      txt:"Le classique de Cassis : la calanque-port de Port-Miou, la plage de Port-Pin sous les pins, puis le belvédère et la descente rocheuse vers les aiguilles d'En-Vau."},
- h5:{n:"Pas de la Colle – Cap Canaille", day:"d7", km:"6 km", dp:"250 m", t:"2h30", lv:1, start:"Route des Crêtes", maps:"Pas de la Colle, Route des Crêtes, Cassis",
+ h5:{n:"Pas de la Colle – Cap Canaille", day:"d6", km:"2 à 4 km", dp:"100 m", t:"1h", lv:1, start:"Route des Crêtes", maps:"Pas de la Colle, Route des Crêtes, Cassis",
      txt:"Balade sur le plateau sommital des falaises Soubeyranes, vue plongeante sur Cassis, la baie et La Ciotat. Peu de difficulté technique, mais très exposé au vent."}
 };
 
@@ -646,7 +654,7 @@ const VISITS = [
   txt:"Ancienne manufacture de tabac devenue lieu culturel, toit-terrasse avec vue à 360°."},
  {k:"estaque", n:"L'Estaque", day:"Plan B", where:"16e",
   txt:"Le village des peintres, de Cézanne à Braque. Panisses et chichis sur le port."},
- {k:"auffes", n:"Vallon des Auffes", day:"Dim 8 et ven 13", where:"7e, Corniche",
+ {k:"auffes", n:"Vallon des Auffes", day:"Dim 8", where:"7e, Corniche",
   txt:"Port de pêcheurs encaissé sous la Corniche, coucher de soleil et poisson."},
  {k:"cosquer", n:"Cosquer Méditerranée", day:"Plan B pluie", where:"2e, Villa Méditerranée, à côté du MuCEM",
   txt:"Réplique de la grotte ornée sous-marine du cap Morgiou, parcourue en modules de six places. Sur réservation, 18 €."},
@@ -655,16 +663,18 @@ const VISITS = [
 ];
 
 const RESA = [
- {k:"logement", n:"Appartement parc Longchamp (HomeExchange)", when:"Dès que possible", def:"demande"},
+ {k:"campanile", n:"Hôtel Campanile Sète – Balaruc, nuit du 6 au 7", when:"Dès que possible", def:"areserver"},
+ {k:"logement", n:"Appartement parc Longchamp (HomeExchange), du 7 au 13", when:"Dès que possible", def:"demande"},
+ {k:"hotes13", n:"Prévenir Aline et Quentin : départ le vendredi 13 au matin", when:"Avec la demande", def:"afaire"},
  {k:"parking", n:"Place de parking en sous-sol", when:"Avec les hôtes", def:"areserver"},
- {k:"auffes13", n:"Dîner Vallon des Auffes, vendredi 13", when:"Vers le 3 novembre", def:"areserver"},
- {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"optionnel"},
+ {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"areserver"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
- {k:"cassis", n:"Dégustation AOC Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
+ {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
+ {k:"cassis", n:"Dégustation AOC Cassis (repli mistral), jeudi 12", when:"La veille", def:"optionnel"},
  {k:"mucemb", n:"Billets MuCEM, dimanche 8", when:"En ligne, la veille", def:"optionnel"},
  {k:"offline", n:"Cartes hors ligne des itinéraires", when:"Avant le départ", def:"areserver"}
 ];
-const STATUS = {areserver:"À réserver", demande:"Demandé", confirme:"Confirmé", optionnel:"Optionnel", fait:"Fait"};
+const STATUS = {afaire:"À faire", areserver:"À réserver", demande:"Demandé", confirme:"Confirmé", optionnel:"Optionnel", fait:"Fait"};
 
 const PACK = ["Chaussures à semelle adhérente","Deux litres d'eau par personne","Coupe-vent et polaire","Frontale (nuit vers 17h30)","Casquette et crème solaire","Pique-nique et en-cas","Trousse de premiers secours","Batterie externe","Carte hors ligne téléchargée","Bâtons pour les descentes","Maillot et serviette, au cas où","Sac à déchets"];
 
@@ -697,7 +707,7 @@ function todayISO(){ const d = new Date(); return `${d.getFullYear()}-${String(d
 
 /* ---------- Compte à rebours ---------- */
 (function(){
-  const start = new Date("2026-11-07T09:00:00"), end = new Date("2026-11-14T20:00:00"), now = new Date();
+  const start = new Date("2026-11-06T15:30:00"), end = new Date("2026-11-13T18:00:00"), now = new Date();
   const el = $("#countdown"), sub = $("#countdownSub");
   if (now < start){
     const days = Math.ceil((start - now) / 86400000);
@@ -706,7 +716,7 @@ function todayISO(){ const d = new Date(); return `${d.getFullYear()}-${String(d
     const i = DAYS.findIndex(d => d.date === todayISO());
     el.textContent = i >= 0 ? `Jour ${i+1} sur 8` : "En cours";
     sub.textContent = "bon séjour";
-  } else { el.textContent = "Terminé"; sub.textContent = "séjour du 7 au 14 novembre"; }
+  } else { el.textContent = "Terminé"; sub.textContent = "séjour du 6 au 13 novembre"; }
 })();
 
 /* ---------- Tableau programme ---------- */
@@ -778,7 +788,7 @@ function drawMarkers(){
   });
   if (pts.length){
     // Le trajet depuis Toulouse étire la carte : on cadre sur Marseille sauf vue d'ensemble demandée.
-    const local = pts.filter(c => c[0] < 43.45);
+    const local = pts.filter(c => c[0] < 43.45 && c[1] > 5.2);
     const target = scope === "all" ? local : (local.length >= 2 ? local : pts);
     map.fitBounds(L.latLngBounds(target).pad(0.18), {maxZoom:14, animate:true});
   }
@@ -790,7 +800,7 @@ function renderDay(d){
   const items = d.tl.map(t => `<li class="${t[3] ? "walk" : ""}"><span class="h">${esc(t[0])}</span><span class="w">${esc(t[1])}</span>${t[2] ? `<span class="x">${esc(t[2])}</span>` : ""}</li>`).join("");
   return `<article class="day" aria-labelledby="t-${d.id}">
     <div class="day-h"><h3 id="t-${d.id}">${esc(d.title)}</h3>${lvBadge(d.level)}</div>
-    <div class="date">${esc(longDate(d.date))} · marche ${esc(d.walk)}</div>
+    <div class="date">${esc(longDate(d.date))}${d.walk && d.walk !== "–" ? " · marche " + esc(d.walk) : ""}</div>
     <p class="sum">${esc(d.sum)}</p>
     <div class="sunrow"><span>Lever <b>${d.sun[0]}</b></span><span>Coucher <b>${d.sun[1]}</b></span></div>
     ${h ? `<div class="hike"><div class="ttl">${esc(h.n)}</div><div class="stats"><span>${esc(h.km)}</span><span>D+ ${esc(h.dp)}</span><span>${esc(h.t)}</span><span>départ ${esc(h.start)}</span></div><div class="muted" style="font-size:.95rem">${esc(h.txt)}</div></div>` : ""}
@@ -920,7 +930,7 @@ const DOSSIERS = [
   body:`<p>Pendant les glaciations du Quaternaire, le niveau de la mer baisse d'environ <b>130 mètres</b>. L'érosion creuse alors dans le calcaire des vallées étroites et profondes. Quand la mer remonte, à la fin de la dernière glaciation, elle envahit la partie basse de ces ravins : ce sont les calanques actuelles[24].</p>
   <p>Le <b>Parc national des Calanques</b>, créé par décret le 18 avril 2012, est le premier d'Europe à être à la fois terrestre, marin et périurbain. Il couvre 8 500 hectares à terre et 43 500 hectares en mer, et reçoit environ 2 millions de visiteurs par an[24].</p>
   <p>Il abrite des espèces rares : l'<b>aigle de Bonelli</b>, le lézard ocellé, l'astragale de Marseille, et en mer les herbiers de posidonie, la grande nacre et le mérou brun[24].</p>`,
-  zoom:"Vendredi, les falaises Soubeyranes du Cap Canaille racontent une autre histoire : leurs bandes ocres sont les sédiments d'un ancien delta de fleuve, empilés sur des centaines de mètres[24].",
+  zoom:"Jeudi au couchant, les falaises Soubeyranes du Cap Canaille racontent une autre histoire : leurs bandes ocres sont les sédiments d'un ancien delta de fleuve, empilés sur des centaines de mètres[24].",
   src:[24]},
  {id:"portmiou", th:"calq", day:"d6", where:"Port-Miou, jeudi 12",
   t:"Port-Miou, la calanque devenue carrière",
@@ -946,7 +956,7 @@ const DOSSIERS = [
   <p>Surnommée la « <b>maison du fada</b> » par des Marseillais sceptiques, elle est aujourd'hui inscrite au patrimoine mondial de l'Unesco avec seize autres œuvres de Le Corbusier, depuis 2016. Certains habitants y vivent depuis 1952[22].</p>`,
   zoom:"Mercredi, prenez l'ascenseur jusqu'au toit pour le coucher du soleil : la vue porte des collines de Marseilleveyre à Notre-Dame de la Garde.",
   src:[22,23]},
- {id:"ciotat", th:"vivre", day:"d7", where:"La Ciotat, vendredi 13",
+ {id:"ciotat", th:"vivre", day:"d6", where:"Vue depuis le Cap Canaille, jeudi 12",
   t:"La Ciotat, berceau du cinéma et de la pétanque",
   hook:"Un train qui entre en gare, un joueur perclus de rhumatismes : deux inventions mondiales sont nées dans la petite ville au pied du Bec de l'Aigle.",
   body:`<p>Les frères <b>Lumière</b> passaient l'été à La Ciotat. Louis y tourne <i>L'Arrivée d'un train en gare de La Ciotat</i>, une cinquantaine de secondes devenues l'une des images fondatrices du cinéma. L'<b>Eden Théâtre</b>, sur le front de mer, compte parmi les plus anciennes salles de cinéma encore en activité au monde[17].</p>
@@ -1057,7 +1067,7 @@ const FACTS = [
 /* ---------- Météo (Open-Meteo, sans clé) ---------- */
 (function(){
   const box = $("#wx"), intro = $("#wxIntro");
-  const now = new Date(), start = new Date("2026-11-07T00:00:00"), end = new Date("2026-11-14T23:59:00");
+  const now = new Date(), start = new Date("2026-11-06T00:00:00"), end = new Date("2026-11-13T23:59:00");
   const horizon = new Date(now.getTime() + 15 * 86400000);
   const NORMALS = '<div class="wxd"><div class="dd">Normales de novembre</div><div class="tt">8° / 16°</div><div>Repère indicatif : quelques jours de pluie dans le mois, mistral fréquent.</div></div>';
   const CODE = c => c === 0 ? "Ensoleillé" : c <= 2 ? "Éclaircies" : c === 3 ? "Couvert" : c <= 48 ? "Brouillard" : c <= 57 ? "Bruine" : c <= 67 ? "Pluie" : c <= 77 ? "Neige" : c <= 82 ? "Averses" : "Orages";
@@ -1068,7 +1078,7 @@ const FACTS = [
     const avail = new Date(start.getTime() - 15 * 86400000);
     intro.textContent = `Les prévisions du séjour s'afficheront ici à partir du ${avail.getDate()} ${MON[avail.getMonth()]}. En attendant, les prochains jours à Marseille :`;
     from = todayISO(); const t = new Date(now.getTime() + 6 * 86400000); to = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}-${String(t.getDate()).padStart(2,"0")}`;
-  } else { from = "2026-11-07"; to = horizon < end ? `${horizon.getFullYear()}-${String(horizon.getMonth()+1).padStart(2,"0")}-${String(horizon.getDate()).padStart(2,"0")}` : "2026-11-14"; }
+  } else { from = "2026-11-06"; to = horizon < end ? `${horizon.getFullYear()}-${String(horizon.getMonth()+1).padStart(2,"0")}-${String(horizon.getDate()).padStart(2,"0")}` : "2026-11-14"; }
   const url = `https://api.open-meteo.com/v1/forecast?latitude=43.2965&longitude=5.3698&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_gusts_10m_max,wind_direction_10m_dominant&timezone=Europe%2FParis&start_date=${from}&end_date=${to}`;
   box.innerHTML = '<div class="wxd">Chargement des prévisions…</div>';
   fetch(url).then(r => r.ok ? r.json() : Promise.reject()).then(j => {
