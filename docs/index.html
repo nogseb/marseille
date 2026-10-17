@@ -395,7 +395,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
       </div>
       <div class="card">
         <h3>Se déplacer à Marseille</h3>
-        <p>La voiture reste au parking pour les journées en ville : depuis Euroméditerranée, le <b>Vieux-Port</b> est à une vingtaine de minutes à pied par la rue de la République ou le Panier, ou à quelques arrêts des trams T2 et T3 ; métro M2 à la station Joliette. La voiture sert pour les départs de randonnée.</p>
+        <p>La voiture reste au parking privé de l'appartement pour les journées en ville : depuis Euroméditerranée, le <b>Vieux-Port</b> est à une vingtaine de minutes à pied par la rue de la République ou le Panier, ou à quelques arrêts des trams T2 et T3 ; métro M2 à la station Joliette. La voiture sert pour les départs de randonnée.</p>
         <p class="muted">Bus utiles : B1 vers Luminy (Sugiton), 19 et 20 vers les Goudes et Callelongue, 22 et 23 vers les Baumettes (Morgiou, Sormiou).</p>
       </div>
       <div class="card">
@@ -485,7 +485,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
 
 const PLACES = {
-  base:      {n:"Base : chez Mathilde, Euroméditerranée", c:[43.3100,5.3690], d:"Appartement HomeExchange, quartier d'affaires Euroméditerranée. Position indicative."},
+  base:      {n:"Base : chez Mathilde, Euroméditerranée", c:[43.3100,5.3690], d:"Appartement HomeExchange avec parking privé, quartier d'affaires Euroméditerranée. Position indicative."},
   docks:     {n:"Les Docks de la Joliette", c:[43.3063,5.3664], d:"Anciens entrepôts portuaires du XIXe siècle reconvertis."},
   terrasses: {n:"Les Terrasses du Port", c:[43.3035,5.3640], d:"Grande terrasse ouverte sur les bassins et les ferries."},
   toulouse:  {n:"Toulouse", c:[43.6045,1.4440], d:"Départ et retour."},
@@ -542,7 +542,7 @@ const DAYS = [
        ["10h15","Arles","Arènes, théâtre antique, place du Forum.",1],
        ["12h30","Déjeuner à Arles",""],
        ["14h00","Route vers Marseille","Environ 1h par l'A54 et l'A7."],
-       ["15h15","Arrivée et installation","Remise des clés ; stationnement à confirmer avec Mathilde."],
+       ["15h15","Arrivée et installation","Remise des clés ; la voiture va au parking privé de l'appartement."],
        ["16h15","Les Docks et la Joliette","Balade de mise en jambes dans le quartier : anciens docks, tour CMA CGM de Zaha Hadid.",1],
        ["17h00","Coucher de soleil aux Terrasses du Port","La grande terrasse donne sur les bassins et les ferries pour la Corse."],
        ["19h30","Dîner au Panier","À une dizaine de minutes à pied, le plus vieux quartier de la ville."]],
@@ -668,7 +668,7 @@ const VISITS = [
 const RESA = [
  {k:"campanile", n:"Hôtel Campanile Sète – Balaruc, nuit du 6 au 7", when:"Dès que possible", def:"areserver"},
  {k:"logement", n:"Appartement de Mathilde, Euroméditerranée (HomeExchange), du 7 au 13", when:"Demande envoyée", def:"demande"},
- {k:"parking", n:"Stationnement à Euroméditerranée (place ou parking public)", when:"Avec Mathilde", def:"afaire"},
+ {k:"parking", n:"Parking privé de l'appartement : accès et badge", when:"Avec Mathilde", def:"afaire"},
  {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"areserver"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
  {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
