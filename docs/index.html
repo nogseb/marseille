@@ -268,7 +268,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
     <div class="facts">
       <div class="fact"><div class="k">Dates</div><div class="v">6 – 13 nov.</div><div class="s">du vendredi au vendredi, 1 nuit à Balaruc, 6 à Marseille</div></div>
       <div class="fact"><div class="k">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
-      <div class="fact"><div class="k">Base</div><div class="v">Euroméditerranée</div><div class="s">chez Mathilde, HomeExchange, du 7 au 13</div></div>
+      <div class="fact"><div class="k">Base</div><div class="v">Marseille 3e</div><div class="s">chez Mor-Anna, métro National, du 7 au 13</div></div>
       <div class="fact"><div class="k">Randonnées</div><div class="v">5 sorties</div><div class="s">de 1h à 5h de marche</div></div>
     </div>
   </div>
@@ -395,7 +395,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
       </div>
       <div class="card">
         <h3>Se déplacer à Marseille</h3>
-        <p>La voiture reste au parking privé de l'appartement pour les journées en ville : depuis Euroméditerranée, le <b>Vieux-Port</b> est à une vingtaine de minutes à pied par la rue de la République ou le Panier, ou à quelques arrêts des trams T2 et T3 ; métro M2 à la station Joliette. La voiture sert pour les départs de randonnée.</p>
+        <p>La voiture reste au parking privé de l'appartement, en sous-sol de la résidence, pour les journées en ville : le <b>métro M2</b> part au pied de l'immeuble (station National) et mène à Noailles, à cinq minutes à pied du <b>Vieux-Port</b> ; bus vers le centre-ville devant la résidence, tram à moins de 500 m. L'autoroute est à moins d'un kilomètre pour les départs de randonnée.</p>
         <p class="muted">Bus utiles : B1 vers Luminy (Sugiton), 19 et 20 vers les Goudes et Callelongue, 22 et 23 vers les Baumettes (Morgiou, Sormiou).</p>
       </div>
       <div class="card">
@@ -485,7 +485,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
 
 const PLACES = {
-  base:      {n:"Base : chez Mathilde, Euroméditerranée", c:[43.3100,5.3690], d:"Appartement HomeExchange avec parking privé, quartier d'affaires Euroméditerranée. Position indicative."},
+  base:      {n:"Base : chez Mor-Anna, boulevard National", c:[43.3135,5.3780], d:"Appartement HomeExchange au 6e étage, balcon au couchant, parking privé en sous-sol. Métro National au pied de la résidence. Position indicative."},
   docks:     {n:"Les Docks de la Joliette", c:[43.3063,5.3664], d:"Anciens entrepôts portuaires du XIXe siècle reconvertis."},
   terrasses: {n:"Les Terrasses du Port", c:[43.3035,5.3640], d:"Grande terrasse ouverte sur les bassins et les ferries."},
   toulouse:  {n:"Toulouse", c:[43.6045,1.4440], d:"Départ et retour."},
@@ -537,20 +537,20 @@ const DAYS = [
    places:["toulouse","gigean","balaruc"],
    planb:"Le vendredi soir, l'A61 et l'A9 se chargent autour de Narbonne et de Béziers : partir avant 16h si possible."},
  { id:"d1", date:"2026-11-07", short:"Sam 7", title:"Arles, puis Marseille", level:0, walk:"1h30", sun:["07h21","17h22"],
-   sum:"Halte à Arles sur la route de Marseille, installation chez Mathilde à Euroméditerranée et premiers pas entre la Joliette et le Panier.",
+   sum:"Halte à Arles sur la route de Marseille, installation chez Mor-Anna, près du métro National, et premiers pas vers la Joliette et les Terrasses du Port.",
    tl:[["09h00","Départ de Balaruc","Environ 1h15 jusqu'à Arles par l'A9 et Nîmes."],
        ["10h15","Arles","Arènes, théâtre antique, place du Forum.",1],
        ["12h30","Déjeuner à Arles",""],
        ["14h00","Route vers Marseille","Environ 1h par l'A54 et l'A7."],
        ["15h15","Arrivée et installation","Remise des clés ; la voiture va au parking privé de l'appartement."],
-       ["16h15","Les Docks et la Joliette","Balade de mise en jambes dans le quartier : anciens docks, tour CMA CGM de Zaha Hadid.",1],
+       ["16h15","Les Docks et la Joliette","Balade de mise en jambes vers la mer : anciens docks, tour CMA CGM de Zaha Hadid.",1],
        ["17h00","Coucher de soleil aux Terrasses du Port","La grande terrasse donne sur les bassins et les ferries pour la Corse."],
-       ["19h30","Dîner au Panier","À une dizaine de minutes à pied, le plus vieux quartier de la ville."]],
+       ["19h30","Dîner sur le boulevard National","Nombreux restaurants au pied de l'appartement ; ou le Panier, une vingtaine de minutes à pied."]],
    places:["balaruc","arles","base","docks","terrasses","panier"],
    planb:"Si la soirée de vendredi s'est prolongée : route directe Balaruc – Marseille (environ 2h), déjeuner en arrivant."},
  { id:"d2", date:"2026-11-08", short:"Dim 8", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h en ville", sun:["07h22","17h21"],
    sum:"Journée urbaine sans voiture : le dimanche, les calanques sont fréquentées et la Route des Crêtes fermée aux véhicules.",
-   tl:[["08h30","À pied jusqu'au Vieux-Port","Une vingtaine de minutes par la rue de la République, ou le tram ; la voiture reste au parking."],
+   tl:[["08h30","Métro jusqu'au Vieux-Port","Ligne M2 de National à Noailles, puis cinq minutes à pied ; la voiture reste au parking."],
        ["09h00","Marché aux poissons","Quai des Belges, l'ambiance du port le matin."],
        ["09h45","Le Panier et la Vieille Charité","Ruelles, puis la chapelle et la cour de Pierre Puget.",1],
        ["11h15","La Major et le Fort Saint-Jean","Passerelles et jardins, vue sur la passe du Vieux-Port.",1],
@@ -562,7 +562,7 @@ const DAYS = [
    planb:"Par pluie : le MuCEM et la Vieille Charité suffisent à remplir la journée ; ajouter le musée d'Histoire de Marseille (port antique) ou Cosquer Méditerranée, sur réservation."},
  { id:"d3", date:"2026-11-09", short:"Lun 9", title:"Morgiou et Sormiou", level:2, walk:"4h30", sun:["07h23","17h20"],
    sum:"Première vraie randonnée, en boucle entre deux grandes calanques marseillaises, routes d'accès ouvertes en semaine.",
-   tl:[["08h15","Route vers les Baumettes","Environ 25 min depuis Euroméditerranée."],
+   tl:[["08h15","Route vers les Baumettes","Environ 25 min depuis le boulevard National."],
        ["08h45","Boucle Morgiou – Sormiou","Descente sur Morgiou, crête, col de Sormiou puis la calanque de Sormiou.",1],
        ["13h30","Pique-nique et retour","Pause au bord de l'eau à Sormiou."],
        ["15h30","Parc Borély et plages du Prado","Fin d'après-midi tranquille au bord de la mer."],
@@ -611,7 +611,7 @@ const DAYS = [
    planb:"Par mistral : Route des Crêtes souvent fermée ; profiter de Cassis et d'une dégustation à la place. Par pluie : Cassis et ses caves ; En-Vau peut alors prendre la place de Sugiton mercredi."},
  { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Retour par Sète", level:0, walk:"–", sun:["07h29","17h15"],
    sum:"Départ matinal de Marseille, déjeuner à Sète avec Giorgio et Joëlle, arrivée à Toulouse pour récupérer les enfants à 17h30.",
-   tl:[["07h45","Ménage et bagages","Selon les consignes de Mathilde."],
+   tl:[["07h45","Ménage et bagages","Selon les consignes de Mor-Anna."],
        ["09h30","Remise des clés",""],
        ["09h45","Départ de Marseille","Environ 190 km et 2h par l'A7, l'A54 et l'A9."],
        ["12h00","Déjeuner à Sète avec Giorgio et Joëlle",""],
@@ -649,7 +649,7 @@ const VISITS = [
   txt:"Chef-d'œuvre de Pierre Puget, musée d'archéologie méditerranéenne et arts africains. Fermé le lundi."},
  {k:"victor", n:"Abbaye Saint-Victor", day:"Dim 8", where:"7e",
   txt:"Cryptes du Ve siècle, parmi les plus anciens lieux de culte de France."},
- {k:"palais", n:"Palais Longchamp", day:"Plan B pluie", where:"4e, tram T2 depuis la Joliette",
+ {k:"palais", n:"Palais Longchamp", day:"Plan B pluie", where:"4e, à une vingtaine de minutes à pied",
   txt:"Château d'eau monumental et musée des Beaux-Arts, à deux pas de l'appartement."},
  {k:"histoire", n:"Musée d'Histoire de Marseille", day:"Plan B pluie", where:"1er, Centre Bourse",
   txt:"Le port antique in situ et 2 600 ans d'histoire de la ville."},
@@ -667,8 +667,9 @@ const VISITS = [
 
 const RESA = [
  {k:"campanile", n:"Hôtel Campanile Sète – Balaruc, nuit du 6 au 7", when:"Dès que possible", def:"areserver"},
- {k:"logement", n:"Appartement de Mathilde, Euroméditerranée (HomeExchange), du 7 au 13", when:"Demande envoyée", def:"demande"},
- {k:"parking", n:"Parking privé de l'appartement : accès et badge", when:"Avec Mathilde", def:"afaire"},
+ {k:"logement", n:"Appartement de Mor-Anna, boulevard National (HomeExchange), du 7 au 13", when:"Disponible, échange à finaliser", def:"demande"},
+ {k:"autres", n:"Annuler les autres demandes (Mathilde, Alexandre, Angélique)", when:"Dès la confirmation", def:"afaire"},
+ {k:"parking", n:"Parking privé en sous-sol : accès, badge, numéro de place", when:"Avec Mor-Anna", def:"afaire"},
  {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"areserver"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
  {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
