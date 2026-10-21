@@ -235,6 +235,29 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 /* Fond animé : lignes de niveau */
 #topo{position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; pointer-events:none; display:block}
 @media print{ #topo{display:none} }
+
+/* Logement : galerie et visionneuse */
+.logis{display:grid; gap:16px}
+.logis > *{min-width:0}
+@media (min-width:900px){ .logis{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); align-items:start} }
+.equip{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 14px; font-size:.95rem}
+.equip li{padding-left:16px; position:relative}
+.equip li::before{content:""; position:absolute; left:0; top:.55em; width:7px; height:7px; border-radius:50%; background:var(--accent)}
+.gal{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px}
+.gal button{all:unset; cursor:zoom-in; position:relative; border-radius:6px; overflow:hidden; aspect-ratio:4/3; background:var(--tint)}
+.gal button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.gal img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s}
+.gal button:hover img{transform:scale(1.04)}
+.gal span{position:absolute; left:0; right:0; bottom:0; padding:14px 8px 5px; font-size:.76rem; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6))}
+.gal button:first-child{grid-column:span 2; grid-row:span 2}
+dialog.lb{border:0; padding:0; background:transparent; max-width:min(96vw,1200px); width:100%}
+dialog.lb::backdrop{background:rgba(10,6,4,.88)}
+dialog.lb figure{margin:0; position:relative}
+dialog.lb img{width:100%; height:auto; max-height:82vh; object-fit:contain; display:block; border-radius:6px}
+dialog.lb figcaption{color:#F1E8DD; text-align:center; padding:8px 40px; font-size:.95rem}
+dialog.lb .nb{position:absolute; top:50%; transform:translateY(-50%); border:0; background:rgba(0,0,0,.5); color:#fff; width:42px; height:42px; border-radius:50%; font-size:1.3rem; cursor:pointer}
+dialog.lb .prev{left:8px} dialog.lb .next{right:8px}
+dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgba(0,0,0,.55); color:#fff; width:38px; height:38px; border-radius:50%; font-size:1.2rem; cursor:pointer}
 @media print{ .nav,#map,.maptools,.theme{display:none} .day{break-inside:avoid} }
 </style>
 </head>
@@ -246,6 +269,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
     <a class="brand" href="#top">Marseille 2026</a>
     <div class="tabs" id="tabs">
       <a href="#programme">Programme</a>
+      <a href="#logement">Logement</a>
       <a href="#jours">Jour par jour</a>
       <a href="#randos">Randos</a>
       <a href="#visites">Visites</a>
@@ -285,6 +309,35 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
       </table>
     </div>
   </div>
+</section>
+
+<section id="logement">
+  <div class="wrap">
+    <h2>Le logement</h2>
+    <p class="intro">Chez Mor-Anna, du samedi 7 au vendredi 13 novembre : deux pièces au 6e étage d'une résidence récente du boulevard National, dans le 3e arrondissement, entre Arenc et Saint-Mauront. Appartement disponible, échange à finaliser sur HomeExchange.</p>
+    <div class="logis">
+      <div class="card">
+        <h3>Ce qu'il y a sur place</h3>
+        <ul class="equip">
+          <li>Chambre avec lit double</li>
+          <li>Canapé-lit au salon</li>
+          <li>Cuisine équipée</li>
+          <li>Salle d'eau avec douche</li>
+          <li>Balcon meublé, au couchant</li>
+          <li>Parking privé en sous-sol</li>
+          <li>Wi-Fi</li>
+          <li>Café offert</li>
+        </ul>
+        <h3 style="margin-top:14px">Autour</h3>
+        <p>Métro M2 au pied de la résidence, station National : six arrêts jusqu'à Noailles et le Vieux-Port. Bus vers le centre devant l'immeuble, tram à moins de 500 m, autoroute à moins d'un kilomètre pour les départs de randonnée. Les Terrasses du Port sont à quelques centaines de mètres, et de nombreux restaurants bordent le boulevard National.</p>
+        <p class="muted" style="font-size:.88rem">Depuis l'immeuble, la vue file entre les silos du port jusqu'à la tour CMA CGM et la mer. L'adresse exacte sera communiquée à la confirmation : la carte n'indique que la zone de l'annonce. Photos de l'annonce.</p>
+      </div>
+      <div class="gal" id="gal"></div>
+    </div>
+  </div>
+  <dialog class="lb" id="lb" aria-label="Photos du logement">
+    <figure><img id="lbImg" alt=""><button class="nb prev" type="button" aria-label="Photo précédente">‹</button><button class="nb next" type="button" aria-label="Photo suivante">›</button><button class="close" type="button" aria-label="Fermer">×</button><figcaption id="lbCap"></figcaption></figure>
+  </dialog>
 </section>
 
 <section id="jours">
@@ -485,7 +538,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
 
 const PLACES = {
-  base:      {n:"Base : chez Mor-Anna, boulevard National", c:[43.3135,5.3780], d:"Appartement HomeExchange au 6e étage, balcon au couchant, parking privé en sous-sol. Métro National au pied de la résidence. Position indicative."},
+  base:      {n:"Base : chez Mor-Anna, boulevard National", c:[43.3171,5.3726], d:"Appartement HomeExchange au 6e étage, balcon au couchant, parking privé en sous-sol. Métro National au pied de la résidence. Zone approximative de l'annonce."},
   docks:     {n:"Les Docks de la Joliette", c:[43.3063,5.3664], d:"Anciens entrepôts portuaires du XIXe siècle reconvertis."},
   terrasses: {n:"Les Terrasses du Port", c:[43.3035,5.3640], d:"Grande terrasse ouverte sur les bassins et les ferries."},
   toulouse:  {n:"Toulouse", c:[43.6045,1.4440], d:"Départ et retour."},
@@ -760,6 +813,8 @@ function initMap(){
   const plan = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>'});
   const topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {maxZoom:17, subdomains:"abc", attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM | © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'});
   plan.addTo(map);
+  // Zone approximative du logement, telle qu'affichée par l'annonce HomeExchange.
+  L.circle([43.3171,5.3726], {radius:500, color:"#A8402A", weight:1.5, fillColor:"#A8402A", fillOpacity:.12, interactive:false}).addTo(map);
   document.querySelectorAll("[data-layer]").forEach(b => b.addEventListener("click", () => {
     document.querySelectorAll("[data-layer]").forEach(x => x.setAttribute("aria-pressed", x === b));
     if (b.dataset.layer === "topo"){ map.removeLayer(plan); topo.addTo(map); } else { map.removeLayer(topo); plan.addTo(map); }
@@ -1174,6 +1229,23 @@ const FACTS = [
   document.addEventListener("visibilitychange", start);
   if (still.addEventListener) still.addEventListener("change", start);
   new MutationObserver(() => { colors(); draw(); }).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+})();
+
+
+/* ---------- Logement : galerie ---------- */
+(function(){
+  const PH = [["vue","La vue vers la tour CMA CGM et la mer"],["sejour","Le séjour, ouvert sur le balcon"],["sejour-cuisine","Séjour et cuisine"],["cuisine","La cuisine équipée"],["chambre","La chambre"],["salle-eau","La salle d'eau"],["balcon","Le balcon"],["jardins","Les jardins suspendus de la résidence"],["residence","La résidence"]];
+  const gal = $("#gal"), lb = $("#lb"), img = $("#lbImg"), cap = $("#lbCap"); let i = 0;
+  gal.innerHTML = PH.map((p, k) => `<button type="button" data-i="${k}" aria-label="Agrandir : ${esc(p[1])}"><img src="logement/${p[0]}-min.jpg" alt="${esc(p[1])}" loading="lazy" width="640" height="480"><span>${esc(p[1])}</span></button>`).join("");
+  const show = k => { i = (k + PH.length) % PH.length; img.src = `logement/${PH[i][0]}.jpg`; img.alt = PH[i][1]; cap.textContent = `${PH[i][1]} · ${i+1} / ${PH.length}`; };
+  gal.addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (!b) return; show(+b.dataset.i); if (lb.showModal) lb.showModal(); else window.open(img.src); });
+  lb.querySelector(".prev").addEventListener("click", () => show(i - 1));
+  lb.querySelector(".next").addEventListener("click", () => show(i + 1));
+  lb.querySelector(".close").addEventListener("click", () => lb.close());
+  lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener("keydown", e => { if (e.key === "ArrowLeft") show(i - 1); if (e.key === "ArrowRight") show(i + 1); });
+  let x0 = null; lb.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
 })();
 
 /* ---------- Onglet actif selon la section visible ---------- */
