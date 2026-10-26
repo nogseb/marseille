@@ -271,6 +271,7 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
     <div class="tabs" id="tabs">
       <a href="#programme">Programme</a>
       <a href="#logement">Logement</a>
+      <a href="#parking">Parking</a>
       <a href="#jours">Jour par jour</a>
       <a href="#randos">Randos</a>
       <a href="#visites">Visites</a>
@@ -331,7 +332,7 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
         </ul>
         <h3 style="margin-top:14px">Autour</h3>
         <p>Le Camas est un quartier calme, avec une vraie vie de quartier, à deux pas de l'effervescence du cours Julien et de la Plaine, à une dizaine de minutes à pied. Le tram T1 passe sur le boulevard Chave tout proche et descend jusqu'à Noailles, à cinq minutes du Vieux-Port ; vélos en libre-service à proximité, gare Saint-Charles à vingt minutes à pied.</p>
-        <p class="muted" style="font-size:.88rem">Pas de place de parking avec l'appartement : stationnement dans la rue ou en parking public, à préciser avec les conseils des amis de Stéphanie. Photos de l'annonce.</p>
+        <p class="muted" style="font-size:.88rem">Pas de place de parking avec l'appartement : voir la section Parking. Photos de l'annonce.</p>
       </div>
       <div class="gal" id="gal"></div>
     </div>
@@ -339,6 +340,28 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
   <dialog class="lb" id="lb" aria-label="Photos du logement">
     <figure><img id="lbImg" alt=""><button class="nb prev" type="button" aria-label="Photo précédente">‹</button><button class="nb next" type="button" aria-label="Photo suivante">›</button><button class="close" type="button" aria-label="Fermer">×</button><figcaption id="lbCap"></figcaption></figure>
   </dialog>
+</section>
+
+<section id="parking">
+  <div class="wrap">
+    <h2>Parking</h2>
+    <p class="intro">L'appartement n'a pas de place de stationnement, et la voiture sert presque tous les matins pour les départs de randonnée. Comparatif établi le 26 octobre pour la période du samedi 7 novembre à 15h au vendredi 13 à 9h30, avec un forfait à entrées et sorties illimitées<sup><a href="#s32">32</a></sup>.</p>
+    <div class="tscroll">
+      <table class="tbl stack" id="parkTable">
+        <thead><tr><th>Parking</th><th>À pied de l'appartement</th><th>Prix du séjour</th><th>À savoir</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Parking"><b>Q-Park Vallier</b><br><span class="muted">41 av. du Maréchal-Foch, 4e</span> <span class="tag must">Recommandé</span></td><td class="d" data-l="À pied">~12 min</td><td class="d" data-l="Prix"><b>54,50 €</b></td><td data-l="À savoir">24h/24, lecture de plaque, annulation gratuite jusqu'à 1 h avant. <a href="https://parclick.fr/parking-marseille/q-park-vallier?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
+          <tr><td data-l="Parking"><b>Q-Park La Timone</b><br><span class="muted">264 rue Saint-Pierre, 5e</span></td><td class="d" data-l="À pied">~15 min</td><td class="d" data-l="Prix">60 €</td><td data-l="À savoir">Mêmes conditions. <a href="https://parclick.fr/parking-marseille/q-park-la-timone?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
+          <tr><td data-l="Parking"><b>Q-Park Blancarde</b><br><span class="muted">2 bd Louis-Frangin, 5e</span></td><td class="d" data-l="À pied">~17 min</td><td class="d" data-l="Prix">62 €</td><td data-l="À savoir">Mêmes conditions. <a href="https://parclick.fr/parking-marseille/q-park-blancarde?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
+          <tr><td data-l="Parking"><b>Yespark rue Madon</b><br><span class="muted">8 rue Madon, 5e</span></td><td class="d" data-l="À pied">~8 min</td><td class="d" data-l="Prix">100 € le mois</td><td data-l="À savoir">Abonnement mensuel seulement, badge envoyé par la poste sous 2 à 3 jours ouvrés<sup><a href="#s33">33</a></sup>.</td></tr>
+          <tr><td data-l="Parking"><b>Indigo Jean-Jaurès</b><br><span class="muted">Place Jean-Jaurès, 5e</span></td><td class="d" data-l="À pied">~8 min</td><td class="d" data-l="Prix">165,78 €</td><td data-l="À savoir">Le plus proche, mais trois fois plus cher, et place non garantie si le parking est plein.</td></tr>
+          <tr><td data-l="Parking"><b>Garages de quartier</b><br><span class="muted">Saint-Pierre (133 rue Saint-Pierre), Éguier (6 rue de l'Éguier)</span></td><td class="d" data-l="À pied">7 à 11 min</td><td class="d" data-l="Prix">Sur appel</td><td data-l="À savoir">Tarifs non publiés ; vérifier l'ouverture le samedi après-midi.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note planb"><b class="lbl">Recommandation</b>Le Q-Park Vallier : trois fois moins cher que le parking Jean-Jaurès, sortie directe vers le Prado et les Calanques, et douze minutes de marche depuis l'appartement. Vérifier sur la page de réservation que la place est garantie avant de payer.</div>
+    <p class="muted" style="font-size:.86rem;margin-top:10px">Hauteur maximale 1,90 m dans les parkings réservables. Écartés : le garage du boulevard Chave, fermé le week-end<sup><a href="#s35">35</a></sup>, et l'offre Zenpark de la place Jean-Jaurès, qui n'est plus proposée. Distances estimées à partir des adresses ; prix relevés sur Parclick pour ces dates exactes, susceptibles d'évoluer<sup><a href="#s32">32</a>, <a href="#s34">34</a></sup>.</p>
+  </div>
 </section>
 
 <section id="jours">
@@ -449,7 +472,7 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
       </div>
       <div class="card">
         <h3>Se déplacer à Marseille</h3>
-        <p>Pas de parking avec l'appartement : la voiture reste garée dans le quartier ou dans un parking public pendant les journées en ville. Depuis le Camas, le <b>Vieux-Port</b> est à vingt-cinq minutes à pied par le cours Julien et Noailles, ou en <b>tram T1</b> depuis le boulevard Chave jusqu'à Noailles. Pour les Calanques, sortie directe vers le Prado et Mazargues.</p>
+        <p>Pas de parking avec l'appartement : la voiture reste au parking réservé pour la semaine (voir la section Parking) pendant les journées en ville. Depuis le Camas, le <b>Vieux-Port</b> est à vingt-cinq minutes à pied par le cours Julien et Noailles, ou en <b>tram T1</b> depuis le boulevard Chave jusqu'à Noailles. Pour les Calanques, sortie directe vers le Prado et Mazargues.</p>
         <p class="muted">Bus utiles : B1 vers Luminy (Sugiton), 19 et 20 vers les Goudes et Callelongue, 22 et 23 vers les Baumettes (Morgiou, Sormiou).</p>
       </div>
       <div class="card">
@@ -527,6 +550,10 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
       <li id="s29"><a href="https://world-architects.com/en/architecture-news/headlines/mucem-inaugurated">World-Architects, MuCEM Inaugurated</a>, juin 2013.</li>
       <li id="s30"><a href="https://www.marseille-tourisme.com/decouvrez-marseille/traditions/ferry-boat/">Office de tourisme de Marseille, Le Ferry Boat</a>.</li>
       <li id="s31"><a href="https://www.justiceinfo.net/fr?p=166216">Justice Info, Rafles dans le sud de la France en 1943 : la justice reconnaît un « crime contre l'humanité »</a>.</li>
+      <li id="s32"><a href="https://parclick.fr/parking-marseille">Parclick, parkings de Marseille</a>, tarifs Q-Park et Indigo relevés le 26 octobre 2026 pour le 7 au 13 novembre.</li>
+      <li id="s33"><a href="https://www.yespark.fr/parkings/6488-lycee-marie-curie-rue-madon-marseille-5">Yespark, Lycée Marie Curie – rue Madon</a>.</li>
+      <li id="s34"><a href="https://parclick.fr/parking-marseille/jean-jaures-1">Parclick, INDIGO Jean Jaurès</a>.</li>
+      <li id="s35"><a href="https://www.pagesjaunes.fr/pros/05584263">PagesJaunes, Garage Chave</a>, horaires.</li>
     </ol>
     <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
   </div>
@@ -540,6 +567,7 @@ const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
 
 const PLACES = {
   base:      {n:"Base : chez Stéphanie, le Camas", c:[43.2960,5.3935], d:"Rue de l'Église Saint-Michel, Marseille 5e. Tram T1 boulevard Chave, cours Julien et la Plaine à pied."},
+  vallier:   {n:"Parking Q-Park Vallier", c:[43.29929,5.40184], d:"41 av. du Maréchal-Foch. Forfait séjour 54,50 € sur Parclick, à 12 min à pied de l'appartement."},
   plaine:    {n:"La Plaine (place Jean-Jaurès)", c:[43.2942,5.3864], d:"Grande place, marché, bars et terrasses."},
   docks:     {n:"Les Docks de la Joliette", c:[43.3063,5.3664], d:"Anciens entrepôts portuaires du XIXe siècle reconvertis."},
   terrasses: {n:"Les Terrasses du Port", c:[43.3035,5.3640], d:"Grande terrasse ouverte sur les bassins et les ferries."},
@@ -597,11 +625,11 @@ const DAYS = [
        ["10h15","Arles","Arènes, théâtre antique, place du Forum.",1],
        ["12h30","Déjeuner à Arles",""],
        ["14h00","Route vers Marseille","Environ 1h par l'A54 et l'A7."],
-       ["15h15","Arrivée et installation","Remise des clés ; trouver une place pour la semaine dans le quartier ou un parking public."],
+       ["15h15","Arrivée et installation","Remise des clés, puis la voiture au parking réservé pour la semaine (Q-Park Vallier recommandé, voir la section Parking)."],
        ["16h30","Le Camas, la Plaine et le cours Julien","Balade de mise en jambes : la place Jean-Jaurès, puis les escaliers et le street art du cours Julien.",1],
        ["17h20","Apéritif au soleil couchant","Une terrasse du cours Julien ou de la Plaine, comme le conseille Stéphanie."],
        ["19h30","Dîner au cours Julien","À dix minutes à pied de l'appartement."]],
-   places:["balaruc","arles","base","plaine","coursj"],
+   places:["balaruc","arles","base","vallier","plaine","coursj"],
    planb:"Si la soirée de vendredi s'est prolongée : route directe Balaruc – Marseille (environ 2h), déjeuner en arrivant."},
  { id:"d2", date:"2026-11-08", short:"Dim 8", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h en ville", sun:["07h22","17h21"],
    sum:"Journée urbaine sans voiture : le dimanche, les calanques sont fréquentées et la Route des Crêtes fermée aux véhicules.",
@@ -724,7 +752,7 @@ const RESA = [
  {k:"campanile", n:"Hôtel Campanile Sète – Balaruc, nuit du 6 au 7", when:"Dès que possible", def:"areserver"},
  {k:"logement", n:"Appartement de Stéphanie, le Camas (HomeExchange), du 7 au 13", when:"Pré-approuvé, à finaliser", def:"demande"},
  {k:"autres", n:"Décliner la pré-approbation de Mor-Anna et les autres demandes", when:"Dès la finalisation", def:"afaire"},
- {k:"parking", n:"Stationnement au Camas : rues ou parking public à la semaine", when:"Conseils des amis de Stéphanie", def:"afaire"},
+ {k:"parking", n:"Parking pour la semaine : Q-Park Vallier, 54,50 € (Parclick)", when:"Dès que possible, annulation gratuite", def:"areserver"},
  {k:"cles", n:"Remise des clés le samedi 7 vers 15h", when:"Avec Stéphanie", def:"afaire"},
  {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"areserver"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
