@@ -250,6 +250,7 @@ footer{padding:30px 0 50px; color:var(--ink-2); font-size:.85rem}
 .gal button:hover img{transform:scale(1.04)}
 .gal span{position:absolute; left:0; right:0; bottom:0; padding:14px 8px 5px; font-size:.76rem; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6))}
 .gal button:first-child{grid-column:span 2; grid-row:span 2}
+.gal button:last-child:nth-child(3n+2){grid-column:span 2; aspect-ratio:8/3}
 dialog.lb{border:0; padding:0; background:transparent; max-width:min(96vw,1200px); width:100%}
 dialog.lb::backdrop{background:rgba(10,6,4,.88)}
 dialog.lb figure{margin:0; position:relative}
@@ -292,7 +293,7 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
     <div class="facts">
       <div class="fact"><div class="k">Dates</div><div class="v">6 – 13 nov.</div><div class="s">du vendredi au vendredi, 1 nuit à Balaruc, 6 à Marseille</div></div>
       <div class="fact"><div class="k">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
-      <div class="fact"><div class="k">Base</div><div class="v">Marseille 3e</div><div class="s">chez Mor-Anna, métro National, du 7 au 13</div></div>
+      <div class="fact"><div class="k">Base</div><div class="v">Le Camas, 5e</div><div class="s">chez Stéphanie, HomeExchange, du 7 au 13</div></div>
       <div class="fact"><div class="k">Randonnées</div><div class="v">5 sorties</div><div class="s">de 1h à 5h de marche</div></div>
     </div>
   </div>
@@ -314,23 +315,23 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
 <section id="logement">
   <div class="wrap">
     <h2>Le logement</h2>
-    <p class="intro">Chez Mor-Anna, du samedi 7 au vendredi 13 novembre : deux pièces au 6e étage d'une résidence récente du boulevard National, dans le 3e arrondissement, entre Arenc et Saint-Mauront. Appartement disponible, échange à finaliser sur HomeExchange.</p>
+    <p class="intro">Chez Stéphanie, du samedi 7 au vendredi 13 novembre : un grand appartement lumineux, refait à neuf, rue de l'Église Saint-Michel, au cœur du Camas (Marseille 5e). Échange pré-approuvé, à finaliser sur HomeExchange.</p>
     <div class="logis">
       <div class="card">
         <h3>Ce qu'il y a sur place</h3>
         <ul class="equip">
-          <li>Chambre avec lit double</li>
-          <li>Canapé-lit au salon</li>
-          <li>Cuisine équipée</li>
-          <li>Salle d'eau avec douche</li>
-          <li>Balcon meublé, au couchant</li>
-          <li>Parking privé en sous-sol</li>
-          <li>Wi-Fi</li>
-          <li>Café offert</li>
+          <li>Grande chambre avec lit double</li>
+          <li>Salon, canapé et fauteuil convertible</li>
+          <li>Cuisine ouverte tout équipée</li>
+          <li>Coin télétravail</li>
+          <li>Salle de bain avec douche</li>
+          <li>Lave-linge, WC séparés</li>
+          <li>Double vitrage, nuits calmes</li>
+          <li>Bibliothèque de sciences sociales</li>
         </ul>
         <h3 style="margin-top:14px">Autour</h3>
-        <p>Métro M2 au pied de la résidence, station National : six arrêts jusqu'à Noailles et le Vieux-Port. Bus vers le centre devant l'immeuble, tram à moins de 500 m, autoroute à moins d'un kilomètre pour les départs de randonnée. Les Terrasses du Port sont à quelques centaines de mètres, et de nombreux restaurants bordent le boulevard National.</p>
-        <p class="muted" style="font-size:.88rem">Depuis l'immeuble, la vue file entre les silos du port jusqu'à la tour CMA CGM et la mer. L'adresse exacte sera communiquée à la confirmation : la carte n'indique que la zone de l'annonce. Photos de l'annonce.</p>
+        <p>Le Camas est un quartier calme, avec une vraie vie de quartier, à deux pas de l'effervescence du cours Julien et de la Plaine, à une dizaine de minutes à pied. Le tram T1 passe sur le boulevard Chave tout proche et descend jusqu'à Noailles, à cinq minutes du Vieux-Port ; vélos en libre-service à proximité, gare Saint-Charles à vingt minutes à pied.</p>
+        <p class="muted" style="font-size:.88rem">Pas de place de parking avec l'appartement : stationnement dans la rue ou en parking public, à préciser avec les conseils des amis de Stéphanie. Photos de l'annonce.</p>
       </div>
       <div class="gal" id="gal"></div>
     </div>
@@ -448,7 +449,7 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
       </div>
       <div class="card">
         <h3>Se déplacer à Marseille</h3>
-        <p>La voiture reste au parking privé de l'appartement, en sous-sol de la résidence, pour les journées en ville : le <b>métro M2</b> part au pied de l'immeuble (station National) et mène à Noailles, à cinq minutes à pied du <b>Vieux-Port</b> ; bus vers le centre-ville devant la résidence, tram à moins de 500 m. L'autoroute est à moins d'un kilomètre pour les départs de randonnée.</p>
+        <p>Pas de parking avec l'appartement : la voiture reste garée dans le quartier ou dans un parking public pendant les journées en ville. Depuis le Camas, le <b>Vieux-Port</b> est à vingt-cinq minutes à pied par le cours Julien et Noailles, ou en <b>tram T1</b> depuis le boulevard Chave jusqu'à Noailles. Pour les Calanques, sortie directe vers le Prado et Mazargues.</p>
         <p class="muted">Bus utiles : B1 vers Luminy (Sugiton), 19 et 20 vers les Goudes et Callelongue, 22 et 23 vers les Baumettes (Morgiou, Sormiou).</p>
       </div>
       <div class="card">
@@ -538,7 +539,8 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
 const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
 
 const PLACES = {
-  base:      {n:"Base : chez Mor-Anna, boulevard National", c:[43.3171,5.3726], d:"Appartement HomeExchange au 6e étage, balcon au couchant, parking privé en sous-sol. Métro National au pied de la résidence. Zone approximative de l'annonce."},
+  base:      {n:"Base : chez Stéphanie, le Camas", c:[43.2960,5.3935], d:"Rue de l'Église Saint-Michel, Marseille 5e. Tram T1 boulevard Chave, cours Julien et la Plaine à pied."},
+  plaine:    {n:"La Plaine (place Jean-Jaurès)", c:[43.2942,5.3864], d:"Grande place, marché, bars et terrasses."},
   docks:     {n:"Les Docks de la Joliette", c:[43.3063,5.3664], d:"Anciens entrepôts portuaires du XIXe siècle reconvertis."},
   terrasses: {n:"Les Terrasses du Port", c:[43.3035,5.3640], d:"Grande terrasse ouverte sur les bassins et les ferries."},
   toulouse:  {n:"Toulouse", c:[43.6045,1.4440], d:"Départ et retour."},
@@ -590,20 +592,20 @@ const DAYS = [
    places:["toulouse","gigean","balaruc"],
    planb:"Le vendredi soir, l'A61 et l'A9 se chargent autour de Narbonne et de Béziers : partir avant 16h si possible."},
  { id:"d1", date:"2026-11-07", short:"Sam 7", title:"Arles, puis Marseille", level:0, walk:"1h30", sun:["07h21","17h22"],
-   sum:"Halte à Arles sur la route de Marseille, installation chez Mor-Anna, près du métro National, et premiers pas vers la Joliette et les Terrasses du Port.",
+   sum:"Halte à Arles sur la route de Marseille, installation chez Stéphanie au Camas et premiers pas entre le cours Julien et la Plaine.",
    tl:[["09h00","Départ de Balaruc","Environ 1h15 jusqu'à Arles par l'A9 et Nîmes."],
        ["10h15","Arles","Arènes, théâtre antique, place du Forum.",1],
        ["12h30","Déjeuner à Arles",""],
        ["14h00","Route vers Marseille","Environ 1h par l'A54 et l'A7."],
-       ["15h15","Arrivée et installation","Remise des clés ; la voiture va au parking privé de l'appartement."],
-       ["16h15","Les Docks et la Joliette","Balade de mise en jambes vers la mer : anciens docks, tour CMA CGM de Zaha Hadid.",1],
-       ["17h00","Coucher de soleil aux Terrasses du Port","La grande terrasse donne sur les bassins et les ferries pour la Corse."],
-       ["19h30","Dîner sur le boulevard National","Nombreux restaurants au pied de l'appartement ; ou le Panier, une vingtaine de minutes à pied."]],
-   places:["balaruc","arles","base","docks","terrasses","panier"],
+       ["15h15","Arrivée et installation","Remise des clés ; trouver une place pour la semaine dans le quartier ou un parking public."],
+       ["16h30","Le Camas, la Plaine et le cours Julien","Balade de mise en jambes : la place Jean-Jaurès, puis les escaliers et le street art du cours Julien.",1],
+       ["17h20","Apéritif au soleil couchant","Une terrasse du cours Julien ou de la Plaine, comme le conseille Stéphanie."],
+       ["19h30","Dîner au cours Julien","À dix minutes à pied de l'appartement."]],
+   places:["balaruc","arles","base","plaine","coursj"],
    planb:"Si la soirée de vendredi s'est prolongée : route directe Balaruc – Marseille (environ 2h), déjeuner en arrivant."},
  { id:"d2", date:"2026-11-08", short:"Dim 8", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h en ville", sun:["07h22","17h21"],
    sum:"Journée urbaine sans voiture : le dimanche, les calanques sont fréquentées et la Route des Crêtes fermée aux véhicules.",
-   tl:[["08h30","Métro jusqu'au Vieux-Port","Ligne M2 de National à Noailles, puis cinq minutes à pied ; la voiture reste au parking."],
+   tl:[["08h30","À pied jusqu'au Vieux-Port","Vingt-cinq minutes par le cours Julien et Noailles, ou tram T1 jusqu'à Noailles ; la voiture reste garée."],
        ["09h00","Marché aux poissons","Quai des Belges, l'ambiance du port le matin."],
        ["09h45","Le Panier et la Vieille Charité","Ruelles, puis la chapelle et la cour de Pierre Puget.",1],
        ["11h15","La Major et le Fort Saint-Jean","Passerelles et jardins, vue sur la passe du Vieux-Port.",1],
@@ -615,7 +617,7 @@ const DAYS = [
    planb:"Par pluie : le MuCEM et la Vieille Charité suffisent à remplir la journée ; ajouter le musée d'Histoire de Marseille (port antique) ou Cosquer Méditerranée, sur réservation."},
  { id:"d3", date:"2026-11-09", short:"Lun 9", title:"Morgiou et Sormiou", level:2, walk:"4h30", sun:["07h23","17h20"],
    sum:"Première vraie randonnée, en boucle entre deux grandes calanques marseillaises, routes d'accès ouvertes en semaine.",
-   tl:[["08h15","Route vers les Baumettes","Environ 25 min depuis le boulevard National."],
+   tl:[["08h15","Route vers les Baumettes","Environ 20 min depuis le Camas, par le Prado."],
        ["08h45","Boucle Morgiou – Sormiou","Descente sur Morgiou, crête, col de Sormiou puis la calanque de Sormiou.",1],
        ["13h30","Pique-nique et retour","Pause au bord de l'eau à Sormiou."],
        ["15h30","Parc Borély et plages du Prado","Fin d'après-midi tranquille au bord de la mer."],
@@ -664,7 +666,7 @@ const DAYS = [
    planb:"Par mistral : Route des Crêtes souvent fermée ; profiter de Cassis et d'une dégustation à la place. Par pluie : Cassis et ses caves ; En-Vau peut alors prendre la place de Sugiton mercredi."},
  { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Retour par Sète", level:0, walk:"–", sun:["07h29","17h15"],
    sum:"Départ matinal de Marseille, déjeuner à Sète avec Giorgio et Joëlle, arrivée à Toulouse pour récupérer les enfants à 17h30.",
-   tl:[["07h45","Ménage et bagages","Selon les consignes de Mor-Anna."],
+   tl:[["07h45","Ménage et bagages","Selon les consignes de Stéphanie."],
        ["09h30","Remise des clés",""],
        ["09h45","Départ de Marseille","Environ 190 km et 2h par l'A7, l'A54 et l'A9."],
        ["12h00","Déjeuner à Sète avec Giorgio et Joëlle",""],
@@ -720,9 +722,10 @@ const VISITS = [
 
 const RESA = [
  {k:"campanile", n:"Hôtel Campanile Sète – Balaruc, nuit du 6 au 7", when:"Dès que possible", def:"areserver"},
- {k:"logement", n:"Appartement de Mor-Anna, boulevard National (HomeExchange), du 7 au 13", when:"Disponible, échange à finaliser", def:"demande"},
- {k:"autres", n:"Annuler les autres demandes (Mathilde, Alexandre, Angélique)", when:"Dès la confirmation", def:"afaire"},
- {k:"parking", n:"Parking privé en sous-sol : accès, badge, numéro de place", when:"Avec Mor-Anna", def:"afaire"},
+ {k:"logement", n:"Appartement de Stéphanie, le Camas (HomeExchange), du 7 au 13", when:"Pré-approuvé, à finaliser", def:"demande"},
+ {k:"autres", n:"Décliner la pré-approbation de Mor-Anna et les autres demandes", when:"Dès la finalisation", def:"afaire"},
+ {k:"parking", n:"Stationnement au Camas : rues ou parking public à la semaine", when:"Conseils des amis de Stéphanie", def:"afaire"},
+ {k:"cles", n:"Remise des clés le samedi 7 vers 15h", when:"Avec Stéphanie", def:"afaire"},
  {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"areserver"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
  {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
@@ -813,8 +816,6 @@ function initMap(){
   const plan = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>'});
   const topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {maxZoom:17, subdomains:"abc", attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM | © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'});
   plan.addTo(map);
-  // Zone approximative du logement, telle qu'affichée par l'annonce HomeExchange.
-  L.circle([43.3171,5.3726], {radius:500, color:"#A8402A", weight:1.5, fillColor:"#A8402A", fillOpacity:.12, interactive:false}).addTo(map);
   document.querySelectorAll("[data-layer]").forEach(b => b.addEventListener("click", () => {
     document.querySelectorAll("[data-layer]").forEach(x => x.setAttribute("aria-pressed", x === b));
     if (b.dataset.layer === "topo"){ map.removeLayer(plan); topo.addTo(map); } else { map.removeLayer(topo); plan.addTo(map); }
@@ -1234,7 +1235,7 @@ const FACTS = [
 
 /* ---------- Logement : galerie ---------- */
 (function(){
-  const PH = [["vue","La vue vers la tour CMA CGM et la mer"],["sejour","Le séjour, ouvert sur le balcon"],["sejour-cuisine","Séjour et cuisine"],["cuisine","La cuisine équipée"],["chambre","La chambre"],["salle-eau","La salle d'eau"],["balcon","Le balcon"],["jardins","Les jardins suspendus de la résidence"],["residence","La résidence"]];
+  const PH = [["bibliotheque","La bibliothèque du salon"],["salon","Le salon et ses grandes fenêtres"],["salon-cheminee","Le coin cheminée"],["cuisine","La cuisine"],["chambre","La chambre"],["fenetre","Vue sur les balcons du quartier"],["cheminee","La cheminée en marbre"],["salon-ensemble","Le salon"]];
   const gal = $("#gal"), lb = $("#lb"), img = $("#lbImg"), cap = $("#lbCap"); let i = 0;
   gal.innerHTML = PH.map((p, k) => `<button type="button" data-i="${k}" aria-label="Agrandir : ${esc(p[1])}"><img src="logement/${p[0]}-min.jpg" alt="${esc(p[1])}" loading="lazy" width="640" height="480"><span>${esc(p[1])}</span></button>`).join("");
   const show = k => { i = (k + PH.length) % PH.length; img.src = `logement/${PH[i][0]}.jpg`; img.alt = PH[i][1]; cap.textContent = `${PH[i][1]} · ${i+1} / ${PH.length}`; };
