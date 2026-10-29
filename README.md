@@ -1,6 +1,6 @@
 # Marseille et les Calanques — carnet de voyage
 
-Carnet de voyage interactif du séjour à Marseille du vendredi 6 au vendredi 13 novembre 2026 (une nuit à Balaruc, six à Marseille) : programme jour par jour, carte des lieux, randonnées dans le Parc national des Calanques, visites, météo en direct, infos pratiques et listes de préparation.
+Carnet de voyage interactif du séjour à Marseille du vendredi 6 au vendredi 13 novembre 2026 (une nuit à Balaruc, six à Marseille) : bloc « Aujourd'hui » qui suit le jour en cours, itinéraire et récit jour par jour avec carte, randonnées, visites, dossiers « Plus loin », logement, météo en direct, infos pratiques, et préparatifs regroupés en fin de page.
 
 Publié sur **https://nogues.app/marseille/**.
 

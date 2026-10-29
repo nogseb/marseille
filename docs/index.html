@@ -259,6 +259,19 @@ dialog.lb figcaption{color:#F1E8DD; text-align:center; padding:8px 40px; font-si
 dialog.lb .nb{position:absolute; top:50%; transform:translateY(-50%); border:0; background:rgba(0,0,0,.5); color:#fff; width:42px; height:42px; border-radius:50%; font-size:1.3rem; cursor:pointer}
 dialog.lb .prev{left:8px} dialog.lb .next{right:8px}
 dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgba(0,0,0,.55); color:#fff; width:38px; height:38px; border-radius:50%; font-size:1.2rem; cursor:pointer}
+
+/* Aujourd'hui et préparatifs repliés */
+.today{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--accent); border-radius:var(--radius); padding:16px 18px}
+.today .head{font-family:var(--f-mono); font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; color:var(--clay)}
+.today h3{font-size:1.45rem; margin:4px 0 2px}
+.today .tl li.past{opacity:.5}
+.today .tl li.next::before{background:var(--accent); border-color:var(--accent)}
+.today .tl li.next .w::after{content:"  à suivre"; font-family:var(--f-mono); font-size:.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:.05em}
+.today-cols{display:grid; gap:14px}
+@media (min-width:900px){ .today-cols{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)} }
+details.fold{margin-top:16px; background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius)}
+details.fold summary{cursor:pointer; padding:12px 16px; font-weight:700; color:var(--accent)}
+details.fold .fold-body{padding:0 16px 14px}
 @media print{ .nav,#map,.maptools,.theme{display:none} .day{break-inside:avoid} }
 </style>
 </head>
@@ -269,16 +282,16 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
   <div class="wrap">
     <a class="brand" href="#top">Marseille 2026</a>
     <div class="tabs" id="tabs">
-      <a href="#programme">Programme</a>
-      <a href="#logement">Logement</a>
-      <a href="#parking">Parking</a>
+      <a href="#aujourdhui">Aujourd'hui</a>
+      <a href="#programme">Itinéraire</a>
       <a href="#jours">Jour par jour</a>
       <a href="#randos">Randos</a>
       <a href="#visites">Visites</a>
       <a href="#loin">Plus loin</a>
+      <a href="#logement">Chez Stéphanie</a>
       <a href="#meteo">Météo</a>
       <a href="#pratique">Pratique</a>
-      <a href="#preparer">À préparer</a>
+      <a href="#preparer">Préparatifs</a>
     </div>
     <button class="theme" id="themeBtn" type="button" aria-label="Changer de thème" title="Thème clair ou sombre">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -288,79 +301,35 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="kicker">Carnet de voyage · novembre 2026</div>
+    <div class="kicker">Carnet de voyage · 6 – 13 novembre 2026</div>
     <h1>Marseille et les Calanques</h1>
-    <p class="lede">Une semaine à deux, Sébastien et Pauline : des randonnées de niveau varié dans le Parc national des Calanques, de Callelongue au Cap Canaille, et des journées en ville entre le Vieux-Port, le Panier et la Cité radieuse.</p>
+    <p class="lede">Huit jours à deux, Sébastien et Pauline, de Toulouse à Toulouse : une soirée en famille à Gigean, Arles en chemin, puis six nuits au Camas pour arpenter les Calanques de Callelongue au Cap Canaille, et Marseille du Panier à la Cité radieuse.</p>
     <div class="facts">
       <div class="fact"><div class="k">Dates</div><div class="v">6 – 13 nov.</div><div class="s">du vendredi au vendredi, 1 nuit à Balaruc, 6 à Marseille</div></div>
-      <div class="fact"><div class="k">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
-      <div class="fact"><div class="k">Base</div><div class="v">Le Camas, 5e</div><div class="s">chez Stéphanie, HomeExchange, du 7 au 13</div></div>
+      <div class="fact"><div class="k" id="countdownK">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
+      <div class="fact"><div class="k">Chez Stéphanie</div><div class="v">Le Camas, 5e</div><div class="s">du samedi 7 au vendredi 13</div></div>
       <div class="fact"><div class="k">Randonnées</div><div class="v">5 sorties</div><div class="s">de 1h à 5h de marche</div></div>
     </div>
   </div>
 </header>
 
+<section id="aujourdhui">
+  <div class="wrap">
+    <h2 id="todayTitle">Aujourd'hui</h2>
+    <div id="todayBox"></div>
+  </div>
+</section>
+
 <section id="programme">
   <div class="wrap">
-    <h2>Le programme en un coup d'œil</h2>
-    <p class="intro">Les randonnées sont placées en semaine, quand les routes d'accès sont ouvertes et les sentiers calmes. Le dimanche reste urbain, la Route des Crêtes étant fermée aux voitures ce jour-là. Toucher une ligne ouvre le détail du jour.</p>
+    <h2>L'itinéraire</h2>
+    <p class="intro">De la soirée à Gigean au déjeuner de Sète. Les randonnées tombent en semaine, quand les routes d'accès sont ouvertes et les sentiers calmes ; le dimanche est consacré à la ville. Toucher une ligne ouvre le récit du jour et sa carte.</p>
     <div class="tscroll">
       <table class="tbl stack" id="progTable">
         <thead><tr><th>Jour</th><th>Programme</th><th>Marche</th><th>Niveau</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
-  </div>
-</section>
-
-<section id="logement">
-  <div class="wrap">
-    <h2>Le logement</h2>
-    <p class="intro">Chez Stéphanie, du samedi 7 au vendredi 13 novembre : un grand appartement lumineux, refait à neuf, rue de l'Église Saint-Michel, au cœur du Camas (Marseille 5e). Échange pré-approuvé, à finaliser sur HomeExchange.</p>
-    <div class="logis">
-      <div class="card">
-        <h3>Ce qu'il y a sur place</h3>
-        <ul class="equip">
-          <li>Grande chambre avec lit double</li>
-          <li>Salon, canapé et fauteuil convertible</li>
-          <li>Cuisine ouverte tout équipée</li>
-          <li>Coin télétravail</li>
-          <li>Salle de bain avec douche</li>
-          <li>Lave-linge, WC séparés</li>
-          <li>Double vitrage, nuits calmes</li>
-          <li>Bibliothèque de sciences sociales</li>
-        </ul>
-        <h3 style="margin-top:14px">Autour</h3>
-        <p>Le Camas est un quartier calme, avec une vraie vie de quartier, à deux pas de l'effervescence du cours Julien et de la Plaine, à une dizaine de minutes à pied. Le tram T1 passe sur le boulevard Chave tout proche et descend jusqu'à Noailles, à cinq minutes du Vieux-Port ; vélos en libre-service à proximité, gare Saint-Charles à vingt minutes à pied.</p>
-        <p class="muted" style="font-size:.88rem">Pas de place de parking avec l'appartement : voir la section Parking. Photos de l'annonce.</p>
-      </div>
-      <div class="gal" id="gal"></div>
-    </div>
-  </div>
-  <dialog class="lb" id="lb" aria-label="Photos du logement">
-    <figure><img id="lbImg" alt=""><button class="nb prev" type="button" aria-label="Photo précédente">‹</button><button class="nb next" type="button" aria-label="Photo suivante">›</button><button class="close" type="button" aria-label="Fermer">×</button><figcaption id="lbCap"></figcaption></figure>
-  </dialog>
-</section>
-
-<section id="parking">
-  <div class="wrap">
-    <h2>Parking</h2>
-    <p class="intro">L'appartement n'a pas de place de stationnement, et la voiture sert presque tous les matins pour les départs de randonnée. Comparatif établi le 26 octobre pour la période du samedi 7 novembre à 15h au vendredi 13 à 9h30, avec un forfait à entrées et sorties illimitées<sup><a href="#s32">32</a></sup>.</p>
-    <div class="tscroll">
-      <table class="tbl stack" id="parkTable">
-        <thead><tr><th>Parking</th><th>À pied de l'appartement</th><th>Prix du séjour</th><th>À savoir</th></tr></thead>
-        <tbody>
-          <tr><td data-l="Parking"><b>Q-Park Vallier</b><br><span class="muted">41 av. du Maréchal-Foch, 4e</span> <span class="tag must">Recommandé</span></td><td class="d" data-l="À pied">~12 min</td><td class="d" data-l="Prix"><b>54,50 €</b></td><td data-l="À savoir">24h/24, lecture de plaque, annulation gratuite jusqu'à 1 h avant. <a href="https://parclick.fr/parking-marseille/q-park-vallier?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
-          <tr><td data-l="Parking"><b>Q-Park La Timone</b><br><span class="muted">264 rue Saint-Pierre, 5e</span></td><td class="d" data-l="À pied">~15 min</td><td class="d" data-l="Prix">60 €</td><td data-l="À savoir">Mêmes conditions. <a href="https://parclick.fr/parking-marseille/q-park-la-timone?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
-          <tr><td data-l="Parking"><b>Q-Park Blancarde</b><br><span class="muted">2 bd Louis-Frangin, 5e</span></td><td class="d" data-l="À pied">~17 min</td><td class="d" data-l="Prix">62 €</td><td data-l="À savoir">Mêmes conditions. <a href="https://parclick.fr/parking-marseille/q-park-blancarde?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
-          <tr><td data-l="Parking"><b>Yespark rue Madon</b><br><span class="muted">8 rue Madon, 5e</span></td><td class="d" data-l="À pied">~8 min</td><td class="d" data-l="Prix">100 € le mois</td><td data-l="À savoir">Abonnement mensuel seulement, badge envoyé par la poste sous 2 à 3 jours ouvrés<sup><a href="#s33">33</a></sup>.</td></tr>
-          <tr><td data-l="Parking"><b>Indigo Jean-Jaurès</b><br><span class="muted">Place Jean-Jaurès, 5e</span></td><td class="d" data-l="À pied">~8 min</td><td class="d" data-l="Prix">165,78 €</td><td data-l="À savoir">Le plus proche, mais trois fois plus cher, et place non garantie si le parking est plein.</td></tr>
-          <tr><td data-l="Parking"><b>Garages de quartier</b><br><span class="muted">Saint-Pierre (133 rue Saint-Pierre), Éguier (6 rue de l'Éguier)</span></td><td class="d" data-l="À pied">7 à 11 min</td><td class="d" data-l="Prix">Sur appel</td><td data-l="À savoir">Tarifs non publiés ; vérifier l'ouverture le samedi après-midi.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="note planb"><b class="lbl">Recommandation</b>Le Q-Park Vallier : trois fois moins cher que le parking Jean-Jaurès, sortie directe vers le Prado et les Calanques, et douze minutes de marche depuis l'appartement. Vérifier sur la page de réservation que la place est garantie avant de payer.</div>
-    <p class="muted" style="font-size:.86rem;margin-top:10px">Hauteur maximale 1,90 m dans les parkings réservables. Écartés : le garage du boulevard Chave, fermé le week-end<sup><a href="#s35">35</a></sup>, et l'offre Zenpark de la place Jean-Jaurès, qui n'est plus proposée. Distances estimées à partir des adresses ; prix relevés sur Parclick pour ces dates exactes, susceptibles d'évoluer<sup><a href="#s32">32</a>, <a href="#s34">34</a></sup>.</p>
   </div>
 </section>
 
@@ -448,6 +417,60 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
   </div>
 </section>
 
+<section id="logement">
+  <div class="wrap">
+    <h2>Chez Stéphanie</h2>
+    <p class="intro">Notre base du samedi 7 au vendredi 13 novembre : un grand appartement lumineux, refait à neuf, au deuxième étage d'un immeuble de la rue de l'Église Saint-Michel, au cœur du Camas (Marseille 5e).</p>
+    <div class="logis">
+      <div class="card">
+        <h3>Ce qu'il y a sur place</h3>
+        <ul class="equip">
+          <li>Grande chambre avec lit double</li>
+          <li>Salon, canapé et fauteuil convertible</li>
+          <li>Cuisine ouverte tout équipée</li>
+          <li>Coin télétravail</li>
+          <li>Salle de bain avec douche</li>
+          <li>Lave-linge, WC séparés</li>
+          <li>Double vitrage, nuits calmes</li>
+          <li>Bibliothèque de sciences sociales</li>
+        </ul>
+        <h3 style="margin-top:14px">Autour</h3>
+        <p>Le Camas est un quartier calme, avec une vraie vie de quartier, à deux pas de l'effervescence du cours Julien et de la Plaine, à une dizaine de minutes à pied. L'arrêt de tram Camas est tout proche ; vélos en libre-service à proximité, gare Saint-Charles à vingt minutes à pied.</p>
+        <p class="muted" style="font-size:.88rem">Pas de place de parking avec l'appartement : la voiture dort au Q-Park Vallier, à douze minutes à pied. Photos de l'annonce.</p>
+      </div>
+      <div class="gal" id="gal"></div>
+    </div>
+    <div class="grid c3" style="margin-top:14px">
+      <div class="card">
+        <h3>Arrivée et clés</h3>
+        <p>Les clés se récupèrent au point KeyNest du <b>tabac Le Saint-Michel</b>, rue Saint-Michel, sur la place Jean-Jaurès, avec le code que Stéphanie envoie juste avant l'arrivée. Ouvert du lundi au samedi de 7h à 2h, le dimanche de 8h à minuit.</p>
+        <p>L'appartement est au <b>deuxième étage, sans ascenseur</b>. Deux clés : la petite pour l'immeuble, la grosse crantée pour l'appartement, à tourner <b>bout pointu vers le haut</b> pour ne pas la coincer. Ne jamais claquer la porte en laissant la clé à l'intérieur.</p>
+      </div>
+      <div class="card">
+        <h3>Bon à savoir</h3>
+        <ul class="equip" style="grid-template-columns:1fr">
+          <li><b>Pas de Wi-Fi</b> : partage de connexion depuis les téléphones.</li>
+          <li><b>Gaz</b> : ouvrir le robinet pour cuisiner (parallèle au tuyau), le couper après (perpendiculaire), et toujours en partant.</li>
+          <li>Chaussures retirées dans l'appartement, surtout sur les tapis.</li>
+          <li>Plantes à arroser tous les deux ou trois jours si la terre est sèche ; ne pas laisser les volets fermés en continu.</li>
+          <li>Ménage fait par nos soins avant le départ, pas de frais.</li>
+          <li><b>Pas de sèche-linge</b> : laverie Escoffier en bas de l'immeuble, sèche-linge 2 €.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Le quartier selon Stéphanie</h3>
+        <p><b>Cafés et bars</b> : Trois Quart, Georges, Chaleur, Parpaing qui flotte.</p>
+        <p><b>Courses</b> : Intermarché et Biocoop à deux pas, Lidl boulevard Sakakini, Carrefour City ouverts plus tard le soir et le dimanche ; boulangerie Les Mains Libres.</p>
+        <p><b>Cinémas</b> : Les Variétés aux Réformés, La Baleine au cours Julien, Pathé Madeleine.</p>
+        <p><b>Librairies et bibliothèques</b> : L'Hydre près de la Plaine, Maupetit plus bas ; bibliothèques des Cinq-Avenues et de l'Alcazar à Noailles.</p>
+      </div>
+    </div>
+  </div>
+  <dialog class="lb" id="lb" aria-label="Photos du logement">
+    <figure><img id="lbImg" alt=""><button class="nb prev" type="button" aria-label="Photo précédente">‹</button><button class="nb next" type="button" aria-label="Photo suivante">›</button><button class="close" type="button" aria-label="Fermer">×</button><figcaption id="lbCap"></figcaption></figure>
+  </dialog>
+</section>
+
 <section id="meteo">
   <div class="wrap">
     <h2>Météo du séjour</h2>
@@ -472,8 +495,13 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
       </div>
       <div class="card">
         <h3>Se déplacer à Marseille</h3>
-        <p>Pas de parking avec l'appartement : la voiture reste au parking réservé pour la semaine (voir la section Parking) pendant les journées en ville. Depuis le Camas, le <b>Vieux-Port</b> est à vingt-cinq minutes à pied par le cours Julien et Noailles, ou en <b>tram T1</b> depuis le boulevard Chave jusqu'à Noailles. Pour les Calanques, sortie directe vers le Prado et Mazargues.</p>
-        <p class="muted">Bus utiles : B1 vers Luminy (Sugiton), 19 et 20 vers les Goudes et Callelongue, 22 et 23 vers les Baumettes (Morgiou, Sormiou).</p>
+        <p>Depuis le Camas, le <b>Vieux-Port</b> est à vingt-cinq minutes à pied par le cours Julien et Noailles, ou en tram depuis l'arrêt Camas. Le plus agréable selon Stéphanie : le <b>vélo électrique</b>, avec Le Vélo, le service municipal à 1 € le trajet (application Le Vélo), ou Lime, Voi et Pony quand les bornes sont vides ; une piste cyclable longe toute la Corniche.</p>
+        <p class="muted">Gare Saint-Charles à vingt minutes à pied, environ 10 € en taxi. Bus vers les Calanques depuis Castellane : B1 vers Luminy (Sugiton), 19 et 20 vers les Goudes et Callelongue, 22 et 23 vers les Baumettes (Morgiou, Sormiou).</p>
+      </div>
+      <div class="card">
+        <h3>Voiture</h3>
+        <p>Pas de parking avec l'appartement : la voiture reste au <b>Q-Park Vallier</b>, 41 avenue du Maréchal-Foch, à douze minutes à pied, forfait séjour avec entrées et sorties illimitées, accès 24h/24 par lecture de plaque. Pour les Calanques, sortie directe vers le Prado et Mazargues.</p>
+        <p class="muted">Hauteur maximale 1,90 m. Le comparatif des parkings est dans les Préparatifs.</p>
       </div>
       <div class="card">
         <h3>Accès aux Calanques en novembre</h3>
@@ -499,19 +527,40 @@ dialog.lb .close{position:absolute; top:8px; right:8px; border:0; background:rgb
 
 <section id="preparer">
   <div class="wrap">
-    <h2>À préparer</h2>
-    <p class="intro">Statuts et cases cochées sont enregistrés dans ce navigateur uniquement : ils ne se partagent pas entre téléphones.</p>
+    <h2>Préparatifs</h2>
+    <p class="intro">Les coulisses du voyage : réservations, parking, valise. Statuts et cases cochées sont enregistrés dans ce navigateur uniquement, ils ne se partagent pas entre téléphones.</p>
     <div class="grid c2">
       <div class="card">
         <h3>Réservations</h3>
         <div class="tscroll"><table class="tbl" id="resaTable" style="border:0"><thead><tr><th>Objet</th><th>Quand</th><th>Statut</th></tr></thead><tbody></tbody></table></div>
       </div>
       <div class="card">
-        <h3>Sac de randonnée</h3>
+        <h3>Sac et valise</h3>
         <div class="progress"><i id="packBar"></i></div>
         <ul class="check" id="packList"></ul>
       </div>
     </div>
+    <details class="fold">
+      <summary>Le comparatif des parkings</summary>
+      <div class="fold-body">
+    <p>L'appartement n'a pas de place de stationnement, et la voiture sert presque tous les matins pour les départs de randonnée. Comparatif établi le 26 octobre pour la période du samedi 7 novembre à 15h au vendredi 13 à 9h30, avec un forfait à entrées et sorties illimitées<sup><a href="#s32">32</a></sup>.</p>
+    <div class="tscroll">
+      <table class="tbl stack" id="parkTable">
+        <thead><tr><th>Parking</th><th>À pied de l'appartement</th><th>Prix du séjour</th><th>À savoir</th></tr></thead>
+        <tbody>
+          <tr><td data-l="Parking"><b>Q-Park Vallier</b><br><span class="muted">41 av. du Maréchal-Foch, 4e</span> <span class="tag must">Recommandé</span></td><td class="d" data-l="À pied">~12 min</td><td class="d" data-l="Prix"><b>54,50 €</b></td><td data-l="À savoir">24h/24, lecture de plaque, annulation gratuite jusqu'à 1 h avant. <a href="https://parclick.fr/parking-marseille/q-park-vallier?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
+          <tr><td data-l="Parking"><b>Q-Park La Timone</b><br><span class="muted">264 rue Saint-Pierre, 5e</span></td><td class="d" data-l="À pied">~15 min</td><td class="d" data-l="Prix">60 €</td><td data-l="À savoir">Mêmes conditions. <a href="https://parclick.fr/parking-marseille/q-park-la-timone?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
+          <tr><td data-l="Parking"><b>Q-Park Blancarde</b><br><span class="muted">2 bd Louis-Frangin, 5e</span></td><td class="d" data-l="À pied">~17 min</td><td class="d" data-l="Prix">62 €</td><td data-l="À savoir">Mêmes conditions. <a href="https://parclick.fr/parking-marseille/q-park-blancarde?df=2026-11-07%2015:00&amp;dt=2026-11-13%2009:30&amp;ft=1" target="_blank" rel="noopener">Réserver</a></td></tr>
+          <tr><td data-l="Parking"><b>Yespark rue Madon</b><br><span class="muted">8 rue Madon, 5e</span></td><td class="d" data-l="À pied">~8 min</td><td class="d" data-l="Prix">100 € le mois</td><td data-l="À savoir">Abonnement mensuel seulement, badge envoyé par la poste sous 2 à 3 jours ouvrés<sup><a href="#s33">33</a></sup>.</td></tr>
+          <tr><td data-l="Parking"><b>Indigo Jean-Jaurès</b><br><span class="muted">Place Jean-Jaurès, 5e</span></td><td class="d" data-l="À pied">~8 min</td><td class="d" data-l="Prix">165,78 €</td><td data-l="À savoir">Le plus proche, mais trois fois plus cher, et place non garantie si le parking est plein.</td></tr>
+          <tr><td data-l="Parking"><b>Garages de quartier</b><br><span class="muted">Saint-Pierre (133 rue Saint-Pierre), Éguier (6 rue de l'Éguier)</span></td><td class="d" data-l="À pied">7 à 11 min</td><td class="d" data-l="Prix">Sur appel</td><td data-l="À savoir">Tarifs non publiés ; vérifier l'ouverture le samedi après-midi.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note planb"><b class="lbl">Recommandation</b>Le Q-Park Vallier : trois fois moins cher que le parking Jean-Jaurès, sortie directe vers le Prado et les Calanques, et douze minutes de marche depuis l'appartement. Vérifier sur la page de réservation que la place est garantie avant de payer.</div>
+    <p class="muted" style="font-size:.86rem;margin-top:10px">Hauteur maximale 1,90 m dans les parkings réservables. Écartés : le garage du boulevard Chave, fermé le week-end<sup><a href="#s35">35</a></sup>, et l'offre Zenpark de la place Jean-Jaurès, qui n'est plus proposée. Distances estimées à partir des adresses ; prix relevés sur Parclick pour ces dates exactes, susceptibles d'évoluer<sup><a href="#s32">32</a>, <a href="#s34">34</a></sup>.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -567,6 +616,7 @@ const LEVELS = {0:"Route", 1:"Facile", 2:"Moyen", 3:"Soutenu", 4:"Exigeant"};
 
 const PLACES = {
   base:      {n:"Base : chez Stéphanie, le Camas", c:[43.2960,5.3935], d:"Rue de l'Église Saint-Michel, Marseille 5e. Tram T1 boulevard Chave, cours Julien et la Plaine à pied."},
+  tabac:     {n:"Tabac Le Saint-Michel (clés)", c:[43.29392,5.38597], d:"Point KeyNest pour récupérer et rendre les clés, place Jean-Jaurès. Lun–sam 7h–2h, dim 8h–0h."},
   vallier:   {n:"Parking Q-Park Vallier", c:[43.29929,5.40184], d:"41 av. du Maréchal-Foch. Forfait séjour 54,50 € sur Parclick, à 12 min à pied de l'appartement."},
   plaine:    {n:"La Plaine (place Jean-Jaurès)", c:[43.2942,5.3864], d:"Grande place, marché, bars et terrasses."},
   docks:     {n:"Les Docks de la Joliette", c:[43.3063,5.3664], d:"Anciens entrepôts portuaires du XIXe siècle reconvertis."},
@@ -625,11 +675,11 @@ const DAYS = [
        ["10h15","Arles","Arènes, théâtre antique, place du Forum.",1],
        ["12h30","Déjeuner à Arles",""],
        ["14h00","Route vers Marseille","Environ 1h par l'A54 et l'A7."],
-       ["15h15","Arrivée et installation","Remise des clés, puis la voiture au parking réservé pour la semaine (Q-Park Vallier recommandé, voir la section Parking)."],
+       ["15h15","Arrivée au Camas","Clés au point KeyNest du tabac Le Saint-Michel (place Jean-Jaurès) avec le code de Stéphanie, bagages déposés devant l'immeuble, puis la voiture au Q-Park Vallier, à douze minutes à pied."],
        ["16h30","Le Camas, la Plaine et le cours Julien","Balade de mise en jambes : la place Jean-Jaurès, puis les escaliers et le street art du cours Julien.",1],
        ["17h20","Apéritif au soleil couchant","Une terrasse du cours Julien ou de la Plaine, comme le conseille Stéphanie."],
        ["19h30","Dîner au cours Julien","À dix minutes à pied de l'appartement."]],
-   places:["balaruc","arles","base","vallier","plaine","coursj"],
+   places:["balaruc","arles","tabac","base","vallier","plaine","coursj"],
    planb:"Si la soirée de vendredi s'est prolongée : route directe Balaruc – Marseille (environ 2h), déjeuner en arrivant."},
  { id:"d2", date:"2026-11-08", short:"Dim 8", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h en ville", sun:["07h22","17h21"],
    sum:"Journée urbaine sans voiture : le dimanche, les calanques sont fréquentées et la Route des Crêtes fermée aux véhicules.",
@@ -673,7 +723,8 @@ const DAYS = [
        ["08h30","Variante longue par le Mont Puget","Montée au point culminant des Calanques, descente sur le col de Sugiton.",1],
        ["13h00","Déjeuner","Pique-nique ou retour vers le 8e."],
        ["15h00","Cité radieuse","Rue intérieure, toit-terrasse du MAMO, librairie et hôtel-restaurant Le Corbusier."],
-       ["16h45","Coucher de soleil depuis le toit","Vue sur la mer et les collines de Marseilleveyre."]],
+       ["16h45","Coucher de soleil depuis le toit","Vue sur la mer et les collines de Marseilleveyre."],
+       ["18h30","Lessive des draps et serviettes","Seulement si d'autres invités arrivent après nous : sans sèche-linge, il faut deux jours de séchage. Laverie Escoffier en bas au besoin."]],
    hike:"h3",
    places:["luminy","belvsugiton","sugiton","puget","radieuse"],
    warn:"Le toit-terrasse de la Cité radieuse n'ouvre que du mercredi au dimanche : ce mercredi est le meilleur créneau du séjour. Visite guidée de l'appartement témoin sur réservation auprès de l'Office de tourisme.",
@@ -694,14 +745,15 @@ const DAYS = [
    planb:"Par mistral : Route des Crêtes souvent fermée ; profiter de Cassis et d'une dégustation à la place. Par pluie : Cassis et ses caves ; En-Vau peut alors prendre la place de Sugiton mercredi."},
  { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Retour par Sète", level:0, walk:"–", sun:["07h29","17h15"],
    sum:"Départ matinal de Marseille, déjeuner à Sète avec Giorgio et Joëlle, arrivée à Toulouse pour récupérer les enfants à 17h30.",
-   tl:[["07h45","Ménage et bagages","Selon les consignes de Stéphanie."],
-       ["09h30","Remise des clés",""],
+   tl:[["07h30","Ménage et bagages","Fenêtres fermées, poubelles sorties, gaz coupé ; draps en boule dans la salle de bain s'il n'y a personne après nous."],
+       ["08h45","Récupérer la voiture au Q-Park Vallier","Puis charger les bagages devant l'immeuble."],
+       ["09h30","Clés au tabac Le Saint-Michel","Point KeyNest, ouvert dès 7h."],
        ["09h45","Départ de Marseille","Environ 190 km et 2h par l'A7, l'A54 et l'A9."],
        ["12h00","Déjeuner à Sète avec Giorgio et Joëlle",""],
        ["14h30","Départ de Sète, dernier délai","Environ 240 km et 2h30 jusqu'à Toulouse, 30 min de marge comprises."],
        ["17h00","Arrivée à Toulouse",""],
        ["17h30","Récupérer les enfants",""]],
-   places:["base","sete","toulouse"],
+   places:["base","vallier","tabac","sete","toulouse"],
    warn:"Heure butoir : quitter Sète à 14h30 au plus tard. Le contournement de Montpellier et l'A9 ralentissent souvent le vendredi.",
    planb:"En cas de bouchons au départ de Marseille, prévenir Giorgio et Joëlle et décaler le déjeuner plutôt que l'heure de départ de Sète."},
 ];
@@ -753,17 +805,18 @@ const RESA = [
  {k:"logement", n:"Appartement de Stéphanie, le Camas (HomeExchange), du 7 au 13", when:"Pré-approuvé, à finaliser", def:"demande"},
  {k:"autres", n:"Décliner la pré-approbation de Mor-Anna et les autres demandes", when:"Dès la finalisation", def:"afaire"},
  {k:"parking", n:"Parking pour la semaine : Q-Park Vallier, 54,50 € (Parclick)", when:"Dès que possible, annulation gratuite", def:"areserver"},
- {k:"cles", n:"Remise des clés le samedi 7 vers 15h", when:"Avec Stéphanie", def:"afaire"},
+ {k:"cles", n:"Code KeyNest pour les clés (tabac Le Saint-Michel)", when:"Envoyé par Stéphanie avant l'arrivée", def:"afaire"},
+ {k:"linge", n:"Savoir si d'autres invités arrivent après nous (linge à laver)", when:"Avec Stéphanie", def:"afaire"},
  {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"areserver"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
  {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
  {k:"cassis", n:"Dégustation AOC Cassis (repli mistral), jeudi 12", when:"La veille", def:"optionnel"},
  {k:"mucemb", n:"Billets MuCEM, dimanche 8", when:"En ligne, la veille", def:"optionnel"},
- {k:"offline", n:"Cartes hors ligne des itinéraires", when:"Avant le départ", def:"areserver"}
+ {k:"offline", n:"Cartes hors ligne des itinéraires", when:"Avant le départ", def:"afaire"}
 ];
 const STATUS = {afaire:"À faire", areserver:"À réserver", demande:"Demandé", confirme:"Confirmé", optionnel:"Optionnel", fait:"Fait"};
 
-const PACK = ["Chaussures à semelle adhérente","Deux litres d'eau par personne","Coupe-vent et polaire","Frontale (nuit vers 17h30)","Casquette et crème solaire","Pique-nique et en-cas","Trousse de premiers secours","Batterie externe","Carte hors ligne téléchargée","Bâtons pour les descentes","Maillot et serviette, au cas où","Sac à déchets"];
+const PACK = ["Chaussures à semelle adhérente","Deux litres d'eau par personne","Coupe-vent et polaire","Frontale (nuit vers 17h30)","Casquette et crème solaire","Pique-nique et en-cas","Trousse de premiers secours","Batterie externe","Carte hors ligne téléchargée","Bâtons pour les descentes","Maillot et serviette, au cas où","Sac à déchets","Draps et serviettes (pas de sèche-linge)","Forfait de données suffisant (pas de Wi-Fi)"];
 
 /* ---------- Stockage local (facultatif) ---------- */
 const KEY = "marseille26:";
@@ -795,15 +848,16 @@ function todayISO(){ const d = new Date(); return `${d.getFullYear()}-${String(d
 /* ---------- Compte à rebours ---------- */
 (function(){
   const start = new Date("2026-11-06T15:30:00"), end = new Date("2026-11-13T18:00:00"), now = new Date();
-  const el = $("#countdown"), sub = $("#countdownSub");
+  const el = $("#countdown"), sub = $("#countdownSub"), k = $("#countdownK");
   if (now < start){
     const days = Math.ceil((start - now) / 86400000);
     el.textContent = days + (days > 1 ? " jours" : " jour");
   } else if (now <= end){
     const i = DAYS.findIndex(d => d.date === todayISO());
-    el.textContent = i >= 0 ? `Jour ${i+1} sur 8` : "En cours";
-    sub.textContent = "bon séjour";
-  } else { el.textContent = "Terminé"; sub.textContent = "séjour du 6 au 13 novembre"; }
+    k.textContent = "Aujourd'hui";
+    el.textContent = i >= 0 ? `Jour ${i+1} sur 8` : "En route";
+    sub.textContent = i >= 0 ? DAYS[i].title : "bon voyage";
+  } else { k.textContent = "Le voyage"; el.textContent = "Souvenirs"; sub.textContent = "du 6 au 13 novembre 2026"; }
 })();
 
 /* ---------- Tableau programme ---------- */
@@ -895,7 +949,7 @@ function renderDay(d){
     ${d.warn ? `<div class="note warn"><b class="lbl">Vigilance</b>${esc(d.warn)}</div>` : ""}
     ${d.planb ? `<div class="note planb"><b class="lbl">Plan B</b>${esc(d.planb)}</div>` : ""}
     <div class="links">${h ? `<a class="btn" href="${gmaps(h.maps)}" target="_blank" rel="noopener">Itinéraire vers le départ</a>` : ""}
-      <a class="btn" href="#programme">Retour au programme</a></div>
+      <a class="btn" href="#programme">Retour à l'itinéraire</a></div>
   </article>`;
 }
 function showDay(id){
@@ -913,6 +967,33 @@ function showDay(id){
   initMap();
   const todayDay = DAYS.find(d => d.date === t);
   showDay(todayDay ? todayDay.id : sget("day", DAYS[0].id));
+})();
+
+
+/* ---------- Aujourd'hui ---------- */
+(function(){
+  const box = $("#todayBox"), title = $("#todayTitle"); if (!box) return;
+  const now = new Date(), t = todayISO();
+  const i = DAYS.findIndex(d => d.date === t);
+  const toMin = s => { const m = /(\d\d)h(\d\d)/.exec(s); return m ? (+m[1]) * 60 + (+m[2]) : null; };
+  if (i < 0 && now > new Date("2026-11-13T23:59:00")){
+    title.textContent = "Le voyage";
+    box.innerHTML = `<div class="today"><div class="head">6 – 13 novembre 2026</div><h3>Huit jours entre Marseille et les Calanques</h3><p class="sum">Le carnet reste ouvert : l'itinéraire, les randonnées, les visites et les dossiers « Plus loin » sont toujours là pour se souvenir.</p><div class="links"><a class="btn" href="#programme">Revoir l'itinéraire</a></div></div>`;
+    return;
+  }
+  const before = i < 0, d = before ? DAYS[0] : DAYS[i];
+  let head;
+  if (before){ const n = Math.max(1, Math.ceil((new Date("2026-11-06T15:30:00") - now) / 86400000)); head = `Départ dans ${n} jour${n > 1 ? "s" : ""} · le carnet commencera ainsi`; title.textContent = "Bientôt"; }
+  else head = `Jour ${i + 1} sur ${DAYS.length} · ${longDate(d.date)}`;
+  const hm = now.getHours() * 60 + now.getMinutes();
+  let next = before ? -1 : d.tl.findIndex(x => { const m = toMin(x[0]); return m !== null && m >= hm - 20; });
+  const items = d.tl.map((x, k) => { const cls = before ? "" : (next === -1 || k < next ? "past" : (k === next ? "next" : "")); return `<li class="${cls}${x[3] ? " walk" : ""}"><span class="h">${esc(x[0])}</span><span class="w">${esc(x[1])}</span>${x[2] ? `<span class="x">${esc(x[2])}</span>` : ""}</li>`; }).join("");
+  box.innerHTML = `<div class="today"><div class="head">${esc(head)}</div><h3>${esc(d.title)}</h3>
+    <div class="today-cols"><div><p class="sum">${esc(d.sum)}</p><div class="sunrow"><span>Lever <b>${d.sun[0]}</b></span><span>Coucher <b>${d.sun[1]}</b></span></div>
+    ${d.warn ? `<div class="note warn"><b class="lbl">Vigilance</b>${esc(d.warn)}</div>` : ""}
+    <div class="links"><button type="button" class="btn" id="todayGo">Le récit du jour et sa carte</button><a class="btn" href="#meteo">La météo</a></div></div>
+    <ol class="tl">${items}</ol></div></div>`;
+  $("#todayGo").addEventListener("click", () => { showDay(d.id); document.getElementById("jours").scrollIntoView(); });
 })();
 
 /* ---------- Visites ---------- */
