@@ -303,7 +303,7 @@ details.fold .fold-body{padding:0 16px 14px}
   <div class="wrap">
     <div class="kicker">Carnet de voyage · 6 – 13 novembre 2026</div>
     <h1>Marseille et les Calanques</h1>
-    <p class="lede">Huit jours à deux, Sébastien et Pauline, de Toulouse à Toulouse : une soirée en famille à Gigean, Arles en chemin, puis six nuits au Camas pour arpenter les Calanques de Callelongue au Cap Canaille, et Marseille du Panier à la Cité radieuse.</p>
+    <p class="lede">Huit jours à deux, Sébastien et Pauline, de Toulouse à Toulouse : une soirée en famille à Gigean, Gordes et l'abbaye de Sénanque en chemin, puis six nuits au Camas pour arpenter les Calanques de Callelongue au Cap Canaille, et Marseille du Panier à la Cité radieuse.</p>
     <div class="facts">
       <div class="fact"><div class="k">Dates</div><div class="v">6 – 13 nov.</div><div class="s">du vendredi au vendredi, 1 nuit à Balaruc, 6 à Marseille</div></div>
       <div class="fact"><div class="k" id="countdownK">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
@@ -489,7 +489,7 @@ details.fold .fold-body{padding:0 16px 14px}
     <div class="grid c2">
       <div class="card">
         <h3>Trajet</h3>
-        <p><b>Aller</b> : Toulouse – Gigean, environ 230 km et 2h30 par l'A61 et l'A9, nuit à Balaruc ; puis Balaruc – Arles (environ 1h15) et Arles – Marseille (environ 1h).</p>
+        <p><b>Aller</b> : Toulouse – Gigean, environ 230 km et 2h30 par l'A61 et l'A9, nuit à Balaruc ; puis Balaruc – Gordes (environ 1h50) et Gordes – Marseille (environ 1h15), avec halte à l'abbaye de Sénanque<sup><a href="#s36">36</a>, <a href="#s37">37</a></sup>.</p>
         <p><b>Retour</b> : Marseille – Sète, environ 190 km et 2h ; Sète – Toulouse, environ 240 km et 2h30. Quitter Sète à 14h30 au plus tard pour être à Toulouse à 17h30.</p>
         <p class="muted">Distances et durées indicatives, hors pauses et bouchons.</p>
       </div>
@@ -603,6 +603,8 @@ details.fold .fold-body{padding:0 16px 14px}
       <li id="s33"><a href="https://www.yespark.fr/parkings/6488-lycee-marie-curie-rue-madon-marseille-5">Yespark, Lycée Marie Curie – rue Madon</a>.</li>
       <li id="s34"><a href="https://parclick.fr/parking-marseille/jean-jaures-1">Parclick, INDIGO Jean Jaurès</a>.</li>
       <li id="s35"><a href="https://www.pagesjaunes.fr/pros/05584263">PagesJaunes, Garage Chave</a>, horaires.</li>
+      <li id="s36"><a href="https://www.provenceguide.com/patrimoines-culturels/gordes/abbaye-notre-dame-de-senanque/provence-2997151-1.html">Provence Guide, Abbaye Notre-Dame de Sénanque</a>, horaires et tarifs 2026.</li>
+      <li id="s37"><a href="https://provence-alpes-cotedazur.com/que-faire/culture-et-patrimoine/lieux/abbaye-notre-dame-de-senanque-gordes-fr-2857318/">Provence-Alpes-Côte d'Azur Tourisme, Abbaye Notre-Dame de Sénanque</a>.</li>
     </ol>
     <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
   </div>
@@ -625,7 +627,8 @@ const PLACES = {
   gigean:    {n:"Gigean", c:[43.4997,3.7114], d:"Dîner en famille, vendredi 6."},
   balaruc:   {n:"Hôtel Campanile Sète – Balaruc", c:[43.4560,3.6990], d:"Nuit du 6 au 7 novembre. Position indicative."},
   sete:      {n:"Sète", c:[43.4028,3.6947], d:"Déjeuner avec Giorgio et Joëlle, vendredi 13."},
-  arles:     {n:"Arles", c:[43.6766,4.6278], d:"Halte du samedi matin : arènes, théâtre antique, place du Forum."},
+  senanque:  {n:"Abbaye Notre-Dame de Sénanque", c:[43.9280,5.1875], d:"Abbaye cistercienne du XIIe siècle, au fond d'un vallon près de Gordes. Ouverte tous les jours sauf le dimanche matin."},
+  gordes:    {n:"Gordes", c:[43.9116,5.2002], d:"Village perché du Luberon, halte déjeuner du samedi."},
   palais:    {n:"Palais Longchamp", c:[43.3046,5.3943], d:"Château d'eau monumental, jardins, musée des Beaux-Arts."},
   coursj:    {n:"Cours Julien", c:[43.2939,5.3836], d:"Quartier vivant, street art, bars et restaurants."},
   belges:    {n:"Marché aux poissons, quai des Belges", c:[43.2953,5.3744], d:"Le matin, au fond du Vieux-Port."},
@@ -669,21 +672,21 @@ const DAYS = [
        ["22h30","Hôtel Campanile Sète – Balaruc","À une dizaine de minutes de Gigean. Penser à signaler une arrivée tardive."]],
    places:["toulouse","gigean","balaruc"],
    planb:"Le vendredi soir, l'A61 et l'A9 se chargent autour de Narbonne et de Béziers : partir avant 16h si possible."},
- { id:"d1", date:"2026-11-07", short:"Sam 7", title:"Arles, puis Marseille", level:0, walk:"1h30", sun:["07h21","17h22"],
-   sum:"Halte à Arles sur la route de Marseille, installation chez Stéphanie au Camas et premiers pas entre le cours Julien et la Plaine.",
-   tl:[["09h00","Départ de Balaruc","Environ 1h15 jusqu'à Arles par l'A9 et Nîmes."],
-       ["10h15","Arles","Arènes, théâtre antique, place du Forum.",1],
-       ["12h30","Déjeuner à Arles",""],
-       ["14h00","Route vers Marseille","Environ 1h par l'A54 et l'A7."],
-       ["15h15","Arrivée au Camas","Clés au point KeyNest du tabac Le Saint-Michel (place Jean-Jaurès) avec le code de Stéphanie, bagages déposés devant l'immeuble, puis la voiture au Q-Park Vallier, à douze minutes à pied."],
+ { id:"d1", date:"2026-11-07", short:"Sam 7", title:"Gordes et Sénanque, puis Marseille", level:0, walk:"1h30", sun:["07h21","17h22"],
+   sum:"Détour par le Luberon : l'abbaye cistercienne de Sénanque et le village perché de Gordes, puis installation chez Stéphanie au Camas et premiers pas entre le cours Julien et la Plaine.",
+   tl:[["08h45","Départ de Balaruc","Environ 1h50 jusqu'à Gordes par l'A9, Nîmes, Avignon et Cavaillon."],
+       ["10h45","Abbaye Notre-Dame de Sénanque","Monastère cistercien du XIIe siècle, toujours habité : visite libre avec tablette HistoPad, ou guidée en français sur réservation (environ 1h). Silence et tenue correcte, 8 € par adulte.",1],
+       ["12h15","Gordes","Le village perché et ses ruelles, déjeuner sur place.",1],
+       ["14h15","Route vers Marseille","Environ 1h15 par Cavaillon et l'A7."],
+       ["15h30","Arrivée au Camas","Clés au point KeyNest du tabac Le Saint-Michel (place Jean-Jaurès) avec le code de Stéphanie, bagages déposés devant l'immeuble, puis la voiture au Q-Park Vallier, à douze minutes à pied."],
        ["16h30","Le Camas, la Plaine et le cours Julien","Balade de mise en jambes : la place Jean-Jaurès, puis les escaliers et le street art du cours Julien.",1],
        ["17h20","Apéritif au soleil couchant","Une terrasse du cours Julien ou de la Plaine, comme le conseille Stéphanie."],
        ["19h30","Dîner au cours Julien","À dix minutes à pied de l'appartement."]],
-   places:["balaruc","arles","tabac","base","vallier","plaine","coursj"],
+   places:["balaruc","senanque","gordes","tabac","base","vallier","plaine","coursj"],
    planb:"Si la soirée de vendredi s'est prolongée : route directe Balaruc – Marseille (environ 2h), déjeuner en arrivant."},
  { id:"d2", date:"2026-11-08", short:"Dim 8", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h en ville", sun:["07h22","17h21"],
    sum:"Journée urbaine sans voiture : le dimanche, les calanques sont fréquentées et la Route des Crêtes fermée aux véhicules.",
-   tl:[["08h30","À pied jusqu'au Vieux-Port","Vingt-cinq minutes par le cours Julien et Noailles, ou tram T1 jusqu'à Noailles ; la voiture reste garée."],
+   tl:[["08h30","À pied jusqu'au Vieux-Port","Vingt-cinq minutes par le cours Julien et Noailles, ou en tram depuis l'arrêt Camas ; la voiture reste garée."],
        ["09h00","Marché aux poissons","Quai des Belges, l'ambiance du port le matin."],
        ["09h45","Le Panier et la Vieille Charité","Ruelles, puis la chapelle et la cour de Pierre Puget.",1],
        ["11h15","La Major et le Fort Saint-Jean","Passerelles et jardins, vue sur la passe du Vieux-Port.",1],
@@ -794,6 +797,8 @@ const VISITS = [
   txt:"Le village des peintres, de Cézanne à Braque. Panisses et chichis sur le port."},
  {k:"auffes", n:"Vallon des Auffes", day:"Dim 8", where:"7e, Corniche",
   txt:"Port de pêcheurs encaissé sous la Corniche, coucher de soleil et poisson."},
+ {k:"senanque", n:"Abbaye de Sénanque et Gordes", day:"Sam 7", where:"Luberon, sur la route de Marseille",
+  txt:"Abbaye cistercienne du XIIe siècle, l'une des « trois sœurs provençales » avec Silvacane et Le Thoronet. En novembre, pas de lavande, mais le calme d'un monastère habité. Ouverte tous les jours sauf le dimanche matin, 8 € par adulte."},
  {k:"cosquer", n:"Cosquer Méditerranée", day:"Plan B pluie", where:"2e, Villa Méditerranée, à côté du MuCEM",
   txt:"Réplique de la grotte ornée sous-marine du cap Morgiou, parcourue en modules de six places. Sur réservation, 18 €."},
  {k:"frioul", n:"Îles du Frioul et Château d'If", day:"Si temps calme", where:"Navette depuis le Vieux-Port",
@@ -810,6 +815,7 @@ const RESA = [
  {k:"linge", n:"Savoir si d'autres invités arrivent après nous (linge à laver)", when:"Avec Stéphanie", def:"afaire"},
  {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8", when:"Vers le 29 octobre", def:"areserver"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
+ {k:"senanque", n:"Visite guidée de Sénanque, samedi 7 (en français, places limitées)", when:"En ligne, quelques jours avant", def:"optionnel"},
  {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
  {k:"cassis", n:"Dégustation AOC Cassis (repli mistral), jeudi 12", when:"La veille", def:"optionnel"},
  {k:"mucemb", n:"Billets MuCEM, dimanche 8", when:"En ligne, la veille", def:"optionnel"},
@@ -931,7 +937,7 @@ function drawMarkers(){
   if (pts.length){
     // Le trajet depuis Toulouse étire la carte : on cadre sur Marseille sauf vue d'ensemble demandée.
     const local = pts.filter(c => c[0] < 43.45 && c[1] > 5.2);
-    const target = scope === "all" ? local : (local.length >= 2 ? local : pts);
+    const target = scope === "all" ? local : pts;
     map.fitBounds(L.latLngBounds(target).pad(0.18), {maxZoom:14, animate:true});
   }
 }
