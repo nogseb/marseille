@@ -398,7 +398,7 @@ details.fold .fold-body{padding:0 16px 14px}
       <li><b>Rez-de-chaussée, environ 45 min</b> : <i>Populaire ?</i>, les trésors des collections du musée, et <i>Mossi Traoré, la mode aussi</i>, qui ferme le 16 novembre.</li>
       <li><b>Le couloir entre résille et vitrage</b> : la rampe qui fait le tour du bâtiment, avec ses jeux d'ombre au soleil de l'après-midi.</li>
     </ol>
-    <p class="muted" style="font-size:.9rem">À choisir s'il faut raccourcir : le niveau 2 en priorité. Le week-end, des « visites flash » gratuites de 15 à 30 min sont proposées entre 14h et 17h. Par pluie, le MuCEM remplit à lui seul la fin de matinée et l'après-midi ; la montée à Notre-Dame de la Garde peut alors passer en bus 60.</p>
+    <p class="muted" style="font-size:.9rem">À choisir s'il faut raccourcir : le niveau 2 en priorité. Pas de visite guidée réservable pour un couple : les visites commentées sur réservation sont réservées aux groupes (à partir de 271 € le groupe). En revanche, le week-end, des « visites flash » gratuites de 15 à 30 min, sans réservation, sont proposées dans les salles entre 14h et 17h<sup><a href="#s41">41</a>, <a href="#s42">42</a></sup>. Par pluie, le MuCEM remplit à lui seul la fin de matinée et l'après-midi ; la montée à Notre-Dame de la Garde peut alors passer en bus 60.</p>
       </div>
     </details>
   </div>
@@ -627,6 +627,7 @@ details.fold .fold-body{padding:0 16px 14px}
       <li id="s39"><a href="https://www.marseille-tourisme.com/decouvrez-marseille/culture-et-patrimoine/musee-des-beaux-arts-marseille-4eme-fr-2791415/">Office de tourisme de Marseille, Musée des Beaux-Arts</a>, horaires.</li>
       <li id="s40"><a href="https://www.marseille-tourisme.com/offres/friche-belle-de-mai-marseille-3eme-fr-2796535/">Office de tourisme de Marseille, Friche la Belle de Mai</a>, horaires.</li>
       <li id="s41"><a href="https://mucem.org/uploads/2026/02/Mucem_Dossier_de_Presse_Programme_Saison_2026_Fr.pdf">MuCEM, dossier de presse de la saison 2026</a> : expositions, horaires, tarifs.</li>
+      <li id="s42"><a href="https://www.marseille-tourisme.com/offres/visite-guidee-du-mucem-marseille-2eme-fr-4225036/">Office de tourisme de Marseille, Visite guidée du MuCEM</a> : réservée aux groupes.</li>
     </ol>
     <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
   </div>
@@ -837,20 +838,16 @@ const VISITS = [
 
 const RESA = [
  {k:"sete13", n:"Déjeuner à Sète avec Giorgio et Joëlle, vendredi 13 à midi", when:"Confirmé le 29 octobre", def:"confirme"},
- {k:"campanile", n:"Hôtel Campanile Sète – Balaruc, nuit du 6 au 7", when:"Dès que possible", def:"areserver"},
- {k:"logement", n:"Appartement de Stéphanie, le Camas (HomeExchange), du 7 au 13", when:"Pré-approuvé, à finaliser", def:"demande"},
- {k:"autres", n:"Décliner la pré-approbation de Mor-Anna et les autres demandes", when:"Dès la finalisation", def:"afaire"},
+ {k:"campanile2", n:"Hôtel Campanile Sète – Balaruc, nuit du 6 au 7", when:"Réservé", def:"confirme"},
+ {k:"logement2", n:"Appartement de Stéphanie, le Camas (HomeExchange), du 7 au 13", when:"Échange finalisé", def:"confirme"},
  {k:"parking", n:"Parking pour la semaine : Q-Park Vallier, 54,50 € (Parclick)", when:"Dès que possible, annulation gratuite", def:"areserver"},
- {k:"cles", n:"Code KeyNest pour les clés (tabac Le Saint-Michel)", when:"Envoyé par Stéphanie avant l'arrivée", def:"afaire"},
- {k:"linge", n:"Savoir si d'autres invités arrivent après nous (linge à laver)", when:"Avec Stéphanie", def:"afaire"},
  {k:"auffes8", n:"Dîner Vallon des Auffes, dimanche 8 vers 18h30", when:"Cette semaine", def:"areserver"},
  {k:"friche7", n:"Horaires du toit-terrasse et du restaurant de la Friche, samedi 7", when:"Vendredi 6, sur lafriche.org", def:"afaire"},
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
  {k:"senanque", n:"Visite guidée de Sénanque, samedi 7 (en français, places limitées)", when:"En ligne, quelques jours avant", def:"optionnel"},
  {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
  {k:"cassis", n:"Dégustation AOC Cassis (repli mistral), jeudi 12", when:"La veille", def:"optionnel"},
- {k:"mucemb", n:"Billets MuCEM, dimanche 8 (11 €, ou sur place)", when:"En ligne, la veille", def:"optionnel"},
- {k:"offline", n:"Cartes hors ligne des itinéraires", when:"Avant le départ", def:"afaire"}
+ {k:"mucemb", n:"Billets MuCEM, dimanche 8 (11 €, ou sur place)", when:"En ligne, la veille", def:"optionnel"}
 ];
 const STATUS = {afaire:"À faire", areserver:"À réserver", demande:"Demandé", confirme:"Confirmé", optionnel:"Optionnel", fait:"Fait"};
 
