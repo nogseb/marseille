@@ -383,6 +383,24 @@ details.fold .fold-body{padding:0 16px 14px}
     <h2>Les visites</h2>
     <p class="intro">Les quatre incontournables, puis des compléments à piocher selon l'énergie et la météo. Cocher une visite la marque comme faite sur cet appareil.</p>
     <div class="grid c2" id="visitGrid"></div>
+    <details class="fold" id="guide-mucem">
+      <summary>Guide de visite : le MuCEM, dimanche 8</summary>
+      <div class="fold-body">
+    <p><b>Ouvert le dimanche</b>, de 10h à 18h en novembre, fermé le mardi. Dernière entrée 45 min avant la fermeture. Billet à la journée 11 € (réduit 7,50 €), valable pour toutes les expositions du J4 et du Fort Saint-Jean. Le premier dimanche du mois est gratuit, mais c'est le 1er novembre : le 8, l'entrée est payante<sup><a href="#s6">6</a>, <a href="#s41">41</a></sup>.</p>
+    <p><b>Billets</b> : pas indispensables à l'avance un dimanche de novembre. Les acheter la veille sur la billetterie en ligne évite simplement la file à l'entrée du J4. Les espaces extérieurs, les passerelles, le Fort Saint-Jean et ses jardins sont en accès libre.</p>
+    <h3 class="sub">Le parcours, de 11h15 à 15h</h3>
+    <ol>
+      <li><b>Fort Saint-Jean (libre)</b> : chemin de ronde, jardin des migrations, vue sur la passe du Vieux-Port. On y arrive depuis la Major.</li>
+      <li><b>La passerelle vers le J4</b> : la plus photographiée, avec la résille de béton de Rudy Ricciotti en face.</li>
+      <li><b>Le toit-terrasse du J4</b> : vue sur la mer et le Fort, la meilleure pause avant le déjeuner.</li>
+      <li><b>Déjeuner vers 12h</b> sur place ou dans le quartier.</li>
+      <li><b>Niveau 2, environ 1h</b> : <i>Méditerranées</i>, l'exposition de référence sur l'histoire du bassin, puis <i>Manger les images. L'ingestion du visible</i>, la nouvelle exposition temporaire, ouverte le 28 octobre.</li>
+      <li><b>Rez-de-chaussée, environ 45 min</b> : <i>Populaire ?</i>, les trésors des collections du musée, et <i>Mossi Traoré, la mode aussi</i>, qui ferme le 16 novembre.</li>
+      <li><b>Le couloir entre résille et vitrage</b> : la rampe qui fait le tour du bâtiment, avec ses jeux d'ombre au soleil de l'après-midi.</li>
+    </ol>
+    <p class="muted" style="font-size:.9rem">À choisir s'il faut raccourcir : le niveau 2 en priorité. Le week-end, des « visites flash » gratuites de 15 à 30 min sont proposées entre 14h et 17h. Par pluie, le MuCEM remplit à lui seul la fin de matinée et l'après-midi ; la montée à Notre-Dame de la Garde peut alors passer en bus 60.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -608,6 +626,7 @@ details.fold .fold-body{padding:0 16px 14px}
       <li id="s38"><a href="https://www.marseille-tourisme.com/decouvrez-marseille/culture-et-patrimoine/jardin-du-pharo-parc-emile-duclaux-marseille-7eme-fr-2791919/">Office de tourisme de Marseille, Jardin du Pharo</a>, horaires.</li>
       <li id="s39"><a href="https://www.marseille-tourisme.com/decouvrez-marseille/culture-et-patrimoine/musee-des-beaux-arts-marseille-4eme-fr-2791415/">Office de tourisme de Marseille, Musée des Beaux-Arts</a>, horaires.</li>
       <li id="s40"><a href="https://www.marseille-tourisme.com/offres/friche-belle-de-mai-marseille-3eme-fr-2796535/">Office de tourisme de Marseille, Friche la Belle de Mai</a>, horaires.</li>
+      <li id="s41"><a href="https://mucem.org/uploads/2026/02/Mucem_Dossier_de_Presse_Programme_Saison_2026_Fr.pdf">MuCEM, dossier de presse de la saison 2026</a> : expositions, horaires, tarifs.</li>
     </ol>
     <p style="margin-top:16px">Heures de lever et de coucher du soleil calculées pour Marseille, à quelques minutes près. Fonds de carte © <a href="https://www.openstreetmap.org/copyright">contributeurs OpenStreetMap</a>, © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA). Météo : <a href="https://open-meteo.com/">Open-Meteo</a>.</p>
   </div>
@@ -787,7 +806,7 @@ const VISITS = [
  {k:"radieuse", n:"Cité radieuse Le Corbusier", must:true, day:"Mer 11", where:"8e, boulevard Michelet",
   txt:"Unité d'habitation classée à l'UNESCO. Toit-terrasse accessible du mercredi au dimanche ; appartement témoin uniquement en visite guidée réservée."},
  {k:"mucem", n:"MuCEM", must:true, day:"Dim 8", where:"2e, esplanade du J4",
-  txt:"Le bâtiment de Rudy Ricciotti et sa résille, les collections méditerranéennes, la passerelle vers le Fort Saint-Jean. Fermé le mardi."},
+  txt:"Le bâtiment de Rudy Ricciotti et sa résille, les collections méditerranéennes, la passerelle vers le Fort Saint-Jean. Ouvert le dimanche, fermé le mardi, 11 €. Parcours détaillé dans le guide de visite ci-dessous."},
  {k:"ndg", n:"Notre-Dame de la Garde", must:true, day:"Dim 8", where:"6e, colline de la Garde",
   txt:"La montée à pied fait partie de la visite. Le stationnement au sommet est très limité."},
  {k:"vieuxport", n:"Vieux-Port", must:true, day:"Dim 8", where:"1er et 7e",
@@ -830,7 +849,7 @@ const RESA = [
  {k:"senanque", n:"Visite guidée de Sénanque, samedi 7 (en français, places limitées)", when:"En ligne, quelques jours avant", def:"optionnel"},
  {k:"cassisd", n:"Dîner d'adieu sur le port de Cassis, jeudi 12", when:"La semaine précédente", def:"areserver"},
  {k:"cassis", n:"Dégustation AOC Cassis (repli mistral), jeudi 12", when:"La veille", def:"optionnel"},
- {k:"mucemb", n:"Billets MuCEM, dimanche 8", when:"En ligne, la veille", def:"optionnel"},
+ {k:"mucemb", n:"Billets MuCEM, dimanche 8 (11 €, ou sur place)", when:"En ligne, la veille", def:"optionnel"},
  {k:"offline", n:"Cartes hors ligne des itinéraires", when:"Avant le départ", def:"afaire"}
 ];
 const STATUS = {afaire:"À faire", areserver:"À réserver", demande:"Demandé", confirme:"Confirmé", optionnel:"Optionnel", fait:"Fait"};
