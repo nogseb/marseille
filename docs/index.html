@@ -388,17 +388,17 @@ details.fold .fold-body{padding:0 16px 14px}
       <div class="fold-body">
     <p><b>Ouvert le jeudi</b>, de 10h à 18h en novembre, fermé le mardi. Dernière entrée 45 min avant la fermeture. Billet à la journée 11 € (réduit 7,50 €), valable pour toutes les expositions du J4 et du Fort Saint-Jean<sup><a href="#s6">6</a>, <a href="#s41">41</a></sup>.</p>
     <p><b>Billets</b> : pas indispensables à l'avance un jeudi de novembre, mais un jour de pluie attire du monde : les prendre en ligne mercredi soir. Les acheter la veille sur la billetterie en ligne évite simplement la file à l'entrée du J4. Les espaces extérieurs, les passerelles, le Fort Saint-Jean et ses jardins sont en accès libre.</p>
-    <h3 class="sub">Le parcours, de 10h à 14h, avant Cosquer Méditerranée</h3>
+    <h3 class="sub">Le parcours, de 13h à 17h45, après Cosquer Méditerranée</h3>
     <ol>
       <li><b>Fort Saint-Jean (libre)</b> : vu lundi ; par forte pluie, entrer directement au J4 et garder le fort pour une éclaircie.</li>
       <li><b>La passerelle vers le J4</b> : la plus photographiée, avec la résille de béton de Rudy Ricciotti en face.</li>
       <li><b>Le toit-terrasse du J4</b> : vue sur la mer et le Fort, la meilleure pause avant le déjeuner.</li>
-      <li><b>Déjeuner vers 12h30</b> sur place, avant Cosquer Méditerranée à 14h, dans la Villa Méditerranée voisine.</li>
+      <li><b>Déjeuner vers 13h</b> sur place, en sortant de Cosquer Méditerranée, dans la Villa Méditerranée voisine.</li>
       <li><b>Niveau 2, environ 1h</b> : <i>Méditerranées</i>, l'exposition de référence sur l'histoire du bassin, puis <i>Manger les images. L'ingestion du visible</i>, la nouvelle exposition temporaire, ouverte le 28 octobre.</li>
       <li><b>Rez-de-chaussée, environ 45 min</b> : <i>Populaire ?</i>, les trésors des collections du musée, et <i>Mossi Traoré, la mode aussi</i>, qui ferme le 16 novembre.</li>
       <li><b>Le couloir entre résille et vitrage</b> : la rampe qui fait le tour du bâtiment, avec ses jeux d'ombre au soleil de l'après-midi.</li>
     </ol>
-    <p class="muted" style="font-size:.9rem">À choisir s'il faut raccourcir : le niveau 2 en priorité. Pas de visite guidée réservable pour un couple : les visites commentées sur réservation sont réservées aux groupes (à partir de 271 € le groupe). Les « visites flash » gratuites de 15 à 30 min n'ont lieu que le week-end, entre 14h et 17h : pas le jeudi<sup><a href="#s41">41</a>, <a href="#s42">42</a></sup>. Avec Cosquer Méditerranée l'après-midi, le MuCEM et l'esplanade du J4 remplissent toute la journée de pluie.</p>
+    <p class="muted" style="font-size:.9rem">À choisir s'il faut raccourcir : le niveau 2 en priorité. Pas de visite guidée réservable pour un couple : les visites commentées sur réservation sont réservées aux groupes (à partir de 271 € le groupe). Les « visites flash » gratuites de 15 à 30 min n'ont lieu que le week-end, entre 14h et 17h : pas le jeudi<sup><a href="#s41">41</a>, <a href="#s42">42</a></sup>. Avec Cosquer Méditerranée le matin, le MuCEM et l'esplanade du J4 remplissent la journée de pluie jusqu'à la séance de cinéma de 18h30.</p>
       </div>
     </details>
   </div>
@@ -673,6 +673,8 @@ const PLACES = {
   callelongue:{n:"Callelongue", c:[43.2124,5.3537], d:"Départ du GR51-98, parking très limité."},
   marseilleveyre:{n:"Sommet de Marseilleveyre (432 m)", c:[43.2165,5.3702], d:"Panorama sur l'archipel de Riou et Marseille."},
   goudes:    {n:"Les Goudes", c:[43.2160,5.3467], d:"Village de pêcheurs, déjeuner ou apéritif sur le port."},
+  espacejulien:{n:"Espace Julien", c:[43.2937,5.3833], d:"Salle de concert du cours Julien, 39 cours Julien."},
+  artplexe:  {n:"Artplexe Canebière", c:[43.2984,5.3818], d:"Cinéma de la Canebière."},
   bchave:    {n:"Bistrot Chave", c:[43.2952,5.3916], d:"78 bd Chave, cuisine de bistrot soignée et vins nature, fermé le dimanche."},
   chaleur:   {n:"Chaleur", c:[43.2954,5.3913], d:"Restaurant du boulevard Chave, petites assiettes et vins, à 3 min de l'appartement."},
   croisettes:{n:"Les Croisettes", c:[43.2120,5.3425], d:"Bout de la route des Goudes : batterie, vue sur l'île Maïre et Tiboulen."},
@@ -755,9 +757,10 @@ const DAYS = [
        ["12h30","Crête du col de la Candelle","Sentier rocheux et escarpé, puis descente par les « treize contours » et le grand éboulis, au plus près du rocher.",1],
        ["14h00","Retour à Luminy","Par le col de Sugiton et la piste de l'aller ; pique-nique en route."],
        ["15h30","Retour, récupération",""],
-       ["18h30","La Plaine et le cours Julien","Apéritif puis dîner à dix minutes à pied de l'appartement, sans voiture : la place Jean-Jaurès, les escaliers et le street art du cours Julien.",1]],
+       ["18h30","Dîner au cours Julien","À dix minutes à pied de l'appartement, sans voiture : la place Jean-Jaurès, les escaliers et le street art du cours Julien.",1],
+       ["20h00","Concert : Robert Finley et Barbara Forstner","Espace Julien, 39 cours Julien : la voix soul et blues de Robert Finley, découvert sur le tard et produit par Dan Auerbach. Billets pris."]],
    hike:"h3",
-   places:["luminy","belvsugiton","puget","plaine","coursj"],
+   places:["luminy","belvsugiton","puget","coursj","espacejulien"],
    warn:"Prévision du lundi matin : quelques gouttes le matin, éclaircies l'après-midi, vent d'est de 30 à 40 km/h en baisse. Parcours difficile : 12 km et 524 m de dénivelé. Crête et éboulis à éviter s'ils sont mouillés : dans ce cas, se limiter au belvédère de Sugiton (2h30 aller-retour).",
    planb:"Par pluie : journée musées, mais MuCEM fermé le mardi ; Vieille Charité, musée d'Histoire de Marseille et Palais Longchamp ouverts."},
  { id:"d5", date:"2026-11-11", short:"Mer 11", title:"La Côte Bleue, L'Estaque et la Cité radieuse", level:2, walk:"2h à 3h", sun:["07h26","17h17"],
@@ -772,18 +775,20 @@ const DAYS = [
    places:["niolon","erevine","mejean","estaque","radieuse"],
    warn:"Prévision du lundi matin : nuages et éclaircies, sec (risque de quelques gouttes de 10 à 40 %), vent de nord-est à sud-est modéré, 17 à 21 °C : la meilleure journée de la semaine. Houle possible sur le sentier des Douaniers : rester à distance des rochers battus. 11 novembre, jour férié : horaires du train et du toit-terrasse à vérifier. Le soir, consulter la vigilance Météo-France pour jeudi.",
    planb:"Si la pluie arrive dès mercredi : Cosquer Méditerranée et musée d'Histoire aujourd'hui, et la Côte Bleue saute."},
- { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"Le MuCEM et Cosquer Méditerranée, à l'abri de la pluie", level:1, walk:"1h en ville", sun:["07h26","17h16"],
-   sum:"Le jour de l'épisode méditerranéen (30 à 50 mm, vent de sud-est fort) : une journée entière sur l'esplanade du J4, au MuCEM puis dans la grotte Cosquer, sans voiture.",
-   tl:[["09h30","Métro jusqu'à Joliette","Ligne 2 depuis Notre-Dame-du-Mont (10 min à pied de l'appartement), puis 10 min à pied ; ou taxi."],
-       ["10h00","MuCEM, niveau 2","Méditerranées, puis Manger les images, environ 1h30 : parcours détaillé dans le guide de visite.",1],
-       ["11h30","MuCEM, rez-de-chaussée","Populaire ? et Mossi Traoré, la mode aussi (dernière semaine), environ 45 min."],
-       ["12h30","Déjeuner au MuCEM",""],
-       ["14h00","Cosquer Méditerranée","La réplique de la grotte ornée du cap Morgiou, juste à côté, dans la Villa Méditerranée, sur réservation.",1],
-       ["16h00","Si éclaircie : la résille et le toit-terrasse du J4","Sinon, retour en métro ; la pluie doit faiblir en fin de journée."],
-       ["20h00","Dîner d'adieu","Au Bistrot Chave ou chez Georges, à deux pas de l'appartement ; ou au Vallon des Auffes en taxi (Chez Fonfon, L'Avant Cour, Chez Jeannot ou Auffo, tous ouverts le jeudi)."]],
-   places:["mucem","cosquerp","base"],
-   warn:"Prévision du lundi matin : pluie modérée à forte une partie de la journée (30 à 50 mm), vent d'est à sud-est de 30 à 60 km/h. Les sols sont saturés après les épisodes de fin octobre : consulter la vigilance Météo-France mercredi soir et éviter la voiture.",
-   planb:"Si le MuCEM est trop fréquenté : musée d'Histoire de Marseille et port antique au Centre Bourse, à 15 min à pied, ou Vieille Charité."},
+ { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"Cosquer, le MuCEM, puis Les Misérables au cinéma", level:1, walk:"1h en ville", sun:["07h26","17h16"],
+   sum:"Le jour de l'épisode méditerranéen (30 à 50 mm, vent de sud-est fort) : la grotte Cosquer puis le MuCEM sur l'esplanade du J4, une séance de cinéma sur la Canebière et un dîner d'adieu tardif, sans voiture.",
+   tl:[["10h45","Métro jusqu'à Joliette","Ligne 2 depuis Notre-Dame-du-Mont (10 min à pied de l'appartement), puis 10 min à pied ; ou taxi."],
+       ["11h30","Cosquer Méditerranée","La réplique de la grotte ornée du cap Morgiou, visite en module puis galerie, dans la Villa Méditerranée.",1],
+       ["13h00","Déjeuner au MuCEM","Juste à côté, sur l'esplanade du J4."],
+       ["14h15","MuCEM, niveau 2","Méditerranées, puis Manger les images, environ 1h30 : parcours détaillé dans le guide de visite.",1],
+       ["15h45","MuCEM, rez-de-chaussée","Populaire ? et Mossi Traoré, la mode aussi (dernière semaine), environ 45 min."],
+       ["16h45","Si éclaircie : la résille et le toit-terrasse du J4","Le musée ferme à 18h."],
+       ["17h45","Vers la Canebière","15 à 20 min à pied par le Vieux-Port, ou métro jusqu'à Noailles."],
+       ["18h30","Cinéma : Les Misérables","Artplexe Canebière, salle 3, fin de la séance à 21h29. Billets pris."],
+       ["21h45","Dîner d'adieu","Après la séance, vers la place Jean-Jaurès à une dizaine de minutes : MINA (ouvert tard) ou Le Magnolia (jusqu'à 23h) ; réserver."]],
+   places:["cosquerp","mucem","artplexe","plaine"],
+   warn:"Prévision du lundi matin : pluie modérée à forte une partie de la journée (30 à 50 mm), vent d'est à sud-est de 30 à 60 km/h. Les sols sont saturés après les épisodes de fin octobre : consulter la vigilance Météo-France mercredi soir. Grève suspendue au MuCEM mais préavis toujours actif : vérifier l'ouverture mercredi soir sur mucem.org.",
+   planb:"Si le MuCEM est fermé ou trop fréquenté : musée d'Histoire de Marseille et port antique au Centre Bourse, à 15 min à pied, puis la Canebière."},
  { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Retour par Sète", level:0, walk:"–", sun:["07h29","17h15"],
    sum:"Départ matinal de Marseille, déjeuner à Sète avec Giorgio et Joëlle, arrivée à Toulouse pour récupérer les enfants à 17h30.",
    tl:[["07h30","Ménage et bagages","Fenêtres fermées, poubelles sorties, gaz coupé ; draps en boule dans la salle de bain s'il n'y a personne après nous."],
@@ -853,8 +858,10 @@ const RESA = [
  {k:"cr", n:"Visite guidée Cité radieuse, mercredi 11", when:"Office de tourisme", def:"optionnel"},
  {k:"senanque", n:"Visite guidée de Sénanque, samedi 7 (en français, places limitées)", when:"En ligne, quelques jours avant", def:"optionnel"},
  {k:"vigi12", n:"Vigilance Météo-France pour jeudi 12 (Bouches-du-Rhône)", when:"Mercredi 11 au soir", def:"afaire"},
- {k:"adieu12", n:"Dîner d'adieu, jeudi 12 au soir (Marseille)", when:"Mercredi", def:"areserver"},
- {k:"cosquerj", n:"Cosquer Méditerranée, jeudi 12 après-midi (18 €)", when:"En ligne, dès mardi", def:"areserver"},
+ {k:"concert10", n:"Concert Robert Finley et Barbara Forstner, mardi 10 à 20h (Espace Julien)", when:"Billets pris", def:"confirme"},
+ {k:"cine12", n:"Les Misérables, jeudi 12 à 18h30 (Artplexe Canebière, salle 3)", when:"Billets pris", def:"confirme"},
+ {k:"adieu12b", n:"Dîner d'adieu, jeudi 12 vers 21h45, après le cinéma", when:"Mercredi", def:"areserver"},
+ {k:"cosquer1130", n:"Cosquer Méditerranée, jeudi 12 à 11h30", when:"Créneau retenu", def:"confirme"},
  {k:"mucemj", n:"Billets MuCEM, jeudi 12 (11 €, ou sur place)", when:"En ligne, mercredi", def:"optionnel"},
  {k:"bchave9", n:"Dîner au Bistrot Chave, lundi 9 à 19h30", when:"Lundi en journée", def:"areserver"}
 ];
