@@ -384,21 +384,21 @@ details.fold .fold-body{padding:0 16px 14px}
     <p class="intro">Les quatre incontournables, puis des compléments à piocher selon l'énergie et la météo. Cocher une visite la marque comme faite sur cet appareil.</p>
     <div class="grid c2" id="visitGrid"></div>
     <details class="fold" id="guide-mucem">
-      <summary>Guide de visite : le MuCEM, lundi 9</summary>
+      <summary>Guide de visite : le MuCEM, jeudi 12</summary>
       <div class="fold-body">
-    <p><b>Ouvert le lundi</b>, de 10h à 18h en novembre, fermé le mardi. Dernière entrée 45 min avant la fermeture. Billet à la journée 11 € (réduit 7,50 €), valable pour toutes les expositions du J4 et du Fort Saint-Jean<sup><a href="#s6">6</a>, <a href="#s41">41</a></sup>.</p>
-    <p><b>Billets</b> : pas indispensables à l'avance un lundi de novembre. Les acheter la veille sur la billetterie en ligne évite simplement la file à l'entrée du J4. Les espaces extérieurs, les passerelles, le Fort Saint-Jean et ses jardins sont en accès libre.</p>
-    <h3 class="sub">Le parcours, de 10h45 à 15h</h3>
+    <p><b>Ouvert le jeudi</b>, de 10h à 18h en novembre, fermé le mardi. Dernière entrée 45 min avant la fermeture. Billet à la journée 11 € (réduit 7,50 €), valable pour toutes les expositions du J4 et du Fort Saint-Jean<sup><a href="#s6">6</a>, <a href="#s41">41</a></sup>.</p>
+    <p><b>Billets</b> : pas indispensables à l'avance un jeudi de novembre, mais un jour de pluie attire du monde : les prendre en ligne mercredi soir. Les acheter la veille sur la billetterie en ligne évite simplement la file à l'entrée du J4. Les espaces extérieurs, les passerelles, le Fort Saint-Jean et ses jardins sont en accès libre.</p>
+    <h3 class="sub">Le parcours, de 10h à 14h, avant Cosquer Méditerranée</h3>
     <ol>
-      <li><b>Fort Saint-Jean (libre)</b> : chemin de ronde, jardin des migrations, vue sur la passe du Vieux-Port. On y arrive depuis la Major.</li>
+      <li><b>Fort Saint-Jean (libre)</b> : vu lundi ; par forte pluie, entrer directement au J4 et garder le fort pour une éclaircie.</li>
       <li><b>La passerelle vers le J4</b> : la plus photographiée, avec la résille de béton de Rudy Ricciotti en face.</li>
       <li><b>Le toit-terrasse du J4</b> : vue sur la mer et le Fort, la meilleure pause avant le déjeuner.</li>
-      <li><b>Déjeuner vers 12h</b> sur place ou dans le quartier.</li>
+      <li><b>Déjeuner vers 12h30</b> sur place, avant Cosquer Méditerranée à 14h, dans la Villa Méditerranée voisine.</li>
       <li><b>Niveau 2, environ 1h</b> : <i>Méditerranées</i>, l'exposition de référence sur l'histoire du bassin, puis <i>Manger les images. L'ingestion du visible</i>, la nouvelle exposition temporaire, ouverte le 28 octobre.</li>
       <li><b>Rez-de-chaussée, environ 45 min</b> : <i>Populaire ?</i>, les trésors des collections du musée, et <i>Mossi Traoré, la mode aussi</i>, qui ferme le 16 novembre.</li>
       <li><b>Le couloir entre résille et vitrage</b> : la rampe qui fait le tour du bâtiment, avec ses jeux d'ombre au soleil de l'après-midi.</li>
     </ol>
-    <p class="muted" style="font-size:.9rem">À choisir s'il faut raccourcir : le niveau 2 en priorité. Pas de visite guidée réservable pour un couple : les visites commentées sur réservation sont réservées aux groupes (à partir de 271 € le groupe). Les « visites flash » gratuites de 15 à 30 min n'ont lieu que le week-end, entre 14h et 17h : pas le lundi<sup><a href="#s41">41</a>, <a href="#s42">42</a></sup>. Par pluie, le MuCEM remplit à lui seul la fin de matinée et l'après-midi ; la montée à Notre-Dame de la Garde peut alors passer en bus 60.</p>
+    <p class="muted" style="font-size:.9rem">À choisir s'il faut raccourcir : le niveau 2 en priorité. Pas de visite guidée réservable pour un couple : les visites commentées sur réservation sont réservées aux groupes (à partir de 271 € le groupe). Les « visites flash » gratuites de 15 à 30 min n'ont lieu que le week-end, entre 14h et 17h : pas le jeudi<sup><a href="#s41">41</a>, <a href="#s42">42</a></sup>. Avec Cosquer Méditerranée l'après-midi, le MuCEM et l'esplanade du J4 remplissent toute la journée de pluie.</p>
       </div>
     </details>
   </div>
@@ -673,6 +673,7 @@ const PLACES = {
   callelongue:{n:"Callelongue", c:[43.2124,5.3537], d:"Départ du GR51-98, parking très limité."},
   marseilleveyre:{n:"Sommet de Marseilleveyre (432 m)", c:[43.2165,5.3702], d:"Panorama sur l'archipel de Riou et Marseille."},
   goudes:    {n:"Les Goudes", c:[43.2160,5.3467], d:"Village de pêcheurs, déjeuner ou apéritif sur le port."},
+  bchave:    {n:"Bistrot Chave", c:[43.2952,5.3916], d:"78 bd Chave, cuisine de bistrot soignée et vins nature, fermé le dimanche."},
   chaleur:   {n:"Chaleur", c:[43.2954,5.3913], d:"Restaurant du boulevard Chave, petites assiettes et vins, à 3 min de l'appartement."},
   croisettes:{n:"Les Croisettes", c:[43.2120,5.3425], d:"Bout de la route des Goudes : batterie, vue sur l'île Maïre et Tiboulen."},
   luminy:    {n:"Luminy", c:[43.2318,5.4370], d:"Départ vers Sugiton et le Mont Puget, parking toute l'année."},
@@ -731,34 +732,33 @@ const DAYS = [
        ["20h00","Dîner chez Chaleur","Boulevard Chave, à trois minutes à pied de l'appartement : petites assiettes à partager et bons vins."]],
    hike:"h2",
    places:["goudes","marseilleveyre","croisettes","chaleur"]},
- { id:"d3", date:"2026-11-09", short:"Lun 9", title:"Marseille à pied, du Panier à la Bonne Mère", level:1, walk:"4h30 en ville", sun:["07h23","17h20"],
-   sum:"Journée urbaine sans voiture, le jour le plus venteux mais encore sec : le MuCEM est ouvert le lundi, contrairement aux musées municipaux.",
-   tl:[["08h30","À pied jusqu'au Vieux-Port","Vingt-cinq minutes par le cours Julien et Noailles, ou en tram depuis l'arrêt Camas ; la voiture reste garée."],
-       ["09h00","Marché aux poissons","Quai des Belges, l'ambiance du port le matin."],
-       ["09h30","Le Panier","Ruelles, place de Lenche, façade de la Vieille Charité (fermée le lundi).",1],
-       ["10h45","La Major et le Fort Saint-Jean","Passerelles et jardins, vue sur la passe du Vieux-Port.",1],
-       ["11h30","MuCEM","Toit-terrasse, déjeuner, puis les expositions : parcours détaillé dans le guide de visite."],
-       ["15h00","Montée à Notre-Dame de la Garde","À pied depuis le cours Pierre Puget, ou bus 60.",1],
-       ["16h15","Abbaye Saint-Victor","Les cryptes, environ 25 min ; redescendre de Notre-Dame de la Garde vers 15h50."],
+ { id:"d3", date:"2026-11-09", short:"Lun 9", title:"Le Panier, les forts et le Pharo", level:1, walk:"4h en ville", sun:["07h23","17h20"],
+   sum:"Journée à pied sans voiture, sous un ciel gris et venteux : le vieux Marseille du Panier au Pharo. Le MuCEM passe au jeudi, jour de forte pluie ; Notre-Dame de la Garde est déjà faite.",
+   tl:[["10h30","À pied jusqu'au Vieux-Port","Vingt-cinq minutes par le cours Julien et Noailles, ou en tram depuis l'arrêt Camas ; la voiture reste garée."],
+       ["11h00","Vieux-Port et marché aux poissons","Quai des Belges, jusqu'à 13h environ."],
+       ["11h30","Le Panier","Ruelles, place de Lenche, cour de la Vieille Charité vue de l'extérieur (fermée le lundi).",1],
+       ["12h45","Déjeuner au Panier",""],
+       ["14h15","La Major et le Fort Saint-Jean","Accès libre au fort et à ses jardins, vue sur la passe et le MuCEM, que vous verrez de l'intérieur jeudi.",1],
+       ["15h30","Abbaye Saint-Victor","Par le quai de Rive-Neuve, ou le ferry-boat du Vieux-Port s'il circule ; les cryptes, environ 25 min."],
        ["16h45","Jardin du Pharo","Coucher du soleil à 17h20, face à l'entrée du Vieux-Port, au Fort Saint-Jean et au Frioul.",1],
-       ["17h30","Retour par le Vieux-Port","À pied ou en bus, averses possibles en soirée."],
-       ["19h30","Dîner à Noailles ou au cours Julien","Près de l'appartement, à l'abri si la pluie arrive."]],
-   places:["belges","panier","charite","major","fort","mucem","ndg","victor","pharo","coursj"],
-   warn:"Prévision du dimanche soir : ciel couvert, vent d'est-sud-est assez fort (rafales de 40 à 50 km/h), pluie faible possible, 18 à 20 °C. Le lundi, la Vieille Charité, le musée d'Histoire et les Beaux-Arts sont fermés. Le jardin du Pharo peut fermer en cas d'alerte météo.",
-   planb:"Si la pluie arrive plus tôt : rester au MuCEM l'après-midi et monter à Notre-Dame de la Garde en bus 60."},
+       ["17h30","Retour vers l'appartement","À pied ou en bus."],
+       ["19h30","Dîner au Bistrot Chave","Boulevard Chave, à 3 min de l'appartement, la table la mieux notée du quartier, ouverte le lundi soir à partir de 19h30 ; réserver."]],
+   places:["belges","panier","charite","major","fort","victor","pharo","bchave"],
+   warn:"Prévision du lundi matin : ciel très nuageux, bruine ou petites averses possibles, vent d'est fort (rafales de 50 à 60 km/h sur le littoral). Le Fort Saint-Jean et le jardin du Pharo peuvent fermer en cas d'alerte vent. Le lundi, la Vieille Charité et les musées municipaux sont fermés.",
+   planb:"Si la pluie s'installe : déjeuner au Panier puis retour par Noailles et le marché des Capucins, à l'abri des arcades."},
  { id:"d4", date:"2026-11-10", short:"Mar 10", title:"Le tour du Mont Puget, par Sugiton et la Candelle", level:4, walk:"4h30", sun:["07h25","17h19"],
    sum:"Une boucle nouvelle depuis Luminy, la référence du Parc national entre Sugiton et la Candelle, avec la vue plongeante sur Morgiou et Sugiton. Prévision : ciel couvert, peu ou pas de pluie, vent en baisse.",
-   tl:[["08h00","Route vers Luminy","Environ 25 min ; parking ouvert toute l'année, ou bus B1."],
-       ["08h30","Luminy – col de Sugiton","Large piste dans la pinède, près des anciens fours à chaux.",1],
-       ["09h15","Belvédère de Sugiton","Vue plongeante sur la calanque et le Torpilleur, une vingtaine de minutes aller-retour.",1],
-       ["10h00","Chemin du Centaure et vallon de l'Herbe","Descente vers le puits de Cancel, remontée du vallon de l'Herbe, puis un balcon face à la mer.",1],
-       ["11h30","Crête du col de la Candelle","Sentier rocheux et escarpé, puis descente par les « treize contours » et le grand éboulis, au plus près du rocher.",1],
-       ["13h00","Retour à Luminy, pique-nique","Par le col de Sugiton et la piste de l'aller."],
-       ["15h00","Retour, récupération",""],
+   tl:[["09h00","Route vers Luminy","Environ 25 min ; parking ouvert toute l'année, ou bus B1. Départ un peu plus tard pour laisser passer les gouttes du matin."],
+       ["09h30","Luminy – col de Sugiton","Large piste dans la pinède, près des anciens fours à chaux.",1],
+       ["10h15","Belvédère de Sugiton","Vue plongeante sur la calanque et le Torpilleur, une vingtaine de minutes aller-retour.",1],
+       ["11h00","Chemin du Centaure et vallon de l'Herbe","Descente vers le puits de Cancel, remontée du vallon de l'Herbe, puis un balcon face à la mer.",1],
+       ["12h30","Crête du col de la Candelle","Sentier rocheux et escarpé, puis descente par les « treize contours » et le grand éboulis, au plus près du rocher.",1],
+       ["14h00","Retour à Luminy","Par le col de Sugiton et la piste de l'aller ; pique-nique en route."],
+       ["15h30","Retour, récupération",""],
        ["18h30","La Plaine et le cours Julien","Apéritif puis dîner à dix minutes à pied de l'appartement, sans voiture : la place Jean-Jaurès, les escaliers et le street art du cours Julien.",1]],
    hike:"h3",
    places:["luminy","belvsugiton","puget","plaine","coursj"],
-   warn:"Prévision du dimanche soir : couvert, sec, vent d'est en baisse, les meilleures conditions de la fin de séjour. Parcours difficile : 12 km et 524 m de dénivelé. Crête et éboulis à éviter s'ils sont mouillés : dans ce cas, se limiter au belvédère de Sugiton (2h30 aller-retour).",
+   warn:"Prévision du lundi matin : quelques gouttes le matin, éclaircies l'après-midi, vent d'est de 30 à 40 km/h en baisse. Parcours difficile : 12 km et 524 m de dénivelé. Crête et éboulis à éviter s'ils sont mouillés : dans ce cas, se limiter au belvédère de Sugiton (2h30 aller-retour).",
    planb:"Par pluie : journée musées, mais MuCEM fermé le mardi ; Vieille Charité, musée d'Histoire de Marseille et Palais Longchamp ouverts."},
  { id:"d5", date:"2026-11-11", short:"Mer 11", title:"La Côte Bleue, L'Estaque et la Cité radieuse", level:2, walk:"2h à 3h", sun:["07h26","17h17"],
    sum:"Le dernier jour sec avant l'épisode pluvieux : la Côte Bleue à pied, déjeuner à L'Estaque, puis la Cité radieuse au coucher du soleil.",
@@ -770,18 +770,20 @@ const DAYS = [
        ["18h30","Lessive des draps et serviettes","Seulement si d'autres invités arrivent après nous : sans sèche-linge, il faut deux jours de séchage. Laverie Escoffier en bas au besoin."]],
    hike:"h1",
    places:["niolon","erevine","mejean","estaque","radieuse"],
-   warn:"Prévision du dimanche soir : couvert, sec ou quelques gouttes (0 à 5 mm), vent de sud-est modéré, rafales jusqu'à 48 km/h. Houle possible sur le sentier des Douaniers : rester à distance des rochers battus. 11 novembre, jour férié : horaires du train et du toit-terrasse à vérifier. Le soir, consulter la vigilance Météo-France pour jeudi.",
+   warn:"Prévision du lundi matin : nuages et éclaircies, sec (risque de quelques gouttes de 10 à 40 %), vent de nord-est à sud-est modéré, 17 à 21 °C : la meilleure journée de la semaine. Houle possible sur le sentier des Douaniers : rester à distance des rochers battus. 11 novembre, jour férié : horaires du train et du toit-terrasse à vérifier. Le soir, consulter la vigilance Météo-France pour jeudi.",
    planb:"Si la pluie arrive dès mercredi : Cosquer Méditerranée et musée d'Histoire aujourd'hui, et la Côte Bleue saute."},
- { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"Musées à l'abri, puis le Vieux-Port au retour du soleil", level:1, walk:"2h en ville", sun:["07h26","17h16"],
-   sum:"Le jour de l'épisode pluvieux (18 à 28 mm, surtout le matin, vent d'est fort) : une matinée de musées sans voiture, puis le centre-ville si les éclaircies reviennent, et le dîner d'adieu.",
-   tl:[["10h00","Musée d'Histoire de Marseille","Le port antique et l'épave romaine, au Centre Bourse : métro ou 25 min à pied. Horaires à vérifier.",1],
-       ["12h00","Déjeuner à Noailles","Marché des Capucins, épiceries orientales, à deux pas."],
-       ["14h00","Cosquer Méditerranée","La réplique de la grotte ornée du cap Morgiou, sur réservation, à côté du MuCEM."],
-       ["16h00","Si éclaircie : le Vieux-Port et le Fort Saint-Jean","La pluie doit cesser en début d'après-midi ; sinon, la Vieille Charité, ouverte le jeudi.",1],
-       ["20h00","Dîner d'adieu","Au Vallon des Auffes (Chez Fonfon, L'Avant Cour, Chez Jeannot ou Auffo, tous ouverts le jeudi), ou à Noailles près de l'appartement."]],
-   places:["histoire","capucins","cosquerp","fort","base"],
-   warn:"Prévision du dimanche soir : 18 à 28 mm de pluie, surtout le matin, vent d'est fort (rafales jusqu'à 70 km/h), éclaircies en soirée. Pas de voiture ni de randonnée ; en cas de vigilance orange, rester à l'appartement le matin.",
-   planb:"Si la pluie cesse tôt : Aix-en-Provence l'après-midi (30 min par l'A51), musée Granet et cours Mirabeau."},
+ { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"Le MuCEM et Cosquer Méditerranée, à l'abri de la pluie", level:1, walk:"1h en ville", sun:["07h26","17h16"],
+   sum:"Le jour de l'épisode méditerranéen (30 à 50 mm, vent de sud-est fort) : une journée entière sur l'esplanade du J4, au MuCEM puis dans la grotte Cosquer, sans voiture.",
+   tl:[["09h30","Métro jusqu'à Joliette","Ligne 2 depuis Notre-Dame-du-Mont (10 min à pied de l'appartement), puis 10 min à pied ; ou taxi."],
+       ["10h00","MuCEM, niveau 2","Méditerranées, puis Manger les images, environ 1h30 : parcours détaillé dans le guide de visite.",1],
+       ["11h30","MuCEM, rez-de-chaussée","Populaire ? et Mossi Traoré, la mode aussi (dernière semaine), environ 45 min."],
+       ["12h30","Déjeuner au MuCEM",""],
+       ["14h00","Cosquer Méditerranée","La réplique de la grotte ornée du cap Morgiou, juste à côté, dans la Villa Méditerranée, sur réservation.",1],
+       ["16h00","Si éclaircie : la résille et le toit-terrasse du J4","Sinon, retour en métro ; la pluie doit faiblir en fin de journée."],
+       ["20h00","Dîner d'adieu","Au Bistrot Chave ou chez Georges, à deux pas de l'appartement ; ou au Vallon des Auffes en taxi (Chez Fonfon, L'Avant Cour, Chez Jeannot ou Auffo, tous ouverts le jeudi)."]],
+   places:["mucem","cosquerp","base"],
+   warn:"Prévision du lundi matin : pluie modérée à forte une partie de la journée (30 à 50 mm), vent d'est à sud-est de 30 à 60 km/h. Les sols sont saturés après les épisodes de fin octobre : consulter la vigilance Météo-France mercredi soir et éviter la voiture.",
+   planb:"Si le MuCEM est trop fréquenté : musée d'Histoire de Marseille et port antique au Centre Bourse, à 15 min à pied, ou Vieille Charité."},
  { id:"d7", date:"2026-11-13", short:"Ven 13", title:"Retour par Sète", level:0, walk:"–", sun:["07h29","17h15"],
    sum:"Départ matinal de Marseille, déjeuner à Sète avec Giorgio et Joëlle, arrivée à Toulouse pour récupérer les enfants à 17h30.",
    tl:[["07h30","Ménage et bagages","Fenêtres fermées, poubelles sorties, gaz coupé ; draps en boule dans la salle de bain s'il n'y a personne après nous."],
@@ -809,9 +811,9 @@ const HIKES = {
 const VISITS = [
  {k:"radieuse", n:"Cité radieuse Le Corbusier", must:true, day:"Mer 11", where:"8e, boulevard Michelet",
   txt:"Unité d'habitation classée à l'UNESCO. Toit-terrasse accessible du mercredi au dimanche ; appartement témoin uniquement en visite guidée réservée."},
- {k:"mucem", n:"MuCEM", must:true, day:"Lun 9", where:"2e, esplanade du J4",
-  txt:"Le bâtiment de Rudy Ricciotti et sa résille, les collections méditerranéennes, la passerelle vers le Fort Saint-Jean. Ouvert le lundi, fermé le mardi, 11 €. Parcours détaillé dans le guide de visite ci-dessous."},
- {k:"ndg", n:"Notre-Dame de la Garde", must:true, day:"Lun 9", where:"6e, colline de la Garde",
+ {k:"mucem", n:"MuCEM", must:true, day:"Jeu 12", where:"2e, esplanade du J4",
+  txt:"Le bâtiment de Rudy Ricciotti et sa résille, les collections méditerranéennes, la passerelle vers le Fort Saint-Jean. Ouvert le jeudi, fermé le mardi, 11 €. Parcours détaillé dans le guide de visite ci-dessous."},
+ {k:"ndg", n:"Notre-Dame de la Garde", must:true, day:"Déjà faite", where:"6e, colline de la Garde",
   txt:"La montée à pied fait partie de la visite. Le stationnement au sommet est très limité."},
  {k:"vieuxport", n:"Vieux-Port", must:true, day:"Lun 9", where:"1er et 7e",
   txt:"Marché aux poissons le matin, ombrière de Norman Foster, ferry-boat pour traverser le port."},
@@ -821,7 +823,7 @@ const VISITS = [
   txt:"Cryptes du Ve siècle, parmi les plus anciens lieux de culte de France."},
  {k:"palais", n:"Palais Longchamp", day:"Sam 7", where:"4e, à 15 min à pied",
   txt:"Château d'eau monumental, cascade et parc. Musée des Beaux-Arts gratuit, du mardi au dimanche de 9h à 18h, fermé le lundi : repli idéal par pluie."},
- {k:"histoire", n:"Musée d'Histoire de Marseille", day:"Jeu 12", where:"1er, Centre Bourse",
+ {k:"histoire", n:"Musée d'Histoire de Marseille", day:"Jeu 12, en repli", where:"1er, Centre Bourse",
   txt:"Le port antique in situ et 2 600 ans d'histoire de la ville."},
  {k:"friche", n:"Friche la Belle de Mai", day:"Sam 7", where:"3e, à 15 min à pied du Palais Longchamp",
   txt:"Ancienne manufacture de tabac devenue lieu culturel, toit-terrasse avec vue à 360° pour le coucher du soleil. Horaires non garantis : vérifier sur lafriche.org la veille."},
@@ -853,7 +855,8 @@ const RESA = [
  {k:"vigi12", n:"Vigilance Météo-France pour jeudi 12 (Bouches-du-Rhône)", when:"Mercredi 11 au soir", def:"afaire"},
  {k:"adieu12", n:"Dîner d'adieu, jeudi 12 au soir (Marseille)", when:"Mercredi", def:"areserver"},
  {k:"cosquerj", n:"Cosquer Méditerranée, jeudi 12 après-midi (18 €)", when:"En ligne, dès mardi", def:"areserver"},
- {k:"mucemb", n:"Billets MuCEM, lundi 9 (11 €, ou sur place)", when:"En ligne, la veille", def:"optionnel"}
+ {k:"mucemj", n:"Billets MuCEM, jeudi 12 (11 €, ou sur place)", when:"En ligne, mercredi", def:"optionnel"},
+ {k:"bchave9", n:"Dîner au Bistrot Chave, lundi 9 à 19h30", when:"Lundi en journée", def:"areserver"}
 ];
 const STATUS = {afaire:"À faire", areserver:"À réserver", demande:"Demandé", confirme:"Confirmé", optionnel:"Optionnel", fait:"Fait"};
 
@@ -1111,14 +1114,14 @@ const DOSSIERS = [
   <p>Les vestiges des rues détruites reposent sous la <b>place du 23 janvier 1943</b>. La justice française a depuis reconnu ces rafles comme crime contre l'humanité[31].</p>`,
   zoom:"La Maison diamantée, avec sa façade en pointes de diamant du XVIe siècle, est l'un des rares témoins du quartier d'avant 1943, à deux pas de l'Hôtel de Ville[14].",
   src:[13,14,31]},
- {id:"ndg", th:"cult", day:"d3", where:"Colline de la Garde, lundi 9",
+ {id:"ndg", th:"cult", day:"", where:"Colline de la Garde, déjà visitée",
   t:"La Bonne Mère, vigie des marins",
   hook:"Une Vierge dorée de plus de 11 mètres, des milliers d'ex-voto, et un architecte de 23 ans, protestant, pour la basilique la plus aimée des Marseillais.",
   body:`<p>Le chantier de la basilique commence au début des années 1850, sur une colline d'environ 150 mètres qui porte depuis le Moyen Âge une chapelle de pèlerinage. Son architecte, <b>Jacques-Henri Espérandieu</b>, a 23 ans au lancement du projet, et il est protestant. L'édifice est consacré en <b>1864</b>[20].</p>
   <p>Au sommet du clocher, la <b>Vierge à l'Enfant</b> mesure 11,2 mètres. Elle est en cuivre doré à la feuille et pèse près de 10 tonnes[20][21]. À l'intérieur, environ <b>2 500 ex-voto</b> remercient la Vierge : maquettes de navires et tableaux de naufrages évités, offerts surtout par des marins. La tradition remonte au XIVe siècle[20].</p>`,
   zoom:"Regardez la façade et les mosaïques : elles portent encore des impacts de balles des combats de la Libération[21].",
   src:[20,21]},
- {id:"mucem", th:"cult", day:"d3", where:"Esplanade du J4, lundi 9",
+ {id:"mucem", th:"cult", day:"d6", where:"Esplanade du J4, jeudi 12",
   t:"Le MuCEM, une dentelle de béton",
   hook:"Inauguré en 2013, il a transformé un ancien môle portuaire en l'une des promenades les plus photographiées de France.",
   body:`<p>Le MuCEM ouvre le <b>7 juin 2013</b>, dans le cadre de Marseille-Provence 2013, Capitale européenne de la culture. C'est l'un des rares musées nationaux installés hors de Paris[29].</p>
