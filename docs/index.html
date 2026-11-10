@@ -303,7 +303,7 @@ details.fold .fold-body{padding:0 16px 14px}
   <div class="wrap">
     <div class="kicker">Carnet de voyage · 6 – 13 novembre 2026</div>
     <h1>Marseille et les Calanques</h1>
-    <p class="lede">Huit jours à deux, Sébastien et Pauline, de Toulouse à Toulouse : une soirée en famille à Gigean, Gordes et l'abbaye de Sénanque en chemin, puis six nuits au Camas pour arpenter les Calanques de Marseilleveyre à Sugiton, la Côte Bleue, Aix-en-Provence et Marseille du Panier à la Cité radieuse.</p>
+    <p class="lede">Huit jours à deux, Sébastien et Pauline, de Toulouse à Toulouse : une soirée en famille à Gigean, Gordes et l'abbaye de Sénanque en chemin, puis six nuits au Camas pour arpenter les Calanques de Marseilleveyre à En-Vau, Aix-en-Provence et Marseille du Panier à la Cité radieuse.</p>
     <div class="facts">
       <div class="fact"><div class="k">Dates</div><div class="v">6 – 13 nov.</div><div class="s">du vendredi au vendredi, 1 nuit à Balaruc, 6 à Marseille</div></div>
       <div class="fact"><div class="k" id="countdownK">Départ dans</div><div class="v" id="countdown">–</div><div class="s" id="countdownSub">Toulouse, en voiture</div></div>
@@ -764,19 +764,24 @@ const DAYS = [
    places:["luminy","belvsugiton","sugiton","coursj","espacejulien"],
    warn:"La boucle prend environ 5h et la nuit tombe vers 17h50 : quitter le bord de l'eau au plus tard à 15h, lampe frontale dans le sac par précaution ; si le rythme est lent, couper au plus court par le col de Sugiton. Prévision : quelques gouttes le matin, éclaircies l'après-midi, vent d'est de 30 à 40 km/h en baisse. La descente vers Sugiton et les passages au bord de l'eau sont glissants s'ils sont mouillés : par temps humide, s'arrêter au promontoire des Américains ou au belvédère de Sugiton. Houle d'est possible : ne pas s'avancer sur les rochers battus près de la Grotte Bleue.",
    planb:"Par pluie : journée musées, mais MuCEM fermé le mardi ; Vieille Charité, musée d'Histoire de Marseille et Palais Longchamp ouverts."},
- { id:"d5", date:"2026-11-11", short:"Mer 11", title:"La Côte Bleue, L'Estaque et la Cité radieuse", level:2, walk:"2h à 3h", sun:["07h26","17h17"],
-   sum:"Le dernier jour sec avant l'épisode pluvieux : la Côte Bleue à pied, déjeuner à L'Estaque, puis la Cité radieuse au coucher du soleil.",
-   tl:[["08h30","Route vers Niolon","Environ 35 min par l'A55 et la route de la Côte Bleue, ou train TER depuis Saint-Charles (jour férié : horaires à vérifier)."],
-       ["09h15","Niolon – calanque de l'Érevine – Méjean","Sentier des Douaniers, viaducs de la voie ferrée, petite plage de galets : 5 à 6 km, 2h à 3h, quelques passages raides.",1],
-       ["12h30","Déjeuner à L'Estaque","Sur la route du retour : panisses et chichis sur le port des peintres."],
-       ["15h00","Cité radieuse","Rue intérieure, toit-terrasse du MAMO, librairie et hôtel-restaurant Le Corbusier."],
-       ["16h45","Coucher de soleil depuis le toit","Vue sur la mer et les collines de Marseilleveyre, si le ciel le permet."],
+ { id:"d5", date:"2026-11-11", short:"Mer 11", title:"Port-Miou, Port-Pin, En-Vau, puis la Cité radieuse", level:3, walk:"4h30", sun:["07h26","17h17"],
+   sum:"La plus belle journée de la semaine pour la boucle des trois calanques de Cassis : Port-Miou, Port-Pin et En-Vau (11,1 km, 435 m de dénivelé), puis la Cité radieuse au coucher du soleil.",
+   tl:[["08h45","Récupérer la voiture au Q-Park Vallier","Sortie par lecture de plaque."],
+       ["09h00","Route vers Cassis","Environ 40 min par la Gineste. Parking de la presqu'île de Port-Miou s'il est ouvert, sinon les parkings du port de Cassis."],
+       ["09h45","Port-Miou","Le long fjord des bateaux, les anciennes carrières de calcaire Solvay et la vue sur le cap Canaille.",1],
+       ["10h30","Port-Pin","Petite plage de galets sous les pins.",1],
+       ["11h15","Calanque d'En-Vau","Descente rocheuse jusqu'à la plage, entre les falaises et les aiguilles ; pique-nique au fond de la calanque.",1],
+       ["12h45","Retour par le plateau et le belvédère","Remontée raide depuis En-Vau, puis le panorama au-dessus de Port-Pin et retour vers Port-Miou.",1],
+       ["14h15","Retour à Cassis","Un café sur le port avant de reprendre la voiture."],
+       ["15h30","Route vers la Cité radieuse","Environ 40 min par la Gineste et le boulevard Michelet."],
+       ["16h15","Cité radieuse","Rue intérieure, librairie, puis le toit-terrasse du MAMO (ouvert jusqu'à 18h)."],
+       ["16h50","Coucher de soleil depuis le toit","Coucher à 17h17, vue sur la mer et Marseilleveyre."],
        ["18h30","Lessive des draps et serviettes","Seulement si d'autres invités arrivent après nous : sans sèche-linge, il faut deux jours de séchage. Laverie Escoffier en bas au besoin."],
        ["20h00","Dîner au 224","18 rue Saint-Michel, à moins de dix minutes à pied : cuisine sénégalaise, thiéboudienne, mafé et jus maison. Ouvert jusqu'à minuit."]],
    hike:"h1",
-   places:["niolon","erevine","mejean","estaque","radieuse","le224"],
-   warn:"Prévision du lundi matin : nuages et éclaircies, sec (risque de quelques gouttes de 10 à 40 %), vent de nord-est à sud-est modéré, 17 à 21 °C : la meilleure journée de la semaine. Houle possible sur le sentier des Douaniers : rester à distance des rochers battus. 11 novembre, jour férié : horaires du train et du toit-terrasse à vérifier. Le soir, consulter la vigilance Météo-France pour jeudi.",
-   planb:"Si la pluie arrive dès mercredi : Cosquer Méditerranée et musée d'Histoire aujourd'hui, et la Côte Bleue saute."},
+   places:["vallier","cassis","portmiou","portpin","envau","radieuse","le224"],
+   warn:"Prévision : nuages et éclaircies, sec, vent modéré, 17 à 21 °C. La descente vers En-Vau est rocheuse et glissante : bonnes chaussures, mains libres. 11 novembre, jour férié : le parking de la presqu'île peut être fermé ou complet, prévoir les parkings du port. Le soir, consulter la vigilance Météo-France pour jeudi et l'ouverture du MuCEM.",
+   planb:"Si le temps tourne plus tôt que prévu : s'arrêter au belvédère au-dessus d'En-Vau sans descendre, et rentrer par Port-Pin."},
  { id:"d6", date:"2026-11-12", short:"Jeu 12", title:"Cosquer, le MuCEM, puis Les Misérables au cinéma", level:1, walk:"1h en ville", sun:["07h26","17h16"],
    sum:"Le jour de l'épisode méditerranéen (30 à 50 mm, vent de sud-est fort) : la grotte Cosquer puis le MuCEM sur l'esplanade du J4, une séance de cinéma sur la Canebière et un dîner d'adieu tardif, sans voiture.",
    tl:[["10h45","Métro jusqu'à Joliette","Ligne 2 depuis Notre-Dame-du-Mont (10 min à pied de l'appartement), puis 10 min à pied ; ou taxi."],
@@ -811,8 +816,8 @@ const HIKES = {
      txt:"Fait le dimanche 8, de 11h à 15h, suivi de la balade des Croisettes (3,5 km). Montée raide et rocheuse jusqu'au sommet (432 m), panorama sur l'archipel de Riou et la rade."},
  h3:{n:"Vallon de l'Ours – cap Sugiton – Grotte Bleue", day:"d4", km:"11,7 km", dp:"509 m", t:"5h", lv:4, start:"Luminy", maps:"Parking Luminy, Marseille",
      txt:"Boucle depuis Luminy repérée sur AllTrails : vallon de l'Ours, promontoire des Américains, calanque et cap de Sugiton, gouffre de la Porte de Sugiton et Grotte Bleue, retour par le col de Sugiton. Point haut à 337 m, descente jusqu'au niveau de la mer."},
- h1:{n:"Niolon – calanque de l'Érevine – Méjean", day:"d5", km:"5 à 6 km", dp:"Modéré", t:"2h à 3h", lv:2, start:"Niolon, Côte Bleue", maps:"Gare de Niolon, Le Rove",
-     txt:"Le sentier des Douaniers sur la Côte Bleue : criques, viaducs de la voie ferrée, forts de Niolon et de Méjean. Seulement si le mercredi est sec ; aller en train possible depuis Saint-Charles."}
+ h1:{n:"Port-Miou – Port-Pin – En-Vau (boucle)", day:"d5", km:"11,1 km", dp:"435 m", t:"4h30", lv:3, start:"Cassis, Port-Miou", maps:"Calanque de Port-Miou, Cassis",
+     txt:"La boucle classique des calanques de Cassis repérée sur AllTrails (4,8/5) : Port-Miou et ses carrières, la plage de Port-Pin, la descente dans En-Vau, retour par le plateau et le panorama. Passages rocailleux, deux montées franches."},
 };
 
 const VISITS = [
@@ -836,7 +841,7 @@ const VISITS = [
   txt:"Ancienne manufacture de tabac devenue lieu culturel, toit-terrasse avec vue à 360° pour le coucher du soleil. Horaires non garantis : vérifier sur lafriche.org la veille."},
  {k:"pharo", n:"Jardin du Pharo", day:"Lun 9", where:"7e, entrée du Vieux-Port",
   txt:"Jardin du palais construit pour Napoléon III, face au Fort Saint-Jean et au Frioul. Gratuit, tous les jours de 7h à 21h ; peut fermer en cas d'alerte météo."},
- {k:"estaque", n:"L'Estaque", day:"Mer 11", where:"16e",
+ {k:"estaque", n:"L'Estaque", day:"Option", where:"16e",
   txt:"Le village des peintres, de Cézanne à Braque. Panisses et chichis sur le port."},
  {k:"auffes", n:"Vallon des Auffes", day:"Jeu 12, dîner d'adieu", where:"7e, Corniche",
   txt:"Port de pêcheurs encaissé sous la Corniche. Piste pour le dîner d'adieu du jeudi : Chez Fonfon, L'Avant Cour, Chez Jeannot ou Auffo, tous ouverts ce soir-là. Bus 83 ou taxi."},
